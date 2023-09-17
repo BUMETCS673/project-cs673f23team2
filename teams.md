@@ -1,7 +1,7 @@
 # Team - 2
 ---
 
-### Siddhesh Dighe
+## Siddhesh Dighe
 ---
 - I'm in my final year, pursuing Masters in Computer Science at BU
 - I'm born and brought up in Mumbai, India
