@@ -28,7 +28,7 @@
 ## Paridhi Talwar
 - I have joined Master's in Computer Science program this fall.
 - I am from Bangalore, India.
-- I have completed my bachelor's in Computer science and engineering from SRM University in India.
+- I have completed my Bachelor's in Computer science and engineering from SRM University in India.
 - During my undergraduate studies, I completed two internships at the following companies: Optum and Computacenter.
 - I am familiar with Python, C , C++ programming languages.
 - Additionally, I have experience with various web frameworks, including React, MERN stack, and Flask.
