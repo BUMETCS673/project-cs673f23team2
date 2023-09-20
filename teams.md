@@ -36,3 +36,14 @@
 	- Planning & Management: Github
 	- Development IDE: VSCode, Intellij Idea
 	- Automation: Selenium
+
+## Pushkar Gharat
+- I have joined Master's in Computer Science program this fall.
+- I am from Mumbai, India.
+- I have completed my Bachelor's in Computer Science and Engineering from Mumbai University in India.
+- I am familiar with Python, C++, HTML/CSS, etc.
+- Additionally, I have experience with various web frameworks, including React, MERN stack, and Flask.
+- I've worked with the following tools:
+	- Planning & Management: Github
+	- Development IDE: VSCode, Intellij Idea
+	- Automation: Docker
