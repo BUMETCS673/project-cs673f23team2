@@ -47,3 +47,11 @@
 	- Planning & Management: Github
 	- Development IDE: VSCode, Intellij Idea
 	- Automation: Docker
+
+## Ayush Bhaliya
+- I have joined Master's in Computer Science program this fall.
+- I am from Bharat.
+- I have completed my Bachelor's in Computer Science and Engineering from India,I've always had a good technical background.
+- I am familiar with Python,java, javascript etc.
+- Additionally, I'm an outgoing individual who believe in connecting with others, understanding their perspectives, and collaborating effectively.
+- Moreover, I am looking forward to learn from everyone.
