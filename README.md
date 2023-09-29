@@ -1,4 +1,5 @@
-# GroupProjectTemplate
+# Focused Study
+## Software Engineering Term Project for Team 2
 
 Team Member    | Roles
 -------------- | -------------
