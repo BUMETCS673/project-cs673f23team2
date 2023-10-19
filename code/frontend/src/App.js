@@ -1,7 +1,9 @@
 import './styles/App.css';
 import React, { Component }  from 'react';
-import {Route, Routes} from 'react-router-dom';
+import {Route, Routes, Link} from 'react-router-dom';
 import {ReactComponent as Logo} from './assets/logo_with_text.svg';
+import Search from './components/Search';
+import EducationalVideoFeed from './components/EducationalVideoFeed';
 
 function App() {
 
@@ -9,10 +11,12 @@ function App() {
     return(
       <div className="AppSignInContainerWrapper">
           <div className="AppSignInLogoContainerWrapper">
-            <Logo className="ApplicationLogo"/>
+            <Logo data-cy="appBanner" className="ApplicationLogo"/>
           </div>
           <div className="AppSignInButtonContainerWrapper">
-            <button>Sign-In with Google</button>
+            <Link to="/search">
+              <button data-cy="signInButton">Sign-In with Google</button>
+            </Link>
           </div>
         </div>
     )
@@ -22,6 +26,8 @@ function App() {
     <div className="App">
       <Routes>
         <Route path='/' element={screenToShow()} />
+        <Route path='/search' element={<Search />} />
+        <Route path='/browse' element={<EducationalVideoFeed />} />
       </Routes>
     </div>
   );
