@@ -1,0 +1,70 @@
+.AppSignInContainerWrapper{
+    display: grid;
+    place-items: center;
+    margin-top: 18vw;
+}
+
+.AppSignInButtonContainerWrapper{
+    margin-top: 2vw;
+}
+
+.AppSignInButtonContainerWrapper button{
+    width: 20vw;
+    font-size: 1.5em;
+    border: 0.2vw solid #282828;
+    background: transparent;
+    padding: 0.5vw;
+    border-radius: 2vw;
+    font-weight: 600;
+    color: #282828;
+    transition: all 0.25s ease;
+    cursor: pointer;
+}
+
+.AppSignInButtonContainerWrapper button:hover{
+    background: #5CB3F8;
+    color: #282828;
+    transform: scale(1.1);
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+    .AppSignInContainerWrapper{
+        margin-top: 60vw;
+    }
+
+    .ApplicationLogo{
+        width: 80vw;
+        height: 30vw;
+    }
+
+    .AppSignInButtonContainerWrapper button{
+        width: 60vw;
+        font-size: 1.2em;
+        padding: 2vw;
+    }
+
+    .AppSignInButtonContainerWrapper button:hover{
+        transform: scale(1.0);
+    }
+}
+   
+@media screen and (min-width: 768px) and (max-width: 1439px) {
+    .AppSignInContainerWrapper{
+        margin-top: 20vw;
+    }
+
+    .ApplicationLogo{
+        width: 80vw;
+        height: 30vw;
+    }
+
+    .AppSignInButtonContainerWrapper button{
+        width: 60vw;
+        font-size: 1.2em;
+        padding: 2vw;
+    }  
+}
+
+@media screen and (min-width: 2560px){
+    
+}
