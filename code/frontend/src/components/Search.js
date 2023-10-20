@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 /********* HELPER FUNCTIONS *********/
 ///////////////////////////////////////
 
-function isSearchValid(inputText) {
+export function isSearchValid(inputText) {
     const trimmedInput = inputText.trim();
     return trimmedInput.length > 1;
 }
@@ -30,7 +30,7 @@ export default function Search() {
 
     const handleSearchClick = () => {
         if(isSearchValid(searchKeyword)){
-            navigate('/browse')
+            navigate('/browse', { state: {query: searchKeyword} });
         }
     }
 

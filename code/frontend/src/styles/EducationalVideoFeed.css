@@ -1,0 +1,20 @@
+.NavigationStackContainer{
+    background-color: white;
+    display: grid;
+    place-items: center;
+}
+
+.videoTitleElement{
+    margin-top: 3vw;
+    font-size: 2em;
+    font-weight: 600;
+}
+
+.NavigationStackContainer{
+    display: grid;
+    place-items: center;
+}
+
+.VideoStackContainer iframe{
+    padding: 1vw;
+}
