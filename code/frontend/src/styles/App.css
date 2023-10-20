@@ -1,7 +1,10 @@
+<<<<<<< HEAD
 body{
     background-color: white;
 }
 
+=======
+>>>>>>> 17f3921fe149f02dbe890c8bf3d38b968bcef9ab
 .AppSignInContainerWrapper{
     display: grid;
     place-items: center;
@@ -22,13 +25,20 @@ body{
     font-weight: 600;
     color: #282828;
     transition: all 0.25s ease;
+<<<<<<< HEAD
+=======
+    cursor: pointer;
+>>>>>>> 17f3921fe149f02dbe890c8bf3d38b968bcef9ab
 }
 
 .AppSignInButtonContainerWrapper button:hover{
     background: #5CB3F8;
     color: #282828;
     transform: scale(1.1);
+<<<<<<< HEAD
     cursor: pointer;
+=======
+>>>>>>> 17f3921fe149f02dbe890c8bf3d38b968bcef9ab
 }
 
 @media screen and (min-width: 320px) and (max-width: 767px) {

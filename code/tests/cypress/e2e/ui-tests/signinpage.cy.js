@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 // SE-23
+=======
+>>>>>>> 17f3921fe149f02dbe890c8bf3d38b968bcef9ab
 describe('As a user, When I visit www.focusedstudy.com, I want to see a login page so that I can login and start using the webapp', () => {
     
     beforeEach(() => {
