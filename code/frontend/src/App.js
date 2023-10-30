@@ -4,6 +4,7 @@ import {Route, Routes, Link} from 'react-router-dom';
 import {ReactComponent as Logo} from './assets/logo_with_text.svg';
 import Search from './components/Search';
 import EducationalVideoFeed from './components/EducationalVideoFeed';
+import { signInWithGoogle } from './firebase';
 
 function App() {
 
@@ -15,7 +16,7 @@ function App() {
           </div>
           <div className="AppSignInButtonContainerWrapper">
             <Link to="/search">
-              <button data-cy="signInButton">Sign-In with Google</button>
+              <button data-cy="signInButton" onClick={signInWithGoogle}>Sign-In with Google</button>
             </Link>
           </div>
         </div>
