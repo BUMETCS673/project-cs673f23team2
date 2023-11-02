@@ -8,6 +8,7 @@ import EntertainmentFeed from './components/EntertainmentFeed';
 import SeeAllVideos from './components/SeeAllVideos'
 import UserProfile from './components/UserProfile';
 import VideoHistory from './components/VideoHistory';
+import { signInWithGoogle } from "./firebase";
 
 function App() {
 
@@ -19,7 +20,7 @@ function App() {
           </div>
           <div className="AppSignInButtonContainerWrapper">
             <Link to="/search">
-              <button data-cy="signInButton">Sign-In with Google</button>
+            <button data-cy="signInButton" onClick={signInWithGoogle}>Sign-In with Google</button>
             </Link>
           </div>
         </div>
