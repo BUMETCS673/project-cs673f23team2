@@ -1,0 +1,45 @@
+.container {
+    width: 100%;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+  
+  .profile-card {
+    position: fixed;
+    top: 0;
+    right: 0;
+    padding: 5px;
+    cursor: none;
+  }
+
+  button {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+  }
+
+  .profile-card h3 {
+    margin-left: 10px;
+  }
+
+  .profile-card img {
+    pointer-events: none;
+    cursor: none;
+  }
+  .video-player {
+    width: 70%;
+    margin: 0 auto;
+    margin-top: 20px;
+  }
+  
+  .controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  #video-time {
+    width: 50px;
+  }
+  
+  
