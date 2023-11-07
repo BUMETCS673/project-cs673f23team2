@@ -39,6 +39,10 @@ export default function Search() {
             handleSearchClick();
         }
     };
+
+    const handleEntertainmentClick = () => {
+        navigate('/entertainment-browse', { state: {query: ['guitar learn']}});
+    }
     
     return (
         <div className='SearchContainer'>
@@ -57,6 +61,12 @@ export default function Search() {
                 className='SearchButtonElement'
                 onClick={handleSearchClick}>
                     Search</button>
+            <button 
+                data-cy="EntertainmentVideoFeedButton"
+                className='SearchButtonElement'
+                onClick={handleEntertainmentClick}>
+                    entertainment mode
+                </button>
         </div>
     )
 }

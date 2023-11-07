@@ -4,6 +4,7 @@ import {Route, Routes, Link} from 'react-router-dom';
 import {ReactComponent as Logo} from './assets/logo_with_text.svg';
 import Search from './components/Search';
 import EducationalVideoFeed from './components/EducationalVideoFeed';
+import EntertainmentFeed from './components/EntertainmentFeed';
 
 function App() {
 
@@ -28,6 +29,7 @@ function App() {
         <Route path='/' element={screenToShow()} />
         <Route path='/search' element={<Search />} />
         <Route path='/browse' element={<EducationalVideoFeed />} />
+        <Route path='/entertainment-browse' element={<EntertainmentFeed />} />
       </Routes>
     </div>
   );
