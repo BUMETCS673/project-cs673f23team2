@@ -1,4 +1,5 @@
 import React from 'react';
+import '../styles/UserProfile.css'
 
 function UserProfile() {
   return (
@@ -7,7 +8,6 @@ function UserProfile() {
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>User Profile</title>
-        <link rel="stylesheet" href="../styles/UserProfile.css" type="text/css" media="all" />
       </head>
       <body>
         <header>

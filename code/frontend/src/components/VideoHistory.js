@@ -1,4 +1,5 @@
 import React from 'react';
+import '../styles/VideoHistory.css'
 
 function VideoHistory() {
   return (
@@ -10,12 +11,6 @@ function VideoHistory() {
           content="width=device-width, initial-scale=1.0"
         />
         <title>Video History</title>
-        <link
-          rel="stylesheet"
-          href="../styles/VideoHistory.css"
-          type="text/css"
-          media="all"
-        />
       </head>
       <body>
         <div className="home-container">
