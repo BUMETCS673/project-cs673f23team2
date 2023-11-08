@@ -5,6 +5,7 @@ import {ReactComponent as Logo} from './assets/logo_with_text.svg';
 import Search from './components/Search';
 import EducationalVideoFeed from './components/EducationalVideoFeed';
 import EntertainmentFeed from './components/EntertainmentFeed';
+import SeeAllVideos from './components/SeeAllVideos'
 
 function App() {
 
@@ -30,6 +31,7 @@ function App() {
         <Route path='/search' element={<Search />} />
         <Route path='/browse' element={<EducationalVideoFeed />} />
         <Route path='/entertainment-browse' element={<EntertainmentFeed />} />
+        <Route path='/all' element={<SeeAllVideos />} />
       </Routes>
     </div>
   );
