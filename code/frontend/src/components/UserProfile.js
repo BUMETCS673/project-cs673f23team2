@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import '../styles/UserProfile.css';
 
 function UserProfile() {
-  // Define state for hobbies and video history
+  
   const [hobbies, setHobbies] = useState(['Singing', 'Dancing', 'Tennis']);
   const [videoUrls, setVideoUrls] = useState([
     'https://www.youtube.com/embed/Z1RJmh_OqeA',
@@ -31,7 +31,7 @@ function UserProfile() {
                 src="https://www.shareicon.net/data/256x256/2016/09/15/829472_man_512x512.png"
                 alt="Profile Image"
               />{' '}
-              {/* Replace with your image */}
+             
             </div>
             <span>Supriya Uppala</span>
           </div>
