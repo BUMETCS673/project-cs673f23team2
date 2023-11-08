@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import axios from 'axios';
 import React from "react";
 
-export default function HobbyVideoGrid(props) {
+export default function VideoComponent(props) {
 	let query = props.query
 	// console.log("HobbyVidGrid", query);
 	const [videoList, setVideoList] = useState([])

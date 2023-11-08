@@ -1,16 +1,13 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import '../styles/EducationalVideoFeed.css'
-import EducationalVideoFeed, { isSearchValid } from './EducationalVideoFeed';
-// import HobbyVideoGrid from './HobbyVideoGrid';
-import { useLocation, useNavigate } from 'react-router-dom';
-import HobbyVideoGrid from './HobbyVideoGrid';
+import VideoComponent from './VideoComponent';
 import Button from '@mui/material/Button';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
 export default function EntertainmentFeed() {
-	const location = useLocation();
-	const [query, setQuery] = useState(location.state.query);
-	const userHobbies = ['hiking', 'surfing'] // from database
-	const [hobbyList, setHobbyList] = useState(userHobbies);
+	const [query, setQuery] = useState();
+	const hobbyList = ['hiking', 'surfing'] // ideally from database
 
 	const handleSearchInput = (event) => {
 		const keyword = event.target.value;
@@ -42,6 +39,12 @@ export default function EntertainmentFeed() {
 					value={query}
 					onChange={handleSearchInput}
 					onKeyDown={handleInputKeyPress}/>
+				<button
+					data-cy="searchBarButton" 
+                	className='SearchButtonElement'
+                	onClick={handleSearchClick}>
+						<FontAwesomeIcon icon={faMagnifyingGlass} />
+				</button>
 			</div>
 			<div>
 				<h1>Entertainment Feed</h1>
@@ -50,7 +53,7 @@ export default function EntertainmentFeed() {
 						{hobbyList.map((hobby) => {
 							return (
 								<>
-									<Button key={hobby}Button variant="outlined" onClick={HobbyButtonClick}>{hobby}</Button>&emsp;
+								<Button key={hobby}Button variant="outlined" onClick={HobbyButtonClick}>{hobby}</Button>&emsp;
 								</>
 						   	)
 						})}
@@ -58,7 +61,7 @@ export default function EntertainmentFeed() {
 						{hobbyList.map((hobby) => {
 							return (
 								<>
-									<HobbyVideoGrid query={hobby}/>
+								<VideoComponent query={hobby}/>
 								</>
 						   	)
 						})}
