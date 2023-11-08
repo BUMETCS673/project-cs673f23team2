@@ -1,8 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import '../styles/VideoDetails.css'
 
+const videos = [
+  {
+    url: 'https://www.youtube.com/embed/SqcY0GlETPk',
+    title: 'React Tutorial for Beginners',
+    channel: 'Programming with Mosh',
+  }
+];
 const VideoDetails = () => {
+  const video = videos[0];
   return (
     <div className="container">
       <button type="button">
@@ -17,14 +24,14 @@ const VideoDetails = () => {
         <iframe
                 width="420"
                 height="315"
-                src="https://www.youtube.com/embed/SqcY0GlETPk"
+                src={video.url}
                 frameBorder="0"
                 allowFullScreen
               ></iframe>
         <div className="controls">
         <div class="video-details">
-            <h2 id="video-title">React Tutorial for Beginners</h2>
-            <p id="video-owner">Programming with Mosh</p>
+            <h2 id="video-title">{video.title}</h2>
+            <h2 id="video-owner">{video.channel}</h2>
         </div>
         </div>
       </div>
@@ -34,4 +41,4 @@ const VideoDetails = () => {
 
 ReactDOM.render(<VideoDetails />, document.getElementById('root'));
 
-export default App;
+export default VideoDetails;
