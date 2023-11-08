@@ -1,7 +1,15 @@
-import React from 'react';
-import '../styles/UserProfile.css'
+import React, { useState } from 'react';
+import '../styles/UserProfile.css';
 
 function UserProfile() {
+  // Define state for hobbies and video history
+  const [hobbies, setHobbies] = useState(['Singing', 'Dancing', 'Tennis']);
+  const [videoUrls, setVideoUrls] = useState([
+    'https://www.youtube.com/embed/Z1RJmh_OqeA',
+    'https://www.youtube.com/embed/pTFZFxd4hOI',
+    'https://www.youtube.com/embed/xk4_1vDrzzo',
+  ]);
+
   return (
     <div>
       <head>
@@ -19,13 +27,11 @@ function UserProfile() {
           {/* User Profile Container */}
           <div className="profile-container">
             <div className="profile-pic">
-              <div className="profile-pic">
-                <img
-                  src="https://www.shareicon.net/data/256x256/2016/09/15/829472_man_512x512.png"
-                  alt="Profile Image"
-                />{' '}
-                {/* Replace with your image */}
-              </div>
+              <img
+                src="https://www.shareicon.net/data/256x256/2016/09/15/829472_man_512x512.png"
+                alt="Profile Image"
+              />{' '}
+              {/* Replace with your image */}
             </div>
             <span>Supriya Uppala</span>
           </div>
@@ -34,35 +40,24 @@ function UserProfile() {
 
         <section className="hobbies">
           <h2>Hobbies:</h2>
-          <button>Singing</button>
-          <button>Dancing</button>
-          <button>Tennis</button>
+          {hobbies.map((hobby, index) => (
+            <button key={index}>{hobby}</button>
+          ))}
         </section>
 
         <section className="video-history">
           <h2>Video History</h2>
           <div className="videos">
-            <iframe
-              width="300"
-              height="300"
-              src="https://www.youtube.com/embed/Z1RJmh_OqeA"   
-              frameborder="0"
-              allowfullscreen
-            ></iframe>
-            <iframe
-              width="300"
-              height="300"
-              src="https://www.youtube.com/embed/pTFZFxd4hOI"
-              frameborder="0"
-              allowfullscreen
-            ></iframe>
-            <iframe
-              width="300"
-              height="300"
-              src="https://www.youtube.com/embed/xk4_1vDrzzo"
-              frameborder="0"
-              allowfullscreen
-            ></iframe>
+            {videoUrls.map((videoUrl, index) => (
+              <iframe
+                key={index}
+                width="300"
+                height="300"
+                src={videoUrl}
+                frameBorder="0"
+                allowFullScreen
+              ></iframe>
+            ))}
             <button>See All</button>
           </div>
         </section>
