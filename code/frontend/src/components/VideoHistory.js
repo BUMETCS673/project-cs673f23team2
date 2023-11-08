@@ -1,5 +1,24 @@
 import React from 'react';
-import '../styles/VideoHistory.css'
+import '../styles/VideoHistory.css';
+
+// Define an array of video objects with titles and URLs
+const videos = [
+  {
+    title: 'Flask Tutorial',
+    url: 'https://www.youtube.com/embed/Z1RJmh_OqeA',
+    watchTime: '20:23 mins',
+  },
+  {
+    title: 'Docker Tutorial',
+    url: 'https://www.youtube.com/embed/pTFZFxd4hOI',
+    watchTime: '51:00 mins',
+  },
+  {
+    title: 'Java Tutorial',
+    url: 'https://www.youtube.com/embed/xk4_1vDrzzo',
+    watchTime: '61:00 mins',
+  },
+];
 
 function VideoHistory() {
   return (
@@ -21,39 +40,21 @@ function VideoHistory() {
         </div>
 
         <div className="video-history">
-          <h2>Flask Tutorial</h2>
-          <div className="video-item">
-            <div className="video-wrapper">
-              <iframe
-                src="https://www.youtube.com/embed/Z1RJmh_OqeA"
-                title="YouTube video player"
-                allowfullscreen
-              ></iframe>
+          {videos.map((video, index) => (
+            <div key={index}>
+              <h2>{video.title}</h2>
+              <div className="video-item">
+                <div className="video-wrapper">
+                  <iframe
+                    src={video.url}
+                    title="YouTube video player"
+                    allowFullScreen
+                  ></iframe>
+                </div>
+                <div className="watch-time">Watch Time: {video.watchTime}</div>
+              </div>
             </div>
-            <div className="watch-time">Watch Time: 20:23 mins</div>
-          </div>
-          <h2>Docker Tutorial</h2>
-          <div className="video-item">
-            <div className="video-wrapper">
-              <iframe
-                src="https://www.youtube.com/embed/pTFZFxd4hOI"
-                title="YouTube video player"
-                allowfullscreen
-              ></iframe>
-            </div>
-            <div className="watch-time">Watch Time: 51:00 mins</div>
-          </div>
-          <h2>Java Tutorial</h2>
-          <div className="video-item">
-            <div className="video-wrapper">
-              <iframe
-                src="https://www.youtube.com/embed/xk4_1vDrzzo"
-                title="YouTube video player"
-                allowfullscreen
-              ></iframe>
-            </div>
-            <div className="watch-time">Watch Time: 61:00 mins</div>
-          </div>
+          ))}
         </div>
       </body>
     </div>
