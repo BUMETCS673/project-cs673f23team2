@@ -3,11 +3,7 @@ import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 import React, { useState, useEffect } from 'react'
 import '../styles/EducationalVideoFeed.css'
-
-export function isSearchValid(inputText) {
-    const trimmedInput = inputText.trim();
-    return trimmedInput.length > 1;
-}
+import { isSearchValid } from './EducationalVideoFeed';
 
 
 export default function SeeAllVideos() {
@@ -37,7 +33,7 @@ export default function SeeAllVideos() {
 
   function getYoutubeVideosFromQuery(query, count){
     var API_KEY = "AIzaSyDIWl549UW4KBX1j01bFl56kRc8lWeUdLU"
-    axios.get("https://www.googleapis.com/youtube/v3/search?key=" + API_KEY + "&q=" + query + "&type=video&part=snippet").then((response) => {
+    axios.get("https://www.googleapis.com/youtube/v3/search?key=" + API_KEY + "&q=" + query + "&type=video&part=snippet&maxResults=20").then((response) => {
       setVideoList(response.data.items)
     })
   }
@@ -65,12 +61,6 @@ export default function SeeAllVideos() {
               <div className='VideoGrid'>
                 {videoList.map((video) => (
                   <div className='VideoItem' key={video.id.videoId}>
-                    {/* <div className="VideoInfo">
-                      <h3 className='VideoTitle'>{video.snippet.title}</h3>
-                      <p className='ChannelName'>{video.snippet.channelTitle}</p>
-                      <p className='Views'>{video.snippet.viewCount} views</p>
-                      <p className='PostedDate'>Posted on {video.snippet.publishedAt}</p>
-                    </div> */}
                     <iframe
                       title='myframe'
                       width='420'
