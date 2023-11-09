@@ -1,0 +1,39 @@
+.onboarding-container {
+    width: 400px; /* Adjust the width as needed */
+    margin: auto;
+    text-align: center;
+    border: 1px solid #ccc;
+    padding: 20px;
+  }
+  
+  .profile-pic-placeholder {
+    width: 100px;
+    height: 100px;
+    background-color: #efefef;
+    border-radius: 50%;
+    margin: 20px auto;
+  }
+  
+  .hobbies-input,
+  .hobbies-suggestions {
+    margin-bottom: 10px;
+  }
+  
+  .hobbies-suggestions button {
+    margin: 5px;
+  }
+  
+  .hobby-tag {
+    display: inline-block;
+    background-color: #ddeeff;
+    margin: 5px;
+    padding: 5px;
+    border-radius: 5px;
+  }
+  
+  .hobby-tag button {
+    margin-left: 10px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+  }
