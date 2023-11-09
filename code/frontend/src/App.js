@@ -30,8 +30,8 @@ function App() {
         <Route path='/' element={screenToShow()} />
         <Route path='/search' element={<Search />} />
         <Route path='/browse' element={<EducationalVideoFeed />} />
-        <Route path='/userProfile' element={<UserProfile />} />
-        <Route path='/videoHistory' element={<VideoHistory />} />
+        <Route path='/users/:userId' element={<UserProfile />} />
+        <Route path='/users/:userId/video-history' element={<VideoHistory />} />
       </Routes>
     </div>
   );
