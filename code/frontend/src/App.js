@@ -8,7 +8,8 @@ import EntertainmentFeed from './components/EntertainmentFeed';
 import SeeAllVideos from './components/SeeAllVideos'
 import UserProfile from './components/UserProfile';
 import VideoHistory from './components/VideoHistory';
-import OnboardingPage from './OnboardingPage';
+import OnboardingPage from './components/OnboardingPage';
+import { signInWithGoogle } from "./firebase";
 
 function App() {
   const screenToShow = () => {
@@ -18,6 +19,7 @@ function App() {
           <Logo data-cy="appBanner" className="ApplicationLogo" />
         </div>
         <div className="AppSignInButtonContainerWrapper">
+        <button data-cy="signInButton" onClick={signInWithGoogle}>Sign-In with Google</button>
           <Link to="/onboarding">Go to Onboarding Page</Link>
         </div>
       </div>
