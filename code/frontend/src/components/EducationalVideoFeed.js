@@ -2,6 +2,7 @@ import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 import React, { useState, useEffect } from 'react'
 import '../styles/EducationalVideoFeed.css'
+import { useNavigate } from 'react-router-dom';
 
 export function isSearchValid(inputText) {
   const trimmedInput = inputText.trim();
@@ -23,21 +24,25 @@ export default function EducationalVideoFeed() {
     if (event.key === 'Enter') {
         handleSearchClick();
     }
-};
+  };
 
-const handleSearchClick = () => {
-  if(isSearchValid(searchKeyword)){
-      getYoutubeVideosFromQuery(searchKeyword, 10)
+  const handleSearchClick = () => {
+    if(isSearchValid(searchKeyword)){
+        getYoutubeVideosFromQuery(searchKeyword, 10)
+    }
   }
-}
+  let navigate = useNavigate();
+  const seeMoreVideosClick = () => {
+    navigate('/all',{ state: {query:searchKeyword} });
+  }
 
 
-function getYoutubeVideosFromQuery(query, count){
-  var API_KEY = "AIzaSyDIWl549UW4KBX1j01bFl56kRc8lWeUdLU"
-  axios.get("https://www.googleapis.com/youtube/v3/search?key=" + API_KEY + "&q=" + query + "&type=video&part=snippet").then((response) => {
-    setVideoList(response.data.items)
-  })
-}
+  function getYoutubeVideosFromQuery(query, count){
+    var API_KEY = "AIzaSyDIWl549UW4KBX1j01bFl56kRc8lWeUdLU"
+    axios.get("https://www.googleapis.com/youtube/v3/search?key=" + API_KEY + "&q=" + query + "&type=video&part=snippet").then((response) => {
+      setVideoList(response.data.items)
+    })
+  }
 
 useEffect(()=>{
   getYoutubeVideosFromQuery(query)
@@ -73,6 +78,11 @@ useEffect(()=>{
           <p>No videos found.</p>
         )}
     </div>
+    <button 
+                data-cy="seeAllButton" 
+                className='SearchButtonElement'
+                onClick={seeMoreVideosClick}>
+                    See more </button>
     </div>
   )
 }
