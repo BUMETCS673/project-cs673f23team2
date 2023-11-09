@@ -1,6 +1,6 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-
+import '../styles/VideoDetails.css';
+import { Link } from 'react-router-dom';
 const videos = [
   {
     url: 'https://www.youtube.com/embed/SqcY0GlETPk',
@@ -8,15 +8,26 @@ const videos = [
     channel: 'Programming with Mosh',
   }
 ];
-const VideoDetails = () => {
+
+function VideoDetails() {
   const video = videos[0];
   return (
-    <div className="container">
-      <button type="button">
-        <img src="logo.png" alt="Logo" />
-      </button>
+    <div>
+      <head>
+        <meta charset="UTF-8" />
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0"
+        />
+      </head>
+      <body>
+      <div className="home-container">
+      <Link to="/search">
+          <button id="home">Home</button>
+        </Link>
+        </div>
       <div className="profile-card">
-        <img src="profile-pic.jpg" alt="Profile picture" />
+        {/* <img src="profile-pic.jpg" alt="Profile picture" /> */}
         <h4>Reward Points: <span id="reward-points">100</span></h4>
       </div>
       <div className="video-player">
@@ -31,14 +42,13 @@ const VideoDetails = () => {
         <div className="controls">
         <div class="video-details">
             <h2 id="video-title">{video.title}</h2>
-            <h2 id="video-owner">{video.channel}</h2>
+            <h4 id="video-owner">{video.channel}</h4>
         </div>
         </div>
       </div>
-    </div>
+      </body>
+      </div>
   );
-};
-
-ReactDOM.render(<VideoDetails />, document.getElementById('root'));
+}
 
 export default VideoDetails;

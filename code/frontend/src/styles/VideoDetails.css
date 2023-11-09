@@ -19,7 +19,7 @@
 }
 
 .video-player {
-  width: 70%;
+  width: 40%;
   margin: 0 auto;
   margin-top: 20px;
 }
@@ -30,13 +30,13 @@
   align-items: center;
 }
 
-#video-time {
-  width: 50px;
-}
-
 button {
+  /* border: none;
+  background-color: transparent; */
+  padding: 10px 20px;
+  margin: 5px;
   border: none;
-  background-color: transparent;
+  border-radius: 5px;
   cursor: pointer;
 }
 
