@@ -10,6 +10,9 @@ import UserProfile from './components/UserProfile';
 import VideoHistory from './components/VideoHistory';
 import { signInWithGoogle } from "./firebase";
 
+
+
+
 function App() {
 
   const screenToShow = () => {
@@ -19,7 +22,7 @@ function App() {
             <Logo data-cy="appBanner" className="ApplicationLogo"/>
           </div>
           <div className="AppSignInButtonContainerWrapper">
-            <Link to="/search">
+            <Link to="/OnboardingPage">
             <button data-cy="signInButton" onClick={signInWithGoogle}>Sign-In with Google</button>
             </Link>
           </div>
@@ -37,6 +40,7 @@ function App() {
         <Route path='/all' element={<SeeAllVideos />} />
         <Route path='/users/:userId' element={<UserProfile />} />
         <Route path='/users/:userId/video-history' element={<VideoHistory />} />
+        <Route path='/OnboardingPage' element={<OnboardingPage />} />
       </Routes>
     </div>
   );
