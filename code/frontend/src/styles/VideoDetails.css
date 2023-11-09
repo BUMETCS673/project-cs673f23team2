@@ -1,0 +1,46 @@
+.container {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.profile-card {
+  position: fixed;
+  top: 0;
+  right: 0;
+  padding: 20px;
+  user-select: none;
+  cursor: none;
+}
+
+.profile-card img {
+  pointer-events: none;
+}
+
+.video-player {
+  width: 40%;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+button {
+  /* border: none;
+  background-color: transparent; */
+  padding: 10px 20px;
+  margin: 5px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button img {
+  display: block;
+  margin: 0 auto;
+}

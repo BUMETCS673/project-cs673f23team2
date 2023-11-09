@@ -10,6 +10,7 @@ import UserProfile from './components/UserProfile';
 import VideoHistory from './components/VideoHistory';
 import OnboardingPage from './components/OnboardingPage';
 import { signInWithGoogle } from "./firebase";
+import VideoDetails from './components/VideoDetails'
 
 function App() {
   const screenToShow = () => {
@@ -37,6 +38,7 @@ function App() {
         <Route path='/users/:userId' element={<UserProfile />} />
         <Route path='/users/:userId/video-history' element={<VideoHistory />} />
         <Route path='/onboarding' element={<OnboardingPage />} />
+        <Route path='/video/:id' element={<VideoDetails />} />
       </Routes>
     </div>
   );
