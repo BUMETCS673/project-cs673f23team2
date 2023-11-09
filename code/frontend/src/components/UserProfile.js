@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../styles/UserProfile.css';
+import '../styles/UserProfile.css';;
 
 function UserProfile() {
   
@@ -9,6 +9,8 @@ function UserProfile() {
     'https://www.youtube.com/embed/pTFZFxd4hOI',
     'https://www.youtube.com/embed/xk4_1vDrzzo',
   ]);
+
+  
 
   return (
     <div>
@@ -31,7 +33,7 @@ function UserProfile() {
                 src="https://www.shareicon.net/data/256x256/2016/09/15/829472_man_512x512.png"
                 alt="Profile Image"
               />{' '}
-             
+              {/* Replace with your image */}
             </div>
             <span>Supriya Uppala</span>
           </div>

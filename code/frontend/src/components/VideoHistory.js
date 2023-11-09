@@ -1,7 +1,5 @@
 import React from 'react';
 import '../styles/VideoHistory.css';
-
-// Define an array of video objects with titles and URLs
 const videos = [
   {
     title: 'Flask Tutorial',
