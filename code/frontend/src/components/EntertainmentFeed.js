@@ -1,13 +1,19 @@
+import { useLocation, useNavigate } from 'react-router-dom';
 import React, { useState } from 'react'
 import '../styles/EducationalVideoFeed.css'
 import VideoComponent from './VideoComponent';
 import Button from '@mui/material/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import { isSearchValid } from './EducationalVideoFeed';
+import DetailedVideoComponent from './DetailedVideoComponent';
 
 export default function EntertainmentFeed() {
+	const location = useLocation();
 	const [query, setQuery] = useState();
 	const hobbyList = ['hiking', 'surfing'] // ideally from database
+	const Flag = location.state.flag;
+	let navigate = useNavigate();
 
 	const handleSearchInput = (event) => {
 		const keyword = event.target.value;
@@ -21,13 +27,14 @@ export default function EntertainmentFeed() {
 	};
 
 	const handleSearchClick = () => {
-		// Add functionality for search
+		if(isSearchValid(query)) {
+			navigate('/entertainment-browse', {state: {flag: true}});
+		}
 	}
 
-	const HobbyButtonClick = () => {
-		// Add functionality for button click
+	const HobbyButtonClick = (e) => {
+		// handle filtering based on hobby buttons
 	}
-	console.log('list', hobbyList);
 
 	return (
 		<div>
@@ -47,26 +54,36 @@ export default function EntertainmentFeed() {
 				</button>
 			</div>
 			<div>
+				<hr/>
 				<h1>Entertainment Feed</h1>
-				{hobbyList != undefined && hobbyList.length > 0 ? (
+				<hr/>
+				{Flag ? (
 					<>
-						{hobbyList.map((hobby) => {
-							return (
-								<>
-								<Button key={hobby}Button variant="outlined" onClick={HobbyButtonClick}>{hobby}</Button>&emsp;
-								</>
-						   	)
-						})}
-
-						{hobbyList.map((hobby) => {
-							return (
-								<>
-								<VideoComponent query={hobby}/>
-								</>
-						   	)
-						})}
+					<DetailedVideoComponent query={query} />
 					</>
-				):(<p> No videos </p>)}
+				) : (
+					<>
+					{hobbyList != undefined && hobbyList.length > 0 ? (
+						<>
+							{hobbyList.map((hobby) => {
+								return (
+									<>
+									<Button key={hobby}Button variant="outlined" onClick={HobbyButtonClick}>{hobby}</Button>&emsp;
+									</>
+								)
+							})}
+
+							{hobbyList.map((hobby) => {
+								return (
+									<>
+									<VideoComponent query={hobby}/>
+									</>
+								)
+							})}
+						</>
+					):(<p> No videos </p>)}
+					</>
+				)}
 			</div>
 		</div>
 	)	

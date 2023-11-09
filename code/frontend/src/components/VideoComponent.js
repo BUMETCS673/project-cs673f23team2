@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from 'axios';
 import React from "react";
+import { API_KEY } from "./ApiKey";
 
 export default function VideoComponent(props) {
 	let query = props.query
@@ -8,9 +9,7 @@ export default function VideoComponent(props) {
 	const [videoList, setVideoList] = useState([])
 
 	function getYoutubeVideosFromQuery(keyword) {
-		
-		const ApiKey = "AIzaSyAtJfl1UWesGZ73QjdjqI3j_ygI6L7w3gw";
-		axios.get("https://www.googleapis.com/youtube/v3/search?key=" + ApiKey + "&q=" + keyword + "&type=video&part=snippet").then((response) => {
+		axios.get("https://www.googleapis.com/youtube/v3/search?key=" + API_KEY + "&q=" + keyword + "&type=video&part=snippet&maxResults=3").then((response) => {
 			setVideoList(response.data.items)
 			// console.log(response.data.items)
 		})

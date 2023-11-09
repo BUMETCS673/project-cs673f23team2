@@ -41,7 +41,7 @@ export default function Search() {
     };
 
     const handleEntertainmentClick = () => {
-        navigate('/entertainment-browse', {});
+        navigate('/entertainment-browse', {state: {flag: false}});
     }
     
     return (
