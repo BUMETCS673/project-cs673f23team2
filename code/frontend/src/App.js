@@ -18,7 +18,7 @@ function App() {
           <Logo data-cy="appBanner" className="ApplicationLogo" />
         </div>
         <div className="AppSignInButtonContainerWrapper">
-          <Link to="/OnboardingPage">Go to Onboarding Page</Link>
+          <Link to="/onboarding">Go to Onboarding Page</Link>
         </div>
       </div>
     );
@@ -34,7 +34,7 @@ function App() {
         <Route path='/all' element={<SeeAllVideos />} />
         <Route path='/users/:userId' element={<UserProfile />} />
         <Route path='/users/:userId/video-history' element={<VideoHistory />} />
-        <Route path='/OnboardingPage' element={<OnboardingPage />} />
+        <Route path='/onboarding' element={<OnboardingPage />} />
       </Routes>
     </div>
   );
