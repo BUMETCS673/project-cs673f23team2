@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './onboarding.css'; // Make sure to create this CSS file for styling
+import '../styles/onboarding.css'; // Updated path to the CSS file
 
 const OnboardingPage = () => {
   const [hobbies, setHobbies] = useState([]);
@@ -18,10 +18,12 @@ const OnboardingPage = () => {
     }
   };
 
-  // Function to add hobby from suggestions
+  // Function to add hobby from suggestions (converted to lowercase)
   const addSuggestedHobby = (suggestedHobby) => {
-    if (!hobbies.includes(suggestedHobby)) {
-      setHobbies([...hobbies, suggestedHobby]);
+    const suggestedHobbyLowerCase = suggestedHobby.toLowerCase();
+
+    if (!hobbies.includes(suggestedHobbyLowerCase)) {
+      setHobbies([...hobbies, suggestedHobbyLowerCase]);
     }
   };
 
