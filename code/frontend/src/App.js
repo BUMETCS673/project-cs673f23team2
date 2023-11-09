@@ -6,6 +6,8 @@ import Search from './components/Search';
 import EducationalVideoFeed from './components/EducationalVideoFeed';
 import EntertainmentFeed from './components/EntertainmentFeed';
 import SeeAllVideos from './components/SeeAllVideos'
+import UserProfile from './components/UserProfile';
+import VideoHistory from './components/VideoHistory';
 
 function App() {
 
@@ -32,6 +34,8 @@ function App() {
         <Route path='/browse' element={<EducationalVideoFeed />} />
         <Route path='/entertainment-browse' element={<EntertainmentFeed />} />
         <Route path='/all' element={<SeeAllVideos />} />
+        <Route path='/users/:userId' element={<UserProfile />} />
+        <Route path='/users/:userId/video-history' element={<VideoHistory />} />
       </Routes>
     </div>
   );
