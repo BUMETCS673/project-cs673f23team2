@@ -1,0 +1,40 @@
+.VideoGridContainer{
+    background-color: white;
+    display: grid;
+    margin-top: 1.5vw;
+    width: 90vw;
+}
+
+.VideoGrid{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-column-gap: 30px;
+    place-items: center;
+}
+
+.VideoTitleElement{
+    margin-top: 3vw;
+    font-size: 2em;
+    font-weight: 600;
+}
+
+.VideoGridContainerSeeMoreButtonElement{
+    display: block;
+    margin-left: auto;
+    margin-right: 0;
+    margin-top: 30px;
+    border-radius: 0.5vw;
+    background-color: #B1DBFC;
+    font-size: 1em;
+    padding: 8px;
+    font-weight: 600;
+    color: #282828;
+    transition: all 0.25s ease;
+}
+
+.VideoGridContainerSeeMoreButtonElement:hover{
+    background: #5CB3F8;
+    color: #282828;
+    transform: scale(1.1);
+    cursor: pointer;
+}

@@ -1,36 +1,39 @@
-// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyCcIKt31C-UootCE4IvuFVUJ1Wmm-ZHBsE",
-  authDomain: "focused-study-12ccf.firebaseapp.com",
-  projectId: "focused-study-12ccf",
-  storageBucket: "focused-study-12ccf.appspot.com",
-  messagingSenderId: "389940996553",
-  appId: "1:389940996553:web:024166d5d91aa8a3d5a018",
-  measurementId: "G-YPTJJ10MEG"
+  apiKey: "AIzaSyB2uwZ0FwmPGgwtA95Jg_GOC2BHC1Rl6_w",
+  authDomain: "focused-study-f648a.firebaseapp.com",
+  projectId: "focused-study-f648a",
+  storageBucket: "focused-study-f648a.appspot.com",
+  messagingSenderId: "46110739618",
+  appId: "1:46110739618:web:00aca148c48bf938485bfb",
+  measurementId: "G-MELNYR69CF"
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
-export const auth = getAuth(app);
+
+const auth = getAuth(app);
 
 const provider = new GoogleAuthProvider();
 
-export const signInWithGoogle = () => {
-    signInWithPopup(auth, provider)
-      .then((result) => {
-        
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+export function signInWithGoogle(navigate){
+
+  signInWithPopup(auth, provider)
+  .then(async (result) => {
+  
+    const userDetails = {
+      name: result.user.displayName,
+      email: result.user.email,
+      profile: result.user.photoURL,
+      userId: result.user.uid
+    };
+    
+    // Navigate user to add hobbies
+    navigate('/onboarding', { state: {user: userDetails} });
+  })
+  .catch((error) => {
+    //TODO: Add a Error while sign-in component
+    console.log(error);
+  });
+};

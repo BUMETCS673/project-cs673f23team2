@@ -1,9 +1,10 @@
 import '../styles/Search.css'
-import React, { useState } from 'react'
+import React, { useLayoutEffect, useState } from 'react'
 import DefaultUserProfile from '../assets/default_user_profile.svg'
 import Points from '../assets/points.svg'
 import EducationalFeed from '../components/EducationalVideoFeed.js'
 import { useNavigate } from 'react-router-dom';
+import { getAuth } from 'firebase/auth';
 
 ///////////////////////////////////////
 /********* HELPER FUNCTIONS *********/
@@ -20,6 +21,8 @@ export function isSearchValid(inputText) {
 ///////////////////////////////////////
 export default function Search() {
     const [searchKeyword, setSearchKeyword] = useState('');
+    const [userProfilePicture, setUserProfilePicture] = useState(DefaultUserProfile)
+    const [userName, setUserName] = useState('')
     let navigate = useNavigate();
     
 
@@ -39,15 +42,18 @@ export default function Search() {
             handleSearchClick();
         }
     };
-
-    const handleEntertainmentClick = () => {
-        navigate('/entertainment-browse', {state: {flag: false, query: ''}});
-    }
     
+    useLayoutEffect(()=>{
+        const auth = getAuth()
+        const user = auth.currentUser
+        setUserProfilePicture(user.photoURL)
+        setUserName(user.displayName)
+      }, [])
+
     return (
         <div className='SearchContainer'>
-            <img data-cy="userProfileOnSearch" alt='User Profile' className='UserProfileImageElement' src={DefaultUserProfile}></img>
-            <p data-cy="userNameOnSearch" className='UserDisplayNameElement'>Siddhesh Dighe</p>
+            <img data-cy="userProfileOnSearch" alt='User Profile' className='UserProfileImageElement' src={userProfilePicture}></img>
+            <p data-cy="userNameOnSearch" className='UserDisplayNameElement'>{userName}</p>
             <p data-cy="userRewardPointsOnSearch" className='UserDisplayRewardPointsElement'>✨ 3000 points</p>
             <input 
                 data-cy="searchBarElement" 
@@ -61,12 +67,6 @@ export default function Search() {
                 className='SearchButtonElement'
                 onClick={handleSearchClick}>
                     Search</button>
-            <button 
-                data-cy='EntertainmentFeedButton'
-                className='EntertainmentFeedButtonElement'
-                onClick={handleEntertainmentClick}>
-                    entertainment mode
-                </button>
         </div>
     )
 }

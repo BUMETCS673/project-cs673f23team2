@@ -1,9 +1,25 @@
-import React, { useState } from 'react';
-import '../styles/onboarding.css'; // Updated path to the CSS file
+import React, { useEffect, useState } from 'react';
+import '../styles/OnboardingPage.css';
+import { getAuth } from "firebase/auth";
+import { useLocation, useNavigate } from 'react-router-dom';
+import axios from "axios"
+
 
 const OnboardingPage = () => {
   const [hobbies, setHobbies] = useState([]);
   const [hobbyInput, setHobbyInput] = useState("");
+
+  const location = useLocation();
+  const userDetails = location.state.user
+  
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    window.history.pushState(null, null, window.location.href);
+    window.onpopstate = () => {
+      navigate('/search');
+    };
+  }, [navigate]);
 
   // Function to handle the input change
   const handleInputChange = (event) => {
@@ -11,10 +27,12 @@ const OnboardingPage = () => {
   };
 
   // Function to add hobby from input box
-  const addHobby = () => {
-    if (hobbyInput && !hobbies.includes(hobbyInput)) {
-      setHobbies([...hobbies, hobbyInput]);
-      setHobbyInput('');
+  const addHobby = (event) => {
+    if (event.key === 'Enter'){
+      if (hobbyInput && !hobbies.includes(hobbyInput)) {
+        setHobbies([...hobbies, hobbyInput]);
+        setHobbyInput('');
+      }
     }
   };
 
@@ -32,38 +50,42 @@ const OnboardingPage = () => {
     setHobbies(hobbies.filter(hobby => hobby !== hobbyToRemove));
   };
 
+  const navigateToSearch = () => {
+    //Write data to firestore
+    userDetails.hobbies = hobbies
+    const userDetailsJson = JSON.stringify(userDetails);
+    axios.get("http://127.0.0.1:5000/writeUserToFirestore", { params: {
+        userDetails: userDetailsJson
+      }
+    }).then((result) => {
+      //Navigate to search page
+      navigate('/search');
+    }).catch((error) => {
+      console.log(error)
+    })
+  }
+
   return (
-    <div className="onboarding-container">
-      <h2>User Onboarding</h2>
-      <div className="profile-section">
-        {/* Placeholder for the user profile picture */}
-        <div className="profile-pic-placeholder"></div>
-        <p>Tell us about your Hobbies</p>
-        <div className="hobbies-input">
-          <input
-            type="text"
-            value={hobbyInput}
-            onChange={handleInputChange}
-            placeholder="Enter your hobby"
-          />
-          <button onClick={addHobby}>Add</button>
-        </div>
-        <div className="hobbies-suggestions">
-          {['Singing', 'Guitar', 'Dancing', 'Cooking'].map((suggestion) => (
-            <button key={suggestion} onClick={() => addSuggestedHobby(suggestion)}>
-              {suggestion}
-            </button>
-          ))}
-        </div>
-      </div>
-      <div className="hobbies-list">
-        {hobbies.map((hobby, index) => (
-          <div key={index} className="hobby-tag">
-            {hobby}
-            <button onClick={() => removeHobby(hobby)}>x</button>
-          </div>
-        ))}
-      </div>
+    <div className="OnboardingContainer">
+      <img alt='User Profile' className='UserDetailImageElement' referrerPolicy='no-referrer' src={userDetails.profile}></img>
+      <p className="UserNameTitleElement">{userDetails.name}</p>
+      <p className="HobbyTitleElement">Tell us about your hobbies</p>
+      <input 
+        className='HobbiesInputElement'
+        type="text"
+        value={hobbyInput}
+        onChange={handleInputChange}
+        onKeyDown={addHobby}
+      />
+      <div className="HobbyListElement">
+         {hobbies.map((hobby, index) => (
+           <div key={index} className="HobbyTagElement">
+             {hobby}
+             <button className="HobbyRemoveButtonElement" onClick={() => removeHobby(hobby)}>x</button>
+           </div>
+         ))}
+       </div>
+       <button className='HobbyDoneButtonElement' onClick={() => navigateToSearch()}>Done</button>
     </div>
   );
 };
