@@ -4,15 +4,15 @@ import '../styles/EducationalVideoFeed.css'
 import VideoComponent from './VideoComponent';
 import Button from '@mui/material/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import { faMagnifyingGlass, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { isSearchValid } from './EducationalVideoFeed';
 import DetailedVideoComponent from './DetailedVideoComponent';
 
 export default function EntertainmentFeed() {
 	const location = useLocation();
-	const [query, setQuery] = useState();
-	const hobbyList = ['hiking', 'surfing'] // ideally from database
-	const Flag = location.state.flag;
+	const [query, setQuery] = useState(location.state.query);
+	const hobbyList = ['hiking', 'reading'] // ideally from database
+	let Flag = location.state.flag;
 	let navigate = useNavigate();
 
 	const handleSearchInput = (event) => {
@@ -28,12 +28,16 @@ export default function EntertainmentFeed() {
 
 	const handleSearchClick = () => {
 		if(isSearchValid(query)) {
-			navigate('/entertainment-browse', {state: {flag: true}});
+			console.log('handleSearchClick ', query)
+			navigate('/entertainment-browse', {state: {flag: true, query: query}});
 		}
 	}
 
 	const HobbyButtonClick = (e) => {
-		// handle filtering based on hobby buttons
+		const keyword = e.target.textContent;
+		setQuery(keyword);
+		console.log('HobbyButtonClick ', keyword)
+		navigate('/entertainment-browse', {state: {flag: true, query: query}});
 	}
 
 	return (
@@ -59,6 +63,12 @@ export default function EntertainmentFeed() {
 				<hr/>
 				{Flag ? (
 					<>
+					<button
+						data-cy="searchBarButton" 
+						className='SearchButtonElement'
+						onClick={()=>{navigate('/entertainment-browse', {state: {flag: false, query: ''}});}}>
+							<FontAwesomeIcon icon={faArrowLeft} />
+					</button>
 					<DetailedVideoComponent query={query} />
 					</>
 				) : (
