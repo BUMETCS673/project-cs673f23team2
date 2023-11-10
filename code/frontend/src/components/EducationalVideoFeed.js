@@ -1,11 +1,6 @@
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
-<<<<<<< HEAD
-import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom';
-=======
 import React, { useState, useLayoutEffect } from 'react'
->>>>>>> 6d08d38 (SE-40: Code integration)
 import '../styles/EducationalVideoFeed.css'
 import VideoGridContainer from './VideoGridContainer';
 
@@ -89,33 +84,5 @@ useLayoutEffect(()=>{
       <VideoGridContainer query={searchKeyword} videoDuration="medium" videoList={mediumVideoList}/>
       <VideoGridContainer query={searchKeyword} videoDuration="long" videoList={longVideoList}/>
       </div>
-<<<<<<< HEAD
-      <div className='VideoStackContainer'>
-        {videoList != undefined && videoList.length > 0 ? (
-          <div className='VideoGrid'>
-            {videoList.map((video) => (
-              <Link to={`/video/${video.id.videoId}`} key={video.id.videoId}>
-              <iframe
-                width="420"
-                height="315"
-                src={`https://www.youtube.com/embed/${video.id.videoId}`}
-                frameBorder="0"
-                allowFullScreen
-              ></iframe>
-            </Link>
-            ))}
-          </div>
-        ) : (
-          <p>No videos found.</p>
-        )}
-    </div>
-    <button 
-                data-cy="seeAllButton" 
-                className='SearchButtonElement'
-                onClick={seeMoreVideosClick}>
-                    See more </button>
-    </div>
-=======
->>>>>>> 6d08d38 (SE-40: Code integration)
   )
 }
