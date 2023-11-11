@@ -55,8 +55,13 @@ export default function Search() {
     useLayoutEffect(()=>{
         const auth = getAuth()
         const user = auth.currentUser
-        setUserProfilePicture(user.photoURL)
-        setUserName(user.displayName)
+        if(user!=null || user!=undefined) {
+            setUserProfilePicture(user.photoURL)
+            setUserName(user.displayName)
+        } else {
+            setUserProfilePicture(DefaultUserProfile)
+            setUserName("Default User")
+        }
       }, [])
 
     return (

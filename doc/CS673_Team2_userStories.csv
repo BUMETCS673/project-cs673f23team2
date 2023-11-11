@@ -1,219 +1,43 @@
-Summary,Issue key,Issue id,Issue Type,Status,Project key,Project name,Project type,Project lead,Project lead id,Project description,Priority,Resolution,Assignee,Assignee Id,Reporter,Reporter Id,Creator,Creator Id,Created,Updated,Last Viewed,Resolved,Due date,Votes,Labels,Labels,Labels,Description,Environment,Watchers,Watchers Id,Original estimate,Remaining Estimate,Time Spent,Work Ratio,Σ Original Estimate,Σ Remaining Estimate,Σ Time Spent,Security Level,Custom field (Actual end),Custom field (Actual start),Custom field (Atlas project key),Custom field (Atlas project status),Custom field (Change reason),Custom field (Change risk),Custom field (Change type),Custom field (Compass),Custom field (Development),Custom field (Epic Color),Custom field (Epic Name),Custom field (Epic Status),Custom field (Impact),Custom field (Issue color),Custom field (Locked forms),Custom field (Open forms),Custom field (Rank),Custom field (Request Type),Sprint,Sprint,Custom field (Start date),Custom field (Story point estimate),Custom field (Submitted forms),Custom field (Target end),Custom field (Target start),Custom field (Team),Custom field (Total forms),Custom field ([CHART] Date of First Response),Comment,Comment,Comment,Parent,Parent summary,Status Category
-Create search topics page,SE-39,10038,Story,To Do,SE,Focused Study,software,Siddhesh,712020:190c3ddc-cdb6-4086-8e76-89edd29ff5bb,,Medium,,,,Paridhi Talwar,712020:ab304794-8116-475c-b507-c1d6467aa9f4,Paridhi Talwar,712020:ab304794-8116-475c-b507-c1d6467aa9f4,19/Oct/23 2:10 PM,19/Oct/23 2:12 PM,19/Oct/23 11:10 PM,,,0,,,,"As a user, I want to a search videos page so that I can search for topics to learn 
-
-On the search videos page, user should see 
-
-1. User profile picture fetched from their Google Account (Default profile image if there is no profile picture on their google account) 
-
-2. A label to indicate user's reward points 
-
-3. A textbox to enter topic to learn 
-
-4. A ""Search"" button to search for the mentioned topic 
-
-5. Clicking on the label with rewards points should navigate the user to a blank page 
-
-         5.1 If the user has 0 reward points, instead of navigating to a blank page, it should show a modal with message ""You don't have enough reward points to watch entertainment videos"" 
-
-6. Clicking on the search button should navigate the user to the ""Browse Videos"" page with the mentioned topic 
-
-           6.1 Clicking on the search button should do nothing if the textbox to enter the topic is empty.",,Paridhi Talwar,712020:ab304794-8116-475c-b507-c1d6467aa9f4,,,,,,,,,,,,,,,,,{},,,,,,,,0|i0008j:,,,,,,,,,,,,,,,,,To Do
-Create user onboarding page,SE-38,10037,Story,To Do,SE,Focused Study,software,Siddhesh,712020:190c3ddc-cdb6-4086-8e76-89edd29ff5bb,,Medium,,,,Paridhi Talwar,712020:ab304794-8116-475c-b507-c1d6467aa9f4,Paridhi Talwar,712020:ab304794-8116-475c-b507-c1d6467aa9f4,19/Oct/23 2:03 PM,19/Oct/23 2:09 PM,19/Oct/23 11:10 PM,,,0,,,,"As a user, When I login to the webapp, I want to see an onboarding page so that I can mention my hobbies and see my reward points 
-
-When on the Onboarding page, User should see 
-
-1. User profile picture fetched from their Google Account (Default profile image if there is no profile picture on their google account) 
-
-2. A label to indicate user's name 
-
-3. A label to indicate user's reward points 
-
-4. A textbox to mention user's hobbies 
-
-5. An ""Add"" button to add new hobbies 
-
-6. A ""Done"" button to indicate the activity of adding hobbies is done 
-
-7. Clicking on the ""Done"" button should navigate the user to the ""Search videos"" page",,Paridhi Talwar,712020:ab304794-8116-475c-b507-c1d6467aa9f4,,,,,,,,,,,,,,,,,{},,,,,,,,0|i00083:,,,,,,,,,,,,,,,,,To Do
-Update Iteration 1 Documents,SE-37,10036,Task,In Progress,SE,Focused Study,software,Siddhesh,712020:190c3ddc-cdb6-4086-8e76-89edd29ff5bb,,Medium,,Siddhesh,712020:190c3ddc-cdb6-4086-8e76-89edd29ff5bb,Siddhesh,712020:190c3ddc-cdb6-4086-8e76-89edd29ff5bb,Siddhesh,712020:190c3ddc-cdb6-4086-8e76-89edd29ff5bb,19/Oct/23 12:57 AM,19/Oct/23 11:05 PM,19/Oct/23 11:10 PM,,,0,,,,,,Siddhesh,712020:190c3ddc-cdb6-4086-8e76-89edd29ff5bb,,,,,,,,,,,,,,,,,{},,,,,,,,0|i00003:,,Sprint 1,Sprint 2,,1.0,,,,,,,,,,,,In Progress
-Initial flask and cypress setup,SE-36,10035,Task,merged to master,SE,Focused Study,software,Siddhesh,712020:190c3ddc-cdb6-4086-8e76-89edd29ff5bb,,Medium,Done,Siddhesh,712020:190c3ddc-cdb6-4086-8e76-89edd29ff5bb,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,Siddhesh,712020:190c3ddc-cdb6-4086-8e76-89edd29ff5bb,19/Oct/23 12:49 AM,19/Oct/23 3:35 AM,19/Oct/23 11:10 PM,19/Oct/23 3:35 AM,,0,,,,,,Siddhesh,712020:190c3ddc-cdb6-4086-8e76-89edd29ff5bb,,,,,,,,,,,,,,,,,{},,,,,,,,0|i0000f:,,Sprint 1,,,1.0,,,,,,,,,,,,Done
-Create video history page,SE-35,10034,Story,To Do,SE,Focused Study,software,Siddhesh,712020:190c3ddc-cdb6-4086-8e76-89edd29ff5bb,,Medium,,,,Paridhi Talwar,712020:ab304794-8116-475c-b507-c1d6467aa9f4,Paridhi Talwar,712020:ab304794-8116-475c-b507-c1d6467aa9f4,18/Oct/23 11:25 PM,19/Oct/23 2:03 PM,19/Oct/23 12:45 AM,,,0,,,,"On Video history page, user should see 
-
-1. Logo of the app which when clicked on should navigated to the ""Search topics"" page 
-
-2. Title called ""Video History"" 
-
-3. List of all the user watched videos where each element includes the video thumbnail, title, creator name and the total watch time the video is watched for.",,Paridhi Talwar,712020:ab304794-8116-475c-b507-c1d6467aa9f4,,,,,,,,,,,,,,,,,{},,,,,,,,0|i000a7:,,,,,,,,,,,,,,,,,To Do
-Create user profile page,SE-34,10033,Story,To Do,SE,Focused Study,software,Siddhesh,712020:190c3ddc-cdb6-4086-8e76-89edd29ff5bb,,Medium,,,,Paridhi Talwar,712020:ab304794-8116-475c-b507-c1d6467aa9f4,Paridhi Talwar,712020:ab304794-8116-475c-b507-c1d6467aa9f4,18/Oct/23 11:24 PM,19/Oct/23 2:02 PM,19/Oct/23 12:46 AM,,,0,,,,"On the ""User Profile"" page, user should see 
-
-1. Logo of the app which when clicked on should navigated to the ""Search topics"" page 
-
-2. User profile picture
-
-3. Label for user's name 
-
-4. Label for user's reward points 
-
-5. ""Hobbies"" title 
-
-6. list of all the user hobbies 
-
-7. ""Watch History"" title 
-
-8. List of all the watched videos where each element in the list is has video thumbnail, title and creator name 
-
-9. ""See all"" button for watch history which when clicked on should navigate the user to a blank page 
-
-10. ""Clear history"" button, when clicked should refresh the user profile page where the watch history section shouldn't have any videos 
-
-11. ""Delete profile"" button, when clicked should navigate user back to the sign-in page 
-
-12. ""Logout"" button, when clicked should navigate user back to the sign-in page",,Paridhi Talwar,712020:ab304794-8116-475c-b507-c1d6467aa9f4,,,,,,,,,,,,,,,,,{},,,,,,,,0|i0009z:,,,,,,,,,,,,,,,,,To Do
-Increasing reward points,SE-33,10032,Story,To Do,SE,Focused Study,software,Siddhesh,712020:190c3ddc-cdb6-4086-8e76-89edd29ff5bb,,Medium,,,,Paridhi Talwar,712020:ab304794-8116-475c-b507-c1d6467aa9f4,Paridhi Talwar,712020:ab304794-8116-475c-b507-c1d6467aa9f4,18/Oct/23 11:23 PM,19/Oct/23 2:01 PM,19/Oct/23 12:44 AM,,,0,,,,"On the ""Watch video"" page, user should see 
-
-1. Reward points increase by +1 for every minute added to the session timer",,Paridhi Talwar,712020:ab304794-8116-475c-b507-c1d6467aa9f4,,,,,,,,,,,,,,,,,{},,,,,,,,0|i0009r:,,,,,,,,,,,,,,,,,To Do
-Session timer,SE-32,10031,Story,To Do,SE,Focused Study,software,Siddhesh,712020:190c3ddc-cdb6-4086-8e76-89edd29ff5bb,,Medium,,,,Paridhi Talwar,712020:ab304794-8116-475c-b507-c1d6467aa9f4,Paridhi Talwar,712020:ab304794-8116-475c-b507-c1d6467aa9f4,18/Oct/23 11:23 PM,19/Oct/23 2:01 PM,19/Oct/23 12:44 AM,,,0,,,,"As a user, while watching a video, I want to see the total time I've spent learning so that I can keep track of the time I'm spending on a topic.
-
-On the ""Watch video"" page, user should see 
-
-1. The session timer increase as the user continues to watch the video. 
-
-          1.1 The session timer should stop if the video is paused and should only keep ticking when the video is playing",,Paridhi Talwar,712020:ab304794-8116-475c-b507-c1d6467aa9f4,,,,,,,,,,,,,,,,,{},,,,,,,,0|i0009j:,,,,,,,,,,,,,,,,,To Do
-Video watching experience buttons,SE-31,10030,Story,To Do,SE,Focused Study,software,Siddhesh,712020:190c3ddc-cdb6-4086-8e76-89edd29ff5bb,,Medium,,,,Paridhi Talwar,712020:ab304794-8116-475c-b507-c1d6467aa9f4,Paridhi Talwar,712020:ab304794-8116-475c-b507-c1d6467aa9f4,18/Oct/23 11:20 PM,19/Oct/23 2:00 PM,19/Oct/23 12:43 AM,,,0,,,,"On the ""Watch video"" page, user should see 
-
-1. A ""End Session"" button which when clicked should navigate the user back to the ""Search Topics"" page 
-
-2. A favorites button with an ""unfilled heart"" icon which when clicked should toggle between the ""unfilled heart"" icon and the ""filled heart"" icon to indicate if the video is favorited or not 
-
-3. A ""Go to next video"" button which when clicked on should start the next video 
-
-4. A ""Go to previous video"" button which when clicked on should start the previous video.
-
-        4.1 If there are no previous video so, the ""Go to previous video"" button should be disabled 
-
-5. The ""List of videos"" button which when clicked on should show a list of all the videos related to that topic so that the user can pick another video easily. 
-
-         5.1 The list of videos should include video thumnails, video title, creator name and the video runtime.",,Paridhi Talwar,712020:ab304794-8116-475c-b507-c1d6467aa9f4,,,,,,,,,,,,,,,,,{},,,,,,,,0|i0009b:,,,,,,,,,,,,,,,,,To Do
-Create watch video page,SE-30,10029,Story,To Do,SE,Focused Study,software,Siddhesh,712020:190c3ddc-cdb6-4086-8e76-89edd29ff5bb,,Medium,,,,Paridhi Talwar,712020:ab304794-8116-475c-b507-c1d6467aa9f4,Paridhi Talwar,712020:ab304794-8116-475c-b507-c1d6467aa9f4,18/Oct/23 10:45 PM,19/Oct/23 1:58 PM,19/Oct/23 12:37 AM,,,0,,,,"As a user, I want to watch a video, so that I can learn things from it.
-
-On the watch video page, User should see 
-
-1. Logo of the app which when clicked on should navigated to the ""Search topics"" page 
-
-2. User profile picture which when clicked on should take the user to a blank page 
-
-3. The clicked video on the YouTube player 
-
-4. A label indicating video title 
-
-5. A label indicating video creator name 
-
-6. A timer indicating total minutes spent learning 
-
-7. A label indicating currently earned reward points",,Paridhi Talwar,712020:ab304794-8116-475c-b507-c1d6467aa9f4,,,,,,,,,,,,,,,,,{},,,,,,,,0|i00093:,,,,,,,,,,,,,,,,,To Do
-See all videos,SE-29,10028,Story,To Do,SE,Focused Study,software,Siddhesh,712020:190c3ddc-cdb6-4086-8e76-89edd29ff5bb,,Medium,,,,Paridhi Talwar,712020:ab304794-8116-475c-b507-c1d6467aa9f4,Paridhi Talwar,712020:ab304794-8116-475c-b507-c1d6467aa9f4,18/Oct/23 8:49 PM,19/Oct/23 1:57 PM,19/Oct/23 12:37 AM,,,0,,,,"# On the browse topics page, Clicking on the ""See all"" button under any section should navigate the user to ""See more videos"" page 
-
-On ""See more videos"" page, user should see 
-
-1. Logo of the app which when clicked on should navigated to the ""Search topics"" page 
-
-2. User profile picture which when clicked on should take the user to a blank page 
-
-3. List of videos under the choosen section (upto 500 videos) 
-
-          3.1 Each element in the list should include the video thumbnail, video runtime, video title and video creator",,Paridhi Talwar,712020:ab304794-8116-475c-b507-c1d6467aa9f4,,,,,,,,,,,,,,,,,{},,,,,,,,0|i0008v:,,,,,,,,,,,,,,,,,To Do
-Create browse topics page,SE-28,10027,Story,To Do,SE,Focused Study,software,Siddhesh,712020:190c3ddc-cdb6-4086-8e76-89edd29ff5bb,,Medium,,,,Paridhi Talwar,712020:ab304794-8116-475c-b507-c1d6467aa9f4,Paridhi Talwar,712020:ab304794-8116-475c-b507-c1d6467aa9f4,18/Oct/23 8:48 PM,19/Oct/23 1:56 PM,19/Oct/23 12:37 AM,,,0,,,,"On the browse topics page, User should see 
-
-1. Logo of the app which when clicked on should navigated to the ""Search topics"" page 
-
-2. Textbox with the currently searched topic 
-
-3. User profile picture which when clicked on should take the user to a blank page 
-
-4. Title ""<Searched topic> videos under 2 minutes"" 
-
-5. Title ""<Searched topic> videos under 10 minutes"" 
-
-6. Title ""<Searched topic> videos under an hour"" 
-
-7. Title ""Long <Searched topic> videos"" 
-
-8. Below each title, user should see a grid of 10 recommended videos. Each grid should include video thumnail, video title and video creator name. 
-
-9. Clicking on any of the video from the grid should navigate user to a blank page 
-
-10. Each title should have a ""See all"" button which when clicked should navigate user to a blank page",,Paridhi Talwar,712020:ab304794-8116-475c-b507-c1d6467aa9f4,,,,,,,,,,,,,,,,,{},,,,,,,,0|i0008n:,,,,,,,,,,,,,,,,,To Do
-"As a user, I want to a search videos page so that I can search for topics to learn",SE-27,10026,Story,To Do,SE,Focused Study,software,Siddhesh,712020:190c3ddc-cdb6-4086-8e76-89edd29ff5bb,,Medium,,Siddhesh,712020:190c3ddc-cdb6-4086-8e76-89edd29ff5bb,Paridhi Talwar,712020:ab304794-8116-475c-b507-c1d6467aa9f4,Paridhi Talwar,712020:ab304794-8116-475c-b507-c1d6467aa9f4,18/Oct/23 8:46 PM,19/Oct/23 11:05 PM,19/Oct/23 12:30 AM,,,0,,,,"On the search videos page, user should see 
-
-1. User profile picture fetched from their Google Account (Default profile image if there is no profile picture on their google account) 
-
-2. A label to indicate user's name
-
-3. A label to indicate user's reward points 
-
-4. A textbox to enter topic to learn 
-
-5. A ""Search"" button to search for the mentioned topic 
-
-6. Clicking on the label with rewards points should navigate the user to a blank page 
-
-        6.1 If the user has 0 reward points, instead of navigating to a blank page, it should show a modal with message ""You don't have enough reward points to watch entertainment videos"" 
-
-7. Clicking on the search button should navigate the user to the ""Browse Videos"" page with the mentioned topic 
-
-        7.1 Clicking on the search button should do nothing if the textbox to enter the topic is empty.",,Paridhi Talwar,712020:ab304794-8116-475c-b507-c1d6467aa9f4,,,,,,,,,,,,,,,,,{},,,,,,,,0|i0008f:,,Sprint 1,Sprint 2,,2.0,,,,,,,,,,,,To Do
-Add or remove hobbies on the onboarding page,SE-26,10025,Story,To Do,SE,Focused Study,software,Siddhesh,712020:190c3ddc-cdb6-4086-8e76-89edd29ff5bb,,Medium,,,,Paridhi Talwar,712020:ab304794-8116-475c-b507-c1d6467aa9f4,Paridhi Talwar,712020:ab304794-8116-475c-b507-c1d6467aa9f4,18/Oct/23 8:44 PM,19/Oct/23 2:09 PM,19/Oct/23 12:30 AM,,,0,,,,"As a user, On the onboarding page, I want to add or remove my hobbies so that I can keep track of them while using the app 
-
-
-On the onboarding page:
-
-1. Clicking on the ""Add"" button should add the mentioned hobby in the textbox to the mentioned hobby list.
-
-       1.1 If the textbox has multiple hobbies (Comma Seperated), Clicking on the add button should add all the hobbies to the mentioned hobbies list. 
-
-2. User should see a list of all the mentioned user hobbies with a ""X"" button to the right of it. 
-
-3. Clicking on the ""X"" button on any of the mentioned user hobbies in the list should remove that hobby from the list",,Paridhi Talwar,712020:ab304794-8116-475c-b507-c1d6467aa9f4,,,,,,,,,,,,,,,,,{},,,,,,,,0|i00087:,,,,,,,,,,,,,,,,,To Do
-Google sign-in functionality,SE-25,10024,Story,To Do,SE,Focused Study,software,Siddhesh,712020:190c3ddc-cdb6-4086-8e76-89edd29ff5bb,,Medium,,,,Paridhi Talwar,712020:ab304794-8116-475c-b507-c1d6467aa9f4,Paridhi Talwar,712020:ab304794-8116-475c-b507-c1d6467aa9f4,18/Oct/23 8:14 PM,19/Oct/23 2:05 PM,19/Oct/23 12:29 AM,,,0,,,,"As a user, When I visit www.focusedstudy.com and click on the ""Sign-in with Google"" button, I want to be able to choose my google account of choice for sign-in
-
-On the homepage 
-
-1. Clicking on the ""Sign-in with Google"" button should allow the user to choose a google account and should navigate the user to the ""Onboarding page"" once a google account is choosen",,Paridhi Talwar,712020:ab304794-8116-475c-b507-c1d6467aa9f4,,,,,,,,,,,,,,,,,{},,,,,,,,0|i0007z:,,,,,,,,,,,,,,,,,To Do
-Create sign-up page,SE-24,10023,Story,To Do,SE,Focused Study,software,Siddhesh,712020:190c3ddc-cdb6-4086-8e76-89edd29ff5bb,,Medium,,,,Paridhi Talwar,712020:ab304794-8116-475c-b507-c1d6467aa9f4,Paridhi Talwar,712020:ab304794-8116-475c-b507-c1d6467aa9f4,18/Oct/23 8:12 PM,19/Oct/23 2:06 PM,19/Oct/23 12:29 AM,,,0,,,,"As a user, When I visit www.focusedstudy.com , I want to see a login page so that I can login and start using the webapp
-
-When the user visits the homepage, user should see 
-
-1. A title ""Focused Study"" with the logo 
-
-2. A button with text ""Sign-in with Google"" 
-
-3. Clicking the ""Sign-in with Google"" button should navigate to a new blank page",,Paridhi Talwar,712020:ab304794-8116-475c-b507-c1d6467aa9f4,,,,,,,,,,,,,,,,,{},,,,,,,,0|i0007r:,,,,,,,,,,,,,,,,,To Do
-"As a user, When I visit www.focusedstudy.com, I want to see a login page so that I can login and start using the webapp",SE-23,10022,Story,In Review,SE,Focused Study,software,Siddhesh,712020:190c3ddc-cdb6-4086-8e76-89edd29ff5bb,,Medium,,Siddhesh,712020:190c3ddc-cdb6-4086-8e76-89edd29ff5bb,Paridhi Talwar,712020:ab304794-8116-475c-b507-c1d6467aa9f4,Paridhi Talwar,712020:ab304794-8116-475c-b507-c1d6467aa9f4,18/Oct/23 7:54 PM,19/Oct/23 11:05 PM,19/Oct/23 12:28 AM,,,0,,,,"When the user visits the homepage, user should see:
-1. A title ""Focused Study"" with the logo 
-2. A button with text ""Sign-in with Google"" 
-3. Clicking the ""Sign-in with Google"" button should navigate to a new blank page",,Paridhi Talwar,712020:ab304794-8116-475c-b507-c1d6467aa9f4,,,,,,,,,,,,,,,,,{},,,,,,,,0|i0007j:,,Sprint 1,Sprint 2,,2.0,,,,,,,,,,,,In Progress
-Configure Dependency Review,SE-22,10021,Subtask,merged to master,SE,Focused Study,software,Siddhesh,712020:190c3ddc-cdb6-4086-8e76-89edd29ff5bb,,Medium,Done,,,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,18/Oct/23 6:30 PM,18/Oct/23 11:57 PM,18/Oct/23 8:31 PM,18/Oct/23 11:55 PM,,0,,,,,,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,,,,,,,,,,,,,,,,,{},,,,,,,,0|i0007b:,,Sprint 1,Sprint 2,,1.0,,,,,,,18/Oct/23 8:31 PM;712020:deb578b8-cf41-44e8-a598-739436302657;[https://github.com/BUMETCS673/project-cs673f23team2/pull/10|https://github.com/BUMETCS673/project-cs673f23team2/pull/10|smart-link] ,,,10000,Configure github action tools for the project repository,Done
-Configure RedhatOpenshift (deployment) tool,SE-21,10020,Subtask,To Do,SE,Focused Study,software,Siddhesh,712020:190c3ddc-cdb6-4086-8e76-89edd29ff5bb,,Medium,,,,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,18/Oct/23 6:17 PM,18/Oct/23 6:17 PM,19/Oct/23 11:10 PM,,,0,,,,,,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,,,,,,,,,,,,,,,,,{},,,,,,,,0|i00073:,,Sprint 1,Sprint 2,,,,,,,,,,,,10000,Configure github action tools for the project repository,To Do
-Configure SonarQube,SE-20,10019,Subtask,To Do,SE,Focused Study,software,Siddhesh,712020:190c3ddc-cdb6-4086-8e76-89edd29ff5bb,,Medium,,,,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,18/Oct/23 6:17 PM,18/Oct/23 6:17 PM,19/Oct/23 11:10 PM,,,0,,,,,,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,,,,,,,,,,,,,,,,,{},,,,,,,,0|i0006v:,,Sprint 1,Sprint 2,,,,,,,,,,,,10000,Configure github action tools for the project repository,To Do
-Configure Github Action Tester,SE-19,10018,Subtask,merged to master,SE,Focused Study,software,Siddhesh,712020:190c3ddc-cdb6-4086-8e76-89edd29ff5bb,,Medium,Done,,,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,18/Oct/23 6:15 PM,18/Oct/23 11:57 PM,18/Oct/23 8:30 PM,18/Oct/23 11:55 PM,,0,,,,,,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,,,,,,,,,,,,,,,,,{},,,,,,,,0|i0006n:,,Sprint 1,Sprint 2,,1.0,,,,,,,18/Oct/23 8:31 PM;712020:deb578b8-cf41-44e8-a598-739436302657;[https://github.com/BUMETCS673/project-cs673f23team2/pull/11|https://github.com/BUMETCS673/project-cs673f23team2/pull/11|smart-link] ,,,10000,Configure github action tools for the project repository,Done
-Configure CodeQL to do static analysis of python code,SE-18,10017,Subtask,IN TEST,SE,Focused Study,software,Siddhesh,712020:190c3ddc-cdb6-4086-8e76-89edd29ff5bb,,Medium,,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,18/Oct/23 6:15 PM,19/Oct/23 12:15 AM,19/Oct/23 12:14 AM,,,0,,,,,,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,,,,,,,,,,,,,,,,,{},,,,,,,,0|i0006f:,,Sprint 1,Sprint 2,,,,,,,,,18/Oct/23 6:32 PM;712020:deb578b8-cf41-44e8-a598-739436302657;Pull Request: [https://github.com/BUMETCS673/project-cs673f23team2/pull/8|https://github.com/BUMETCS673/project-cs673f23team2/pull/8|smart-link] ,"18/Oct/23 7:45 PM;712020:deb578b8-cf41-44e8-a598-739436302657;Pysa tests fail due to pyre-checks, despite using latest code: [https://github.com/facebook/pysa-action/commit/15c7aea01cff64049bafe04fac871bd2cb50df56|https://github.com/facebook/pysa-action/commit/15c7aea01cff64049bafe04fac871bd2cb50df56|smart-link] 
-
-Therefore, we will configure CodeQL to do static analysis of python code as well.","19/Oct/23 12:15 AM;712020:deb578b8-cf41-44e8-a598-739436302657;Updated PR: [https://github.com/BUMETCS673/project-cs673f23team2/pull/12|https://github.com/BUMETCS673/project-cs673f23team2/pull/12|smart-link] 
-Dependency: the repository must have at least one python file for the CodeQL test in python to pass. ",10000,Configure github action tools for the project repository,In Progress
-Configure CodeQL,SE-17,10016,Subtask,merged to master,SE,Focused Study,software,Siddhesh,712020:190c3ddc-cdb6-4086-8e76-89edd29ff5bb,,Medium,Done,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,18/Oct/23 6:14 PM,18/Oct/23 11:57 PM,18/Oct/23 11:56 PM,18/Oct/23 11:55 PM,,0,,,,,,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,,,,,,,,,,,,,,,,,{},,,,,,,,0|i00067:,,Sprint 1,Sprint 2,,1.0,,,,,,,18/Oct/23 6:30 PM;712020:deb578b8-cf41-44e8-a598-739436302657;Pull Request: [https://github.com/BUMETCS673/project-cs673f23team2/pull/7|https://github.com/BUMETCS673/project-cs673f23team2/pull/7|smart-link] ,,,10000,Configure github action tools for the project repository,Done
-Timer,SE-16,10015,Story,To Do,SE,Focused Study,software,Siddhesh,712020:190c3ddc-cdb6-4086-8e76-89edd29ff5bb,,Medium,,,,Paridhi Talwar,712020:ab304794-8116-475c-b507-c1d6467aa9f4,Paridhi Talwar,712020:ab304794-8116-475c-b507-c1d6467aa9f4,12/Oct/23 6:23 PM,19/Oct/23 12:28 AM,19/Oct/23 12:28 AM,,,0,,,,"As a user, I want to see a dashboard that displays how much time so that i can analyze the time I've spent watching learning and entertaining videos.",,Paridhi Talwar,712020:ab304794-8116-475c-b507-c1d6467aa9f4,,,,,,,,,,,,,,,,,{},,,,,,,,0|i0005z:,,,,,,,,,,,,,,,,,To Do
-Sharing Progress,SE-15,10014,Story,To Do,SE,Focused Study,software,Siddhesh,712020:190c3ddc-cdb6-4086-8e76-89edd29ff5bb,,Medium,,,,Paridhi Talwar,712020:ab304794-8116-475c-b507-c1d6467aa9f4,Paridhi Talwar,712020:ab304794-8116-475c-b507-c1d6467aa9f4,12/Oct/23 6:23 PM,19/Oct/23 12:28 AM,19/Oct/23 12:27 AM,,,0,,,,"As a user, I want to have the option to send my friends a screenshot of my dashboard so that I can encourage them to use the learning platform.",,Paridhi Talwar,712020:ab304794-8116-475c-b507-c1d6467aa9f4,,,,,,,,,,,,,,,,,{},,,,,,,,0|i0005r:,,,,,,,,,,,,,,,,,To Do
-Entertainment Feed,SE-14,10013,Story,To Do,SE,Focused Study,software,Siddhesh,712020:190c3ddc-cdb6-4086-8e76-89edd29ff5bb,,p3 - Low,,,,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,10/Oct/23 12:56 AM,19/Oct/23 12:27 AM,19/Oct/23 12:27 AM,,,0,,,,"As a user, I want to redeem the rewards I have earned so that I can use the points to watch entertainment/non-educational videos according to my hobbies/interests.",,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,,,,,,,,,,,,,,,,,{},,,,,,,,0|i0005j:,,,,,3.0,,,,,,,,,,,,To Do
-Search,SE-13,10012,Story,To Do,SE,Focused Study,software,Siddhesh,712020:190c3ddc-cdb6-4086-8e76-89edd29ff5bb,,p3 - Low,,,,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,10/Oct/23 12:56 AM,19/Oct/23 12:27 AM,19/Oct/23 12:27 AM,,,0,,,,"As a user, I want to be able to search the videos depending on the skills I want to learn.",,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,,,,,,,,,,,,,,,,,{},,,,,,,,0|i00053:,,,,,2.0,,,,,,,,,,,,To Do
-Rewarding User Points,SE-12,10011,Story,To Do,SE,Focused Study,software,Siddhesh,712020:190c3ddc-cdb6-4086-8e76-89edd29ff5bb,,p3 - Low,,,,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,10/Oct/23 12:56 AM,19/Oct/23 12:27 AM,19/Oct/23 12:27 AM,,,0,,,,"As a user, I want to be able to get some points for each learning session I complete so that I can use them for entertainment/recreational purposes.",,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,,,,,,,,,,,,,,,,,{},,,,,,,,0|i0004n:,,,,,3.0,,,,,,,,,,,,To Do
-Like Button,SE-11,10010,Story,To Do,SE,Focused Study,software,Siddhesh,712020:190c3ddc-cdb6-4086-8e76-89edd29ff5bb,,p3 - Low,,,,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,10/Oct/23 12:56 AM,19/Oct/23 12:26 AM,19/Oct/23 12:25 AM,,,0,,,,As a user I want to be able to like the videos that I enjoyed watching or learnt from so that I can revisit these videos to brush up concepts or to revisit in case of doubts.,,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,,,,,,,,,,,,,,,,,{},,,,,,,,0|i00047:,,,,,1.0,,,,,,,,,,,,To Do
-Learning Experience,SE-10,10009,Story,To Do,SE,Focused Study,software,Siddhesh,712020:190c3ddc-cdb6-4086-8e76-89edd29ff5bb,,p3 - Low,,,,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,10/Oct/23 12:56 AM,19/Oct/23 12:25 AM,19/Oct/23 12:25 AM,,,0,,,,"As a user, I want to watch educational videos without any distractions like recommended videos so that I can stay focused and concentrate on the video content.",,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,,,,,,,,,,,,,,,,,{},,,,,,,,0|i0003r:,,,,,2.0,,,,,,,,,,,,To Do
-Entertainment Video Experience,SE-9,10008,Story,To Do,SE,Focused Study,software,Siddhesh,712020:190c3ddc-cdb6-4086-8e76-89edd29ff5bb,,p3 - Low,,,,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,10/Oct/23 12:56 AM,19/Oct/23 12:25 AM,19/Oct/23 12:25 AM,,,0,,,,"As a user, I want to watch the entertainment video that I have selected without any recommendations so that my study breaks are limited.",,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,,,,,,,,,,,,,,,,,{},,,,,,,,0|i0003b:,,,,,3.0,,,,,,,,,,,,To Do
-Browse Watch History,SE-8,10007,Story,To Do,SE,Focused Study,software,Siddhesh,712020:190c3ddc-cdb6-4086-8e76-89edd29ff5bb,,p3 - Low,,,,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,10/Oct/23 12:56 AM,19/Oct/23 12:25 AM,19/Oct/23 12:24 AM,,,0,facing,feature:,user,"As a user, I want to browse my watch history so that I can easily revisit the content I’ve watched previously.",,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,,,,,,,,,,,,,,,,,{},,,,,,,,0|i0002v:,,,,,2.0,,,,,,,,,,,,To Do
-Manage User Profile,SE-7,10006,Story,To Do,SE,Focused Study,software,Siddhesh,712020:190c3ddc-cdb6-4086-8e76-89edd29ff5bb,,p3 - Low,,,,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,10/Oct/23 12:56 AM,19/Oct/23 12:24 AM,19/Oct/23 12:24 AM,,,0,facing,feature:,user,"As a user, I want to update my profile details like name & hobbies so that I can keep my information on the app up to date.",,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,,,,,,,,,,,,,,,,,{},,,,,,,,0|i0002f:,,,,,2.0,,,,,,,,,,,,To Do
-Active User Checker,SE-6,10005,Story,To Do,SE,Focused Study,software,Siddhesh,712020:190c3ddc-cdb6-4086-8e76-89edd29ff5bb,,p3 - Low,,,,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,10/Oct/23 12:56 AM,19/Oct/23 12:24 AM,19/Oct/23 12:24 AM,,,0,,,,"As a user, I want to be asked if I am still watching the video so that I can avoid getting the wrong watch time.",,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,,,,,,,,,,,,,,,,,{},,,,,,,,0|i0001z:,,,,,2.0,,,,,,,,,,,,To Do
-Login Page,SE-5,10004,Story,To Do,SE,Focused Study,software,Siddhesh,712020:190c3ddc-cdb6-4086-8e76-89edd29ff5bb,,p3 - Low,,,,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,10/Oct/23 12:56 AM,19/Oct/23 12:23 AM,19/Oct/23 12:23 AM,,,0,,,,"As a user, I want my account data to be private and safe so that I can protect my identity and personal information.",,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,,,,,,,,,,,,,,,,,{},,,,,,,,0|i0001j:,,,,,3.0,,,,,,,,,,,,To Do
-Video Transcripts,SE-4,10003,Story,To Do,SE,Focused Study,software,Siddhesh,712020:190c3ddc-cdb6-4086-8e76-89edd29ff5bb,,p3 - Low,,,,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,10/Oct/23 12:56 AM,19/Oct/23 12:21 AM,19/Oct/23 12:23 AM,,,0,,,,"As a user I want to be able to read the transcript of a video so that I can easily understand what is being said, pronounce difficult words and be fluent in the language of the video.",,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,,,,,,,,,,,,,,,,,{},,,,,,,,0|i00013:,,,,,2.0,,,,,,,,,,,,To Do
-Goal Tracker,SE-3,10002,Story,To Do,SE,Focused Study,software,Siddhesh,712020:190c3ddc-cdb6-4086-8e76-89edd29ff5bb,,p3 - Low,,,,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,10/Oct/23 12:56 AM,19/Oct/23 12:21 AM,19/Oct/23 12:22 AM,,,0,,,,"As a user, I want to be able to set a goal and track my progress so that I will be on track to accomplish my desired goal.",,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,,,,,,,,,,,,,,,,,{},,,,,,,,0|i0000n:,,,,,2.0,,,,,,,,,,,,To Do
-Configure JIRA with github and import stories from PivotalTracker,SE-2,10001,Task,merged to master,SE,Focused Study,software,Siddhesh,712020:190c3ddc-cdb6-4086-8e76-89edd29ff5bb,,Medium,Done,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,09/Oct/23 6:18 PM,18/Oct/23 4:48 PM,18/Oct/23 4:48 PM,18/Oct/23 4:48 PM,,0,,,,,,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,,,,,,,,,,,,,,,,,{},,,,,,,,0|i00007:,,Sprint 1,,,1.0,,,,,,,,,,,,Done
-Configure github action tools for the project repository,SE-1,10000,Task,In Progress,SE,Focused Study,software,Siddhesh,712020:190c3ddc-cdb6-4086-8e76-89edd29ff5bb,,Medium,,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,09/Oct/23 4:08 PM,19/Oct/23 11:05 PM,19/Oct/23 11:09 PM,,,0,,,,,,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,,,,,,,,,,,,,,,,,{},,,,,,,,0|hzzzzz:,,Sprint 1,Sprint 2,,3.0,,,,,,,,,,,,In Progress
+Issue Type,Issue key,Issue id,Summary,Assignee,Assignee Id,Reporter,Reporter Id,Priority,Status,Resolution,Created,Updated,Due date
+Story,SE-42,10041,Entertainment Feed: Add Hobby filtering functionality,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,Medium,To Do,,07/Nov/23 5:08 PM,08/Nov/23 6:56 PM,
+Story,SE-41,10040,Entertainment Feed: Add search functionality,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,Medium,To Do,,07/Nov/23 5:08 PM,08/Nov/23 6:56 PM,
+Task,SE-40,10039,Youtube Videos fetch through Youtube API using Flask,Siddhesh,712020:190c3ddc-cdb6-4086-8e76-89edd29ff5bb,Siddhesh,712020:190c3ddc-cdb6-4086-8e76-89edd29ff5bb,Medium,In Progress,,07/Nov/23 4:07 PM,07/Nov/23 4:08 PM,
+Story,SE-39,10038,Create search topics page,,,Paridhi Talwar,712020:ab304794-8116-475c-b507-c1d6467aa9f4,Medium,To Do,,19/Oct/23 2:10 PM,19/Oct/23 2:12 PM,
+Story,SE-38,10037,Create user onboarding page,Ayush bhaliya,712020:eafa0adc-33f4-4d42-a558-60642fea596b,Paridhi Talwar,712020:ab304794-8116-475c-b507-c1d6467aa9f4,Medium,In Progress,,19/Oct/23 2:03 PM,05/Nov/23 6:12 PM,
+Task,SE-37,10036,Update Iteration 1 Documents,Siddhesh,712020:190c3ddc-cdb6-4086-8e76-89edd29ff5bb,Siddhesh,712020:190c3ddc-cdb6-4086-8e76-89edd29ff5bb,Medium,merged to master,Done,19/Oct/23 12:57 AM,23/Oct/23 5:05 PM,
+Task,SE-36,10035,Initial flask and cypress setup,Siddhesh,712020:190c3ddc-cdb6-4086-8e76-89edd29ff5bb,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,Medium,merged to master,Done,19/Oct/23 12:49 AM,19/Oct/23 3:35 AM,
+Story,SE-35,10034,Create video history page,Supriya Prabhakar,712020:261bd4e7-c5a4-4569-b5fe-6d9ba166619b,Paridhi Talwar,712020:ab304794-8116-475c-b507-c1d6467aa9f4,Medium,To Do,,18/Oct/23 11:25 PM,30/Oct/23 4:53 PM,
+Story,SE-34,10033,Create user profile page,Supriya Prabhakar,712020:261bd4e7-c5a4-4569-b5fe-6d9ba166619b,Paridhi Talwar,712020:ab304794-8116-475c-b507-c1d6467aa9f4,Medium,In Progress,,18/Oct/23 11:24 PM,30/Oct/23 4:49 PM,
+Story,SE-33,10032,Increasing reward points,,,Paridhi Talwar,712020:ab304794-8116-475c-b507-c1d6467aa9f4,Medium,To Do,,18/Oct/23 11:23 PM,19/Oct/23 2:01 PM,
+Story,SE-32,10031,Session timer,Pushkar Gharat,712020:9c00f26c-08f6-4c4f-b093-bf4f283d7f0d,Paridhi Talwar,712020:ab304794-8116-475c-b507-c1d6467aa9f4,Medium,In Progress,,18/Oct/23 11:23 PM,06/Nov/23 4:34 PM,
+Story,SE-31,10030,Video watching experience buttons,Siddhesh,712020:190c3ddc-cdb6-4086-8e76-89edd29ff5bb,Paridhi Talwar,712020:ab304794-8116-475c-b507-c1d6467aa9f4,Medium,In Progress,,18/Oct/23 11:20 PM,06/Nov/23 4:41 PM,
+Story,SE-30,10029,Create watch video page,Paridhi Talwar,712020:ab304794-8116-475c-b507-c1d6467aa9f4,Paridhi Talwar,712020:ab304794-8116-475c-b507-c1d6467aa9f4,Medium,IN TEST,,18/Oct/23 10:45 PM,08/Nov/23 6:22 PM,
+Story,SE-29,10028,See all videos,Sai Ramya Devineni,712020:8c19212c-bf2c-40a3-b1e3-c0135f95f42c,Paridhi Talwar,712020:ab304794-8116-475c-b507-c1d6467aa9f4,Medium,In Progress,,18/Oct/23 8:49 PM,30/Oct/23 4:36 PM,
+Story,SE-28,10027,Create browse topics page,,,Paridhi Talwar,712020:ab304794-8116-475c-b507-c1d6467aa9f4,Medium,To Do,,18/Oct/23 8:48 PM,19/Oct/23 1:56 PM,
+Story,SE-27,10026,Search videos page,Siddhesh,712020:190c3ddc-cdb6-4086-8e76-89edd29ff5bb,Paridhi Talwar,712020:ab304794-8116-475c-b507-c1d6467aa9f4,Medium,IN TEST,,18/Oct/23 8:46 PM,30/Oct/23 5:18 PM,
+Story,SE-26,10025,Add or remove hobbies on the onboarding page,,,Paridhi Talwar,712020:ab304794-8116-475c-b507-c1d6467aa9f4,Medium,To Do,,18/Oct/23 8:44 PM,19/Oct/23 2:09 PM,
+Story,SE-25,10024,Google sign-in functionality,Pushkar Gharat,712020:9c00f26c-08f6-4c4f-b093-bf4f283d7f0d,Paridhi Talwar,712020:ab304794-8116-475c-b507-c1d6467aa9f4,Medium,In Review,,18/Oct/23 8:14 PM,31/Oct/23 6:38 PM,
+Story,SE-24,10023,Create sign-up page,,,Paridhi Talwar,712020:ab304794-8116-475c-b507-c1d6467aa9f4,Medium,To Do,,18/Oct/23 8:12 PM,19/Oct/23 2:06 PM,
+Story,SE-23,10022,"As a user, When I visit www.focusedstudy.com, I want to see a login page so that I can login and start using the webapp",Siddhesh,712020:190c3ddc-cdb6-4086-8e76-89edd29ff5bb,Paridhi Talwar,712020:ab304794-8116-475c-b507-c1d6467aa9f4,Medium,merged to master,Done,18/Oct/23 7:54 PM,23/Oct/23 5:05 PM,
+Subtask,SE-22,10021,Configure Dependency Review,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,Medium,merged to master,Done,18/Oct/23 6:30 PM,20/Oct/23 5:10 PM,
+Subtask,SE-21,10020,Configure RedhatOpenshift (deployment) tool,,,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,Medium,To Do,,18/Oct/23 6:17 PM,18/Oct/23 6:17 PM,
+Subtask,SE-20,10019,Configure SonarQube,,,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,Medium,To Do,,18/Oct/23 6:17 PM,18/Oct/23 6:17 PM,
+Subtask,SE-19,10018,Configure Github Action Tester,,,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,Medium,merged to master,Done,18/Oct/23 6:15 PM,18/Oct/23 11:57 PM,
+Subtask,SE-18,10017,Configure CodeQL to do static analysis of python code,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,Medium,merged to master,Done,18/Oct/23 6:15 PM,30/Oct/23 12:41 AM,
+Subtask,SE-17,10016,Configure CodeQL,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,Medium,merged to master,Done,18/Oct/23 6:14 PM,18/Oct/23 11:57 PM,
+Story,SE-16,10015,Timer,,,Paridhi Talwar,712020:ab304794-8116-475c-b507-c1d6467aa9f4,Medium,To Do,,12/Oct/23 6:23 PM,19/Oct/23 12:28 AM,
+Story,SE-15,10014,Sharing Progress,,,Paridhi Talwar,712020:ab304794-8116-475c-b507-c1d6467aa9f4,Medium,To Do,,12/Oct/23 6:23 PM,19/Oct/23 12:28 AM,
+Story,SE-14,10013,Entertainment Feed,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,p3 - Low,In Progress,,10/Oct/23 12:56 AM,08/Nov/23 3:31 PM,
+Story,SE-13,10012,Search,,,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,p3 - Low,To Do,,10/Oct/23 12:56 AM,19/Oct/23 12:27 AM,
+Story,SE-12,10011,Rewarding User Points,,,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,p3 - Low,To Do,,10/Oct/23 12:56 AM,19/Oct/23 12:27 AM,
+Story,SE-11,10010,Like Button,,,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,p3 - Low,To Do,,10/Oct/23 12:56 AM,19/Oct/23 12:26 AM,
+Story,SE-10,10009,Learning Experience,,,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,p3 - Low,To Do,,10/Oct/23 12:56 AM,19/Oct/23 12:25 AM,
+Story,SE-9,10008,Entertainment Video Experience,,,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,p3 - Low,To Do,,10/Oct/23 12:56 AM,19/Oct/23 12:25 AM,
+Story,SE-8,10007,Browse Watch History,,,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,p3 - Low,To Do,,10/Oct/23 12:56 AM,19/Oct/23 12:25 AM,
+Story,SE-7,10006,Manage User Profile,,,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,p3 - Low,To Do,,10/Oct/23 12:56 AM,19/Oct/23 12:24 AM,
+Story,SE-6,10005,Active User Checker,,,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,p3 - Low,To Do,,10/Oct/23 12:56 AM,19/Oct/23 12:24 AM,
+Story,SE-5,10004,Login Page,,,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,p3 - Low,To Do,,10/Oct/23 12:56 AM,19/Oct/23 12:23 AM,
+Story,SE-4,10003,Video Transcripts,,,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,p3 - Low,To Do,,10/Oct/23 12:56 AM,19/Oct/23 12:21 AM,
+Story,SE-3,10002,Goal Tracker,,,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,p3 - Low,To Do,,10/Oct/23 12:56 AM,19/Oct/23 12:21 AM,
+Task,SE-2,10001,Configure JIRA with github and import stories from PivotalTracker,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,Medium,merged to master,Done,09/Oct/23 6:18 PM,18/Oct/23 4:48 PM,
+Task,SE-1,10000,Configure github action tools for the project repository,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,Deepali Chawla,712020:deb578b8-cf41-44e8-a598-739436302657,Medium,In Progress,,09/Oct/23 4:08 PM,30/Oct/23 12:42 AM,

@@ -30,24 +30,25 @@ function UserProfile() {
           <div className="profile-container">
             <div className="profile-pic">
               <img
+                data-cy='ProfilePictureElement'
                 src="https://www.shareicon.net/data/256x256/2016/09/15/829472_man_512x512.png"
                 alt="Profile Image"
               />{' '}
               {/* Replace with your image */}
             </div>
-            <span>Supriya Uppala</span>
+            <span data-cy='ProfileNameElement'>Supriya Uppala</span>
           </div>
           <span></span> {/* Placeholder element */}
         </header>
 
-        <section className="hobbies">
+        <section data-cy='HobbiesElement' className="hobbies">
           <h2>Hobbies:</h2>
           {hobbies.map((hobby, index) => (
             <button key={index}>{hobby}</button>
           ))}
         </section>
 
-        <section className="video-history">
+        <section data-cy='VideoHistoryElement'className="video-history">
           <h2>Video History</h2>
           <div className="videos">
             {videoUrls.map((videoUrl, index) => (
@@ -60,7 +61,7 @@ function UserProfile() {
                 allowFullScreen
               ></iframe>
             ))}
-            <button>See All</button>
+            <button data-cy='ViewHistoryButton' >See All</button>
           </div>
         </section>
 
