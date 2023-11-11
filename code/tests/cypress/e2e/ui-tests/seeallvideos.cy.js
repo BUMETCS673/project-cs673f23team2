@@ -5,7 +5,8 @@ describe('Clicking on the "See all" button under any section should navigate the
 		cy.visit('http://localhost:3000/search')
 		cy.get('[data-cy=searchBarElement]').type('Flask tutorial')
 		cy.get('[data-cy=searchBarButton]').click();
-		cy.get('[data-cy=seeAllButton]').click();
+		cy.wait(2000)
+		cy.get('[data-cy=seeAllButton]').click({ multiple: true });
 	});
 
 	it('1. List of videos on the topic from the chosen section', () => {

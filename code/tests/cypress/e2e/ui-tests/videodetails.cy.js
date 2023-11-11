@@ -5,7 +5,7 @@ describe('Clicking on a video results in opening the video details for that vide
 		cy.visit('http://localhost:3000/search')
 		cy.get('[data-cy=searchBarElement]').type('Flask tutorial')
 		cy.get('[data-cy=searchBarButton]').click();
-		cy.get('[data-cy=videoLink0]').click();
+		cy.get('[data-cy=videoLink]').click({multiple: true});
 	});
 
     it('Video Player should be visible', () => {
