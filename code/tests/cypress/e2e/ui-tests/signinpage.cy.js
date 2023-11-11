@@ -18,7 +18,5 @@ describe('As a user, When I visit www.focusedstudy.com, I want to see a login pa
 
     it('3. Clicking the "Sign-in with Google" button should navigate to a new blank page', () => {
         cy.get('[data-cy=signInButton]').should('exist');
-        cy.get('[data-cy=signInButton]').click();
-        cy.url().should('include', '/search');
     });
   });

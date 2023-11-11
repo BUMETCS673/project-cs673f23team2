@@ -34,7 +34,7 @@ export default function DetailedVideoComponent(props) {
 					<><div className='videoTitleElement'>
 						videos under 4 minutes
 					</div>
-					<div className='VideoGrid'>
+					<div data-cy='shortVideosElement' className='VideoGrid'>
 						{shortVideoList.map((video) => {
 							return (
 							<>
@@ -57,7 +57,7 @@ export default function DetailedVideoComponent(props) {
 					<><div className='videoTitleElement'>
 						videos over 4 minutes and under 20 minutes
 					</div>
-					<div className='VideoGrid'>
+					<div data-cy='mediumVideosElement' className='VideoGrid'>
 						{mediumVideoList.map((video) => {
 							return (
 							<>

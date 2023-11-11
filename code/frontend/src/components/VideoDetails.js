@@ -19,9 +19,9 @@ export default function VideoDetails() {
   
   return (
     <div className="VideoDetailsContainer">
-        <YouTube className="YoutubePlayerElement" videoId={videoToPlay.id} opts={youtubePlayerOptions} />
-        <div className="YoutubePlayerVideoTitle">{videoToPlay.title}</div>
-        <div className="YoutubePlayerCreatorTitle">Video by {videoToPlay.creator}</div>
+        <YouTube data-cy="videoElement" className="YoutubePlayerElement" videoId={videoToPlay.id} opts={youtubePlayerOptions} />
+        <div data-cy="videoTitleElement" className="YoutubePlayerVideoTitle">{videoToPlay.title}</div>
+        <div data-cy="videoCreatorElement" className="YoutubePlayerCreatorTitle">Video by {videoToPlay.creator}</div>
         <div className='YoutubePlayerButtonStack'>
           <button 
             data-cy="EntertainmentMode" 

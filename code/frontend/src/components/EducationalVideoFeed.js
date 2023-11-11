@@ -85,9 +85,9 @@ useLayoutEffect(()=>{
           onKeyDown={handleInputKeyPress}
         />
       )}
-      <VideoGridContainer query={searchKeyword} videoDuration="short" videoList={shortVideoList}/>
-      <VideoGridContainer query={searchKeyword} videoDuration="medium" videoList={mediumVideoList}/>
-      <VideoGridContainer query={searchKeyword} videoDuration="long" videoList={longVideoList}/>
+      <VideoGridContainer data-cy='shortDurationVideos' query={searchKeyword} videoDuration="short" videoList={shortVideoList}/>
+      <VideoGridContainer data-cy='mediumDurationVideos' query={searchKeyword} videoDuration="medium" videoList={mediumVideoList}/>
+      <VideoGridContainer data-cy='longDurationVideos' query={searchKeyword} videoDuration="long" videoList={longVideoList}/>
       </div>
   )
 }
