@@ -12,7 +12,7 @@ const handleSeeModeButtonClick = () => {
 
   return (
     <div className="VideoFeedContainer">
-        <div className="VideoTitleElement"> {query} Videos {
+        <div data-cy='videoTitleElement' className="VideoTitleElement"> {query} Videos {
         videoDuration === "short" ? "under 4 mins" : 
         videoDuration === "medium" ? "under 30 mins": 
         videoDuration === "long" ? "in depth":
