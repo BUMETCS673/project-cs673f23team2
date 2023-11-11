@@ -1,46 +1,42 @@
-.container {
-  width: 100%;
-  max-width: 960px;
-  margin: 0 auto;
-  position: relative;
+.VideoDetailsContainer{
+  text-align: center;
 }
 
-.profile-card {
-  position: fixed;
-  top: 0;
-  right: 0;
-  padding: 20px;
-  user-select: none;
-  cursor: none;
+.YoutubePlayerElement{
+  margin-top: 2vw;
 }
 
-.profile-card img {
-  pointer-events: none;
+.YoutubePlayerVideoTitle{
+  font-size: 1.5em;
+  margin-top: 0.5vw;
+  font-weight: 600;
 }
 
-.video-player {
-  width: 40%;
-  margin: 0 auto;
-  margin-top: 20px;
+.YoutubePlayerCreatorTitle{
+  font-size: 1em;
+  margin-top: 0.5vw;
 }
 
-.controls {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.YoutubePlayerButtonStack{
+  margin-top: 1.5vw;
 }
 
-button {
-  /* border: none;
-  background-color: transparent; */
-  padding: 10px 20px;
-  margin: 5px;
+.WatchExperienceButtons{
+  width: 3.5vw;
+  height: 3.5vw;
+  border-radius: 50%;
+  background-color: #B1DBFC;
   border: none;
-  border-radius: 5px;
-  cursor: pointer;
+  font-size: 1.5em;
+  margin-left: 1vw;
+  margin-right: 1vw;
+  transition: all 0.25s ease;
 }
 
-button img {
-  display: block;
-  margin: 0 auto;
+.WatchExperienceButtons:hover{
+  background: #5CB3F8;
+  color: #282828;
+  transform: scale(1.5);
+  border: 0.2vw solid #282828;
+  cursor: pointer;
 }

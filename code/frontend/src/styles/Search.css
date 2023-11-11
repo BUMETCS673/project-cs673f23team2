@@ -11,7 +11,12 @@
     width: 10vw;
     height: 10vw;
     border-radius: 50%;
-    border: 0.2vw solid #5CB3F8;
+    transition: all 0.25s ease;
+}
+
+.UserProfileImageElement:hover{
+    cursor: pointer;
+    transform: scale(1.1);
 }
 
 .UserDisplayNameElement{
@@ -59,15 +64,17 @@
 
 .SearchButtonElement{
     margin-top: 1.5vw;
-    padding: 0.5vw;
+    margin-left: 0.5vw;
+    margin-right: 0.5vw;
+    padding: 0.2vw;
     text-align: center;
-    width: 15vw;
+    width: 10vw;
     border-radius: 2vw;
     background-color: #B1DBFC;
     border: 0.1vw solid #282828;
     padding-top: 1vw;
     padding-bottom: 1vw;
-    font-size: 2em;
+    font-size: 1em;
     font-weight: 600;
     color: #282828;
     transition: all 0.25s ease;
@@ -81,26 +88,3 @@
     cursor: pointer;
 }
 
-.EntertainmentFeedButtonElement{
-    margin-top: 1.5vw;
-    padding: 0.5vw;
-    text-align: center;
-    width: 25vw;
-    border-radius: 2.5vw;
-    background-color: #B1DBFC;
-    border: 0.1vw solid #282828;
-    padding-top: 1vw;
-    padding-bottom: 1vw;
-    font-size: 2em;
-    font-weight: 600;
-    color: #282828;
-    transition: all 0.25s ease;
-}
-
-.EntertainmentFeedButtonElement:hover{
-    background: #5CB3F8;
-    color: #282828;
-    transform: scale(1.1);
-    border: 0.2vw solid #282828;
-    cursor: pointer;
-}

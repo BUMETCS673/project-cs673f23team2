@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/VideoHistory.css';
+//import '../styles/VideoHistory.css';
 const videos = [
   {
     title: 'Flask Tutorial',

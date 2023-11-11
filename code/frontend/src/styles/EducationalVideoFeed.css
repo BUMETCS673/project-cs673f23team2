@@ -2,53 +2,9 @@
     background-color: white;
     display: grid;
     place-items: center;
+    margin-bottom: 10vw;
 }
 
-.videoTitleElement{
-    margin-top: 3vw;
-    font-size: 2em;
-    font-weight: 600;
+.SeeAllVideosContainer{
+    margin-left: 2vw;
 }
-
-.NavigationStackContainer{
-    display: grid;
-    place-items: center;
-}
-
-.VideoStackContainer iframe{
-    padding: 1vw;
-}
-
-.VideoGrid1 {
-    display: flex;
-    flex-direction: column;
-    align-items: left; /* This centers the videos horizontally in the container */
-  }
-
-  .VideoItem {
-    display: flex;
-    flex-direction: row; /* Display the video and info side by side */
-    align-items: flex-start;
-    margin-bottom: 20px; /* Add margin between videos */
-  }
-  
-  .VideoInfo {
-    flex: 1; /* Take up available space on the right */
-    text-align: left;
-    margin-right: 20px; /* Add margin between video and info */
-  }
-  
-  .VideoTitle {
-    font-size: 16px;
-    margin: 0;
-  }
-  
-  .ChannelName, .Views, .PostedDate {
-    font-size: 14px;
-    margin: 5px 0;
-  }
- 
-  
-  
-  
-  

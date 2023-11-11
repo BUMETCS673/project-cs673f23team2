@@ -1,9 +1,12 @@
 import '../styles/Search.css'
-import React, { useState } from 'react'
+import React, { useLayoutEffect, useState } from 'react'
 import DefaultUserProfile from '../assets/default_user_profile.svg'
 import Points from '../assets/points.svg'
 import EducationalFeed from '../components/EducationalVideoFeed.js'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMagnifyingGlass, faCouch } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
+import { getAuth } from 'firebase/auth';
 
 ///////////////////////////////////////
 /********* HELPER FUNCTIONS *********/
@@ -14,12 +17,13 @@ export function isSearchValid(inputText) {
     return trimmedInput.length > 1;
 }
 
-
 ///////////////////////////////////////
 /********* COMPONENTS *********/
 ///////////////////////////////////////
 export default function Search() {
     const [searchKeyword, setSearchKeyword] = useState('');
+    const [userProfilePicture, setUserProfilePicture] = useState(DefaultUserProfile)
+    const [userName, setUserName] = useState('')
     let navigate = useNavigate();
     
 
@@ -30,7 +34,7 @@ export default function Search() {
 
     const handleSearchClick = () => {
         if(isSearchValid(searchKeyword)){
-            navigate('/browse', { state: {query: searchKeyword} });
+            navigate('/browse', { state: {query: searchKeyword, educationStatus: true} });
         }
     }
 
@@ -39,15 +43,26 @@ export default function Search() {
             handleSearchClick();
         }
     };
-
-    const handleEntertainmentClick = () => {
+    
+    const handleEntertainmentModeClick = () => {
         navigate('/entertainment-browse', {state: {flag: false, query: ''}});
     }
-    
+
+    const handleUserProfileClick = () => {
+        navigate('/userProfile');
+    }
+
+    useLayoutEffect(()=>{
+        const auth = getAuth()
+        const user = auth.currentUser
+        setUserProfilePicture(user.photoURL)
+        setUserName(user.displayName)
+      }, [])
+
     return (
         <div className='SearchContainer'>
-            <img data-cy="userProfileOnSearch" alt='User Profile' className='UserProfileImageElement' src={DefaultUserProfile}></img>
-            <p data-cy="userNameOnSearch" className='UserDisplayNameElement'>Siddhesh Dighe</p>
+            <img data-cy="userProfileOnSearch" alt='User Profile' className='UserProfileImageElement' src={userProfilePicture} onClick={() => handleUserProfileClick()}></img>
+            <p data-cy="userNameOnSearch" className='UserDisplayNameElement'>{userName}</p>
             <p data-cy="userRewardPointsOnSearch" className='UserDisplayRewardPointsElement'>✨ 3000 points</p>
             <input 
                 data-cy="searchBarElement" 
@@ -56,17 +71,20 @@ export default function Search() {
                 value={searchKeyword}
                 onChange={handleSearchInput}
                 onKeyDown={handleInputKeyPress}/>
-            <button 
-                data-cy="searchBarButton" 
-                className='SearchButtonElement'
-                onClick={handleSearchClick}>
-                    Search</button>
-            <button 
-                data-cy='EntertainmentFeedButton'
-                className='EntertainmentFeedButtonElement'
-                onClick={handleEntertainmentClick}>
-                    entertainment mode
+            <div className='SearchButtonsContainer'>
+                <button 
+                    data-cy="searchBarButton" 
+                    className='SearchButtonElement'
+                    onClick={handleSearchClick}>
+                        <FontAwesomeIcon icon={faMagnifyingGlass} /> Search
                 </button>
+                <button 
+                    data-cy="EntertainmentMode" 
+                    className='SearchButtonElement'
+                    onClick={handleEntertainmentModeClick}>
+                        <FontAwesomeIcon icon={faCouch} /> Entertainment Mode
+                </button>
+            </div>
         </div>
     )
 }

@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from 'axios';
 import React from "react";
-import { API_KEY } from "./ApiKey";
 
 export default function DetailedVideoComponent(props) {
 	let query = props.query
@@ -12,13 +11,13 @@ export default function DetailedVideoComponent(props) {
 	
 
 	function getYoutubeVideosFromQuery(keyword) {
-		axios.get("https://www.googleapis.com/youtube/v3/search?key=" + API_KEY + "&q=" + keyword + "&type=video&part=snippet&maxResults=3&videoDuration=short").then((response) => {
+		axios.get("https://www.googleapis.com/youtube/v3/search?key=" + "AIzaSyCmfbtelCSnTCkYyI0ZyAUSr2-mEtq65XQ" + "&q=" + keyword + "&type=video&part=snippet&maxResults=3&videoDuration=short").then((response) => {
 			setShortVideoList(response.data.items)
 		})
-		axios.get("https://www.googleapis.com/youtube/v3/search?key=" + API_KEY + "&q=" + keyword + "&type=video&part=snippet&maxResults=3&videoDuration=medium").then((response) => {
+		axios.get("https://www.googleapis.com/youtube/v3/search?key=" + "AIzaSyCmfbtelCSnTCkYyI0ZyAUSr2-mEtq65XQ" + "&q=" + keyword + "&type=video&part=snippet&maxResults=3&videoDuration=medium").then((response) => {
 			setMediumVideoList(response.data.items)
 		})
-		axios.get("https://www.googleapis.com/youtube/v3/search?key=" + API_KEY + "&q=" + keyword + "&type=video&part=snippet&maxResults=3&videoDuration=long").then((response) => {
+		axios.get("https://www.googleapis.com/youtube/v3/search?key=" + "AIzaSyCmfbtelCSnTCkYyI0ZyAUSr2-mEtq65XQ" + "&q=" + keyword + "&type=video&part=snippet&maxResults=3&videoDuration=long").then((response) => {
 			setLongVideoList(response.data.items)
 		})
 	}
