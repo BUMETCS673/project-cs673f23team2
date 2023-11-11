@@ -37,19 +37,20 @@ function VideoHistory() {
           <h1>VIDEO HISTORY</h1>
         </div>
 
-        <div className="video-history">
+        <div data-cy='TitleElement' className="video-history">
           {videos.map((video, index) => (
-            <div key={index}>
-              <h2>{video.title}</h2>
+            <div data-cy='videoHistoryElement' key={index}>
+              <h2 data-cy='videoTitleElement'>{video.title}</h2>
               <div className="video-item">
                 <div className="video-wrapper">
                   <iframe
+                    data-cy='videoElement'
                     src={video.url}
                     title="YouTube video player"
                     allowFullScreen
                   ></iframe>
                 </div>
-                <div className="watch-time">Watch Time: {video.watchTime}</div>
+                <div data-cy='watchTimeElement' className="watch-time">Watch Time: {video.watchTime}</div>
               </div>
             </div>
           ))}

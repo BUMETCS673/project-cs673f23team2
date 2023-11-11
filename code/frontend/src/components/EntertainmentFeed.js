@@ -2,11 +2,9 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import React, { useLayoutEffect, useState } from 'react'
 import '../styles/EntertainmentFeed.css'
 import VideoComponent from './VideoComponent';
-import Button from '@mui/material/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import EducationalVideoFeed, { isSearchValid } from './EducationalVideoFeed';
-import DetailedVideoComponent from './DetailedVideoComponent';
 import { getAuth } from 'firebase/auth';
 import axios from 'axios';
 
@@ -44,10 +42,17 @@ export default function EntertainmentFeed() {
 	useLayoutEffect(()=>{
         const auth = getAuth()
         const user = auth.currentUser
-		axios.get("http://127.0.0.1:5000/getUserHobbies", {params: {userId: user.uid}
-		}).then((response) => {
-			setHobbyList(response.data.hobbies)
-		  })
+		if(user!=null || user!=undefined) {
+            axios.get("http://127.0.0.1:5000/getUserHobbies", {params: {userId: user.uid}
+			}).then((response) => {
+				setHobbyList(response.data.hobbies)
+			}).catch((error) => {
+				setHobbyList(['hiking', 'reading', 'photography'])
+			})
+        } else {
+            setHobbyList(['hiking', 'reading', 'photography'])
+		}
+		
       }, [])
 
 	return (
@@ -85,9 +90,9 @@ export default function EntertainmentFeed() {
 					</>
 				) : (
 					<>
-					<div className='EntertainmentFeedHobbieButtonContainer'>
+					<div data-cy='hobbyButtons' className='EntertainmentFeedHobbieButtonContainer'>
 						{hobbyList.map((hobby, index) => (
-           					<button key={index} className="EntertainmentFeedHobbyButton" onClick={(e) => HobbyButtonClick(e)}>{hobby}</button>
+           					<button data-cy={`hobbyButton${index}`} key={index} className="EntertainmentFeedHobbyButton" onClick={(e) => HobbyButtonClick(e)}>{hobby}</button>
          				))}
 					</div>
 					<div className='EntertainmentFeedHobbieVideoStack'>

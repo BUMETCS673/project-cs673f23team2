@@ -12,7 +12,7 @@ const handleSeeModeButtonClick = () => {
 
   return (
     <div className="VideoFeedContainer">
-        <div className="VideoTitleElement"> {query} Videos {
+        <div data-cy='videoTitleElement' className="VideoTitleElement"> {query} Videos {
         videoDuration === "short" ? "under 4 mins" : 
         videoDuration === "medium" ? "under 30 mins": 
         videoDuration === "long" ? "in depth":
@@ -23,14 +23,14 @@ const handleSeeModeButtonClick = () => {
             {videoList != undefined && videoList.length > 0 ? (
                 <div className='VideoGrid'>
                     {videoList.slice(0, 5).map((video) => (
-                        <VideoCard key={video.id} className="VideoCardElement" video={video}/>
+                        <VideoCard data-cy={`videoLink`} key={video.id} className="VideoCardElement" video={video}/>
                     ))}
                 </div>
             ) : (
                 <p>No videos found.</p>
             )}
         </div>
-        <button 
+        <button data-cy="seeAllButton"
                 className='VideoGridContainerSeeMoreButtonElement'
                 onClick={() => handleSeeModeButtonClick()}>See More</button>
     </div>
