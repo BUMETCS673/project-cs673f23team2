@@ -3,6 +3,7 @@ import axios from 'axios';
 import React, { useState, useLayoutEffect } from 'react'
 import '../styles/EducationalVideoFeed.css'
 import VideoGridContainer from './VideoGridContainer';
+import { fetchVideosFromYouTube } from '../utils/axiosAPIUtils';
 
 export function isSearchValid(inputText) {
   const trimmedInput = inputText.trim();
@@ -41,32 +42,9 @@ const handleSearchClick = () => {
 
 
 function getYoutubeVideosFromQuery(query, count){
-  axios.get("http://127.0.0.1:5000/fetchvideos", {params: {
-        q: query,
-        maxResults: count,
-        videoDuration: "short"
-      }
-    }).then((response) => {
-        setShortVideoList(response.data)    
-      })
-
-      axios.get("http://127.0.0.1:5000/fetchvideos", {params: {
-        q: query,
-        maxResults: count,
-        videoDuration: "medium"
-      }
-    }).then((response) => {
-        setMediumVideoList(response.data)    
-      })
-
-      axios.get("http://127.0.0.1:5000/fetchvideos", {params: {
-        q: query,
-        maxResults: count,
-        videoDuration: "long"
-      }
-    }).then((response) => {
-        setLongVideoList(response.data)    
-      })
+  fetchVideosFromYouTube(query, count, "short", setShortVideoList);
+  fetchVideosFromYouTube(query, count, "medium", setMediumVideoList);
+  fetchVideosFromYouTube(query, count, "long", setLongVideoList);
 }
 
 useLayoutEffect(()=>{
