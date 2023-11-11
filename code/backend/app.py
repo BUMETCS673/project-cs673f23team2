@@ -13,6 +13,12 @@ app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})
 
 
+# export const API_KEY = "AIzaSyCqn_iHs55mJrxYNSCNLNFQtnSzT9UYExM"
+# export const API_KEY = "AIzaSyCmfbtelCSnTCkYyI0ZyAUSr2-mEtq65XQ"
+# export const API_KEY = "AIzaSyDoVGGsXkMZMA_YjPnKUuP0i_ILJUe38S8"
+# export const API_KEY = "AIzaSyBhSRIyJpF_kqSSAFnnNk16eDn1Cmiu_B0"
+
+
 @app.route("/health", methods=["GET"])
 def health_check():
     return jsonify({"status": "ok"})
@@ -32,7 +38,7 @@ def fetch_videos_from_youtube_api():
     video_fetch_url = "https://www.googleapis.com/youtube/v3/search"
     video_data_fetch_url = "https://www.googleapis.com/youtube/v3/videos"
 
-    key = "AIzaSyC_lqU7NrJaNalsNM0w1OlikduwRvPLUqY"
+    key = "AIzaSyBhSRIyJpF_kqSSAFnnNk16eDn1Cmiu_B0"
     search_query = request.args.get("q", "Learn Flask")
     max_results = request.args.get("maxResults", 1)
     video_duration = request.args.get("videoDuration", "any")
@@ -78,15 +84,16 @@ def fetch_videos_from_youtube_api():
     return jsonify(video_results)
 
 
-@app.route("/fetchvideodata", methods=["GET"])
-def fetch_video_data_from_youtube_api():
-    api_url = "https://www.googleapis.com/youtube/v3/search"
-
-    video_ids = request.args.get("ids", [])
-    max_results = request.args.get("maxResults", 1)
-    print("Parameters => ", video_ids, max_results)
-
-    return jsonify({"status": "ok"})
+@app.route("/getUserHobbies", methods=["GET"])
+def getUserHobbiesFromFirestore():
+    db = firestore.client()
+    userId = request.args.get("userId", "")
+    userDoc = db.collection("users").document(userId).get()
+    if userDoc.exists:
+        userDetails = userDoc.to_dict()
+        return jsonify({"hobbies": userDetails["hobbies"]})
+    else:
+        return jsonify({"hobbies": []})
 
 
 if __name__ == "__main__":

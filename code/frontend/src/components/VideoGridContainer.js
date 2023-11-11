@@ -1,11 +1,13 @@
 import React from 'react'
 import '../styles/VideoGridContainer.css'
 import VideoCard from './VideoCard'
+import { useNavigate } from 'react-router-dom'
 
 export default function VideoGridContainer({query, videoDuration, videoList}) {
 
+let navigate = useNavigate();
 const handleSeeModeButtonClick = () => {
-    console.log("Hello")
+    navigate('/seemorevideos', {state: {query: query, videoDuration: videoDuration, videoList: videoList}})
 }
 
   return (
@@ -13,13 +15,14 @@ const handleSeeModeButtonClick = () => {
         <div className="VideoTitleElement"> {query} Videos {
         videoDuration === "short" ? "under 4 mins" : 
         videoDuration === "medium" ? "under 30 mins": 
-        "in depth"}
+        videoDuration === "long" ? "in depth":
+        ""}
         </div>
         
         <div className="VideoGridContainer">
             {videoList != undefined && videoList.length > 0 ? (
                 <div className='VideoGrid'>
-                    {videoList.map((video) => (
+                    {videoList.slice(0, 5).map((video) => (
                         <VideoCard key={video.id} className="VideoCardElement" video={video}/>
                     ))}
                 </div>

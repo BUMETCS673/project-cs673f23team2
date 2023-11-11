@@ -7,16 +7,11 @@ import './styles/App.css';
 import OnboardingPage from './components/OnboardingPage';
 import Search from './components/Search';
 import EducationalVideoFeed from './components/EducationalVideoFeed';
-<<<<<<< HEAD
 import EntertainmentFeed from './components/EntertainmentFeed';
 import SeeAllVideos from './components/SeeAllVideos'
 import UserProfile from './components/UserProfile';
 import VideoHistory from './components/VideoHistory';
-import OnboardingPage from './components/OnboardingPage';
-import { signInWithGoogle } from "./firebase";
 import VideoDetails from './components/VideoDetails'
-=======
->>>>>>> 6d08d38 (SE-40: Code integration)
 
 function App() {
   const [isAuth, setAuthStatus] = useState(false)
@@ -59,15 +54,12 @@ function App() {
         <Route path='/onboarding' element={<OnboardingPage />} />
         <Route path='/search' element={<Search />} />
         <Route path='/browse' element={<EducationalVideoFeed />} />
-<<<<<<< HEAD
         <Route path='/entertainment-browse' element={<EntertainmentFeed />} />
-        <Route path='/all' element={<SeeAllVideos />} />
-        <Route path='/users/:userId' element={<UserProfile />} />
-        <Route path='/users/:userId/video-history' element={<VideoHistory />} />
+        <Route path='/seemorevideos' element={<SeeAllVideos />} />
+        <Route path='/userProfile' element={<UserProfile />} />
+        <Route path='/videoHistory' element={<VideoHistory />} />
         <Route path='/onboarding' element={<OnboardingPage />} />
-        <Route path='/video/:id' element={<VideoDetails />} />
-=======
->>>>>>> 6d08d38 (SE-40: Code integration)
+        <Route path='/watchvideo' element={<VideoDetails />} />
       </Routes>
     </div>
   );

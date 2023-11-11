@@ -1,17 +1,19 @@
 import { useLocation, useNavigate } from 'react-router-dom';
-import React, { useState } from 'react'
-import '../styles/EducationalVideoFeed.css'
+import React, { useLayoutEffect, useState } from 'react'
+import '../styles/EntertainmentFeed.css'
 import VideoComponent from './VideoComponent';
 import Button from '@mui/material/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
-import { isSearchValid } from './EducationalVideoFeed';
+import EducationalVideoFeed, { isSearchValid } from './EducationalVideoFeed';
 import DetailedVideoComponent from './DetailedVideoComponent';
+import { getAuth } from 'firebase/auth';
+import axios from 'axios';
 
 export default function EntertainmentFeed() {
 	const location = useLocation();
 	const [query, setQuery] = useState(location.state.query);
-	const hobbyList = ['hiking', 'reading'] // ideally from database
+	const [hobbyList, setHobbyList] = useState([])
 	let Flag = location.state.flag;
 	let navigate = useNavigate();
 
@@ -36,16 +38,33 @@ export default function EntertainmentFeed() {
 	const HobbyButtonClick = (e) => {
 		const keyword = e.target.textContent;
 		setQuery(keyword);
-		console.log('HobbyButtonClick ', keyword)
-		navigate('/entertainment-browse', {state: {flag: true, query: query}});
+		navigate('/entertainment-browse', {state: {flag: true, query: keyword}});
 	}
+
+	useLayoutEffect(()=>{
+        const auth = getAuth()
+        const user = auth.currentUser
+		axios.get("http://127.0.0.1:5000/getUserHobbies", {params: {userId: user.uid}
+		}).then((response) => {
+			setHobbyList(response.data.hobbies)
+		  })
+      }, [])
 
 	return (
 		<div>
-			<div className='NavigationStackContainer'>
+			<div className='EntertainmentFeedSearchContainer'>
+				{Flag && (
+        			<button
+						data-cy="searchBarButton"
+						className="SearchButtonElement"
+						onClick={() => {
+							navigate('/entertainment-browse', { state: { flag: false, query: '' } });
+						}}
+        			> <FontAwesomeIcon icon={faArrowLeft} /> Back </button>
+      			)}
 				<input 
 					data-cy="searchBarElement" 
-					className='SearchBarElement' 
+					className='EntertainmentFeedSearchInput' 
 					type="text"
 					value={query}
 					onChange={handleSearchInput}
@@ -54,44 +73,28 @@ export default function EntertainmentFeed() {
 					data-cy="searchBarButton" 
                 	className='SearchButtonElement'
                 	onClick={handleSearchClick}>
-						<FontAwesomeIcon icon={faMagnifyingGlass} />
+						<FontAwesomeIcon icon={faMagnifyingGlass}/> Search
 				</button>
 			</div>
-			<div>
-				<hr/>
-				<h1>Entertainment Feed</h1>
-				<hr/>
+
+			<div className='EntertainmentFeedContainer'>
+				<div className="EntertainmentFeedHeader">Entertainment Feed</div>
 				{Flag ? (
 					<>
-					<button
-						data-cy="searchBarButton" 
-						className='SearchButtonElement'
-						onClick={()=>{navigate('/entertainment-browse', {state: {flag: false, query: ''}});}}>
-							<FontAwesomeIcon icon={faArrowLeft} />
-					</button>
-					<DetailedVideoComponent query={query} />
+					<EducationalVideoFeed query={query} educationStatus={false}/>
 					</>
 				) : (
 					<>
-					{hobbyList != undefined && hobbyList.length > 0 ? (
-						<>
-							{hobbyList.map((hobby) => {
-								return (
-									<>
-									<Button key={hobby}Button variant="outlined" onClick={HobbyButtonClick}>{hobby}</Button>&emsp;
-									</>
-								)
-							})}
-
-							{hobbyList.map((hobby) => {
-								return (
-									<>
-									<VideoComponent query={hobby}/>
-									</>
-								)
-							})}
-						</>
-					):(<p> No videos </p>)}
+					<div className='EntertainmentFeedHobbieButtonContainer'>
+						{hobbyList.map((hobby, index) => (
+           					<button key={index} className="EntertainmentFeedHobbyButton" onClick={(e) => HobbyButtonClick(e)}>{hobby}</button>
+         				))}
+					</div>
+					<div className='EntertainmentFeedHobbieVideoStack'>
+						{hobbyList.map((hobby, index) => {
+							return <VideoComponent key={index} query={hobby}/>
+						})}
+					</div>
 					</>
 				)}
 			</div>

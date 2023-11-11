@@ -42,5 +42,4 @@ describe('As a user, I want to a search videos page so that I can search for top
       cy.location('pathname').should('eq', '/search');
     });
 
-
   });

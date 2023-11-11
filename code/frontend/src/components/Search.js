@@ -3,6 +3,8 @@ import React, { useLayoutEffect, useState } from 'react'
 import DefaultUserProfile from '../assets/default_user_profile.svg'
 import Points from '../assets/points.svg'
 import EducationalFeed from '../components/EducationalVideoFeed.js'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMagnifyingGlass, faCouch } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 import { getAuth } from 'firebase/auth';
 
@@ -14,7 +16,6 @@ export function isSearchValid(inputText) {
     const trimmedInput = inputText.trim();
     return trimmedInput.length > 1;
 }
-
 
 ///////////////////////////////////////
 /********* COMPONENTS *********/
@@ -33,7 +34,7 @@ export default function Search() {
 
     const handleSearchClick = () => {
         if(isSearchValid(searchKeyword)){
-            navigate('/browse', { state: {query: searchKeyword} });
+            navigate('/browse', { state: {query: searchKeyword, educationStatus: true} });
         }
     }
 
@@ -43,6 +44,14 @@ export default function Search() {
         }
     };
     
+    const handleEntertainmentModeClick = () => {
+        navigate('/entertainment-browse', {state: {flag: false, query: ''}});
+    }
+
+    const handleUserProfileClick = () => {
+        navigate('/userProfile');
+    }
+
     useLayoutEffect(()=>{
         const auth = getAuth()
         const user = auth.currentUser
@@ -52,7 +61,7 @@ export default function Search() {
 
     return (
         <div className='SearchContainer'>
-            <img data-cy="userProfileOnSearch" alt='User Profile' className='UserProfileImageElement' src={userProfilePicture}></img>
+            <img data-cy="userProfileOnSearch" alt='User Profile' className='UserProfileImageElement' src={userProfilePicture} onClick={() => handleUserProfileClick()}></img>
             <p data-cy="userNameOnSearch" className='UserDisplayNameElement'>{userName}</p>
             <p data-cy="userRewardPointsOnSearch" className='UserDisplayRewardPointsElement'>✨ 3000 points</p>
             <input 
@@ -62,11 +71,20 @@ export default function Search() {
                 value={searchKeyword}
                 onChange={handleSearchInput}
                 onKeyDown={handleInputKeyPress}/>
-            <button 
-                data-cy="searchBarButton" 
-                className='SearchButtonElement'
-                onClick={handleSearchClick}>
-                    Search</button>
+            <div className='SearchButtonsContainer'>
+                <button 
+                    data-cy="searchBarButton" 
+                    className='SearchButtonElement'
+                    onClick={handleSearchClick}>
+                        <FontAwesomeIcon icon={faMagnifyingGlass} /> Search
+                </button>
+                <button 
+                    data-cy="EntertainmentMode" 
+                    className='SearchButtonElement'
+                    onClick={handleEntertainmentModeClick}>
+                        <FontAwesomeIcon icon={faCouch} /> Entertainment Mode
+                </button>
+            </div>
         </div>
     )
 }

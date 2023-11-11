@@ -12,6 +12,8 @@ export function isSearchValid(inputText) {
 export default function EducationalVideoFeed() {
   const location = useLocation();
   const query = location.state.query
+  const isEducation = location.state.educationStatus
+
   const [searchKeyword, setSearchKeyword] = useState(query);
   
   const [shortVideoList, setShortVideoList] = useState([])
@@ -33,7 +35,7 @@ export default function EducationalVideoFeed() {
 
 const handleSearchClick = () => {
   if(isSearchValid(searchKeyword)){
-        getYoutubeVideosFromQuery(searchKeyword, 5)
+        getYoutubeVideosFromQuery(searchKeyword, 50)
   }
 }
 
@@ -68,18 +70,21 @@ function getYoutubeVideosFromQuery(query, count){
 }
 
 useLayoutEffect(()=>{
-  getYoutubeVideosFromQuery(query, 5)
+  getYoutubeVideosFromQuery(query, 50)
 },[])
 
   return (
       <div className='NavigationStackContainer'>
-      <input 
-                data-cy="searchBarElement" 
-                className='SearchBarElement' 
-                type="text"
-                value={searchKeyword}
-                onChange={handleSearchInput}
-                onKeyDown={handleInputKeyPress}/>
+      {isEducation && (
+        <input
+          data-cy="searchBarElement"
+          className="SearchBarElement"
+          type="text"
+          value={searchKeyword}
+          onChange={handleSearchInput}
+          onKeyDown={handleInputKeyPress}
+        />
+      )}
       <VideoGridContainer query={searchKeyword} videoDuration="short" videoList={shortVideoList}/>
       <VideoGridContainer query={searchKeyword} videoDuration="medium" videoList={mediumVideoList}/>
       <VideoGridContainer query={searchKeyword} videoDuration="long" videoList={longVideoList}/>
