@@ -2,7 +2,7 @@
 describe('Clicking on the "See all" button under any section should navigate the user to "See more videos" page', () => {
 
 	beforeEach(() => {
-		cy.visit('http://localhost:3000/users/1/video-history')
+		cy.visit('http://localhost:3000/users/1/videoHistory')
 	});
 
 	it('1. Every video from the video history section must have a thumbnail and info containing title, and watch time', () => {
