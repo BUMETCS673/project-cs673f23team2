@@ -3,7 +3,7 @@ from isodate import parse_duration
 
 video_fetch_url = "https://www.googleapis.com/youtube/v3/search"
 video_data_fetch_url = "https://www.googleapis.com/youtube/v3/videos"
-key = "AIzaSyDoVGGsXkMZMA_YjPnKUuP0i_ILJUe38S8"  # Kept here for testing, will be moved to an environment variable
+key = "AIzaSyBhSRIyJpF_kqSSAFnnNk16eDn1Cmiu_B0"  # Kept here for testing, will be moved to an environment variable
 
 
 # Create parameters for the Youtube Search API Request
@@ -18,7 +18,7 @@ def create_youtube_search_params(search_query, max_results, video_duration):
     }
 
 
-# Create parameters for the Youtube Data API Request
+#Create parameters for the Youtube Data API Request
 def create_youtube_data_params(videoIds, max_results):
     return {
         "key": key,
@@ -26,7 +26,6 @@ def create_youtube_data_params(videoIds, max_results):
         "part": "snippet,contentDetails",
         "maxResults": max_results,
     }
-
 
 # Fetch Data from Youtube Search API for the given paramets
 def fetch_youtube_search_data(search_query, max_results, video_duration):
