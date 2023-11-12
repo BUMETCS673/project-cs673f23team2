@@ -4,6 +4,7 @@ import React, { useState, useLayoutEffect } from 'react'
 import '../styles/EducationalVideoFeed.css'
 import VideoGridContainer from './VideoGridContainer';
 import { fetchVideosFromYouTube } from '../utils/axiosAPIUtils';
+import SearchBarComponent from './SearchBarComponent';
 
 export function isSearchValid(inputText) {
   const trimmedInput = inputText.trim();
@@ -54,14 +55,10 @@ useLayoutEffect(()=>{
   return (
       <div className='NavigationStackContainer'>
       {isEducation && (
-        <input
-          data-cy="searchBarElement"
-          className="SearchBarElement"
-          type="text"
+        <SearchBarComponent
           value={searchKeyword}
           onChange={handleSearchInput}
-          onKeyDown={handleInputKeyPress}
-        />
+          onKeyDown={handleInputKeyPress}/>
       )}
       <VideoGridContainer data-cy='shortDurationVideos' query={searchKeyword} videoDuration="short" videoList={shortVideoList}/>
       <VideoGridContainer data-cy='mediumDurationVideos' query={searchKeyword} videoDuration="medium" videoList={mediumVideoList}/>

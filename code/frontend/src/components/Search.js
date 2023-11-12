@@ -1,8 +1,7 @@
 import '../styles/Search.css'
 import React, { useLayoutEffect, useState } from 'react'
 import DefaultUserProfile from '../assets/default_user_profile.svg'
-import Points from '../assets/points.svg'
-import EducationalFeed from '../components/EducationalVideoFeed.js'
+import SearchBarComponent from './SearchBarComponent'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass, faCouch } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
@@ -69,10 +68,7 @@ export default function Search() {
             <img data-cy="userProfileOnSearch" alt='User Profile' className='UserProfileImageElement' src={userProfilePicture} onClick={() => handleUserProfileClick()}></img>
             <p data-cy="userNameOnSearch" className='UserDisplayNameElement'>{userName}</p>
             <p data-cy="userRewardPointsOnSearch" className='UserDisplayRewardPointsElement'>✨ 3000 points</p>
-            <input 
-                data-cy="searchBarElement" 
-                className='SearchBarElement' 
-                type="text"
+            <SearchBarComponent
                 value={searchKeyword}
                 onChange={handleSearchInput}
                 onKeyDown={handleInputKeyPress}/>

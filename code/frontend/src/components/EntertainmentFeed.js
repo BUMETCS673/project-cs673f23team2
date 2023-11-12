@@ -5,6 +5,7 @@ import VideoComponent from './VideoComponent';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import EducationalVideoFeed, { isSearchValid } from './EducationalVideoFeed';
+import SearchBarComponent from './SearchBarComponent';
 import { getAuth } from 'firebase/auth';
 import axios from 'axios';
 
@@ -67,10 +68,7 @@ export default function EntertainmentFeed() {
 						}}
         			> <FontAwesomeIcon icon={faArrowLeft} /> Back </button>
       			)}
-				<input 
-					data-cy="searchBarElement" 
-					className='EntertainmentFeedSearchInput' 
-					type="text"
+				<SearchBarComponent
 					value={query}
 					onChange={handleSearchInput}
 					onKeyDown={handleInputKeyPress}/>
