@@ -5,7 +5,7 @@ from flask_cors import CORS, cross_origin
 from firebase_admin import firestore
 import requests
 from wrapper import fetch_video_data_from_youtube
-
+from firebase_admin import db
 from configs.firebase_config import setup_firebase
 
 setup_firebase()
