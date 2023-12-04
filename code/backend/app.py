@@ -53,6 +53,17 @@ def getUserHobbiesFromFirestore():
     else:
         return jsonify({"hobbies": []})
 
+@app.route("/getUserProfile", methods=["GET"])
+def getUserProfileFromFirestore():
+    userId = request.args.get("userId", "")
+    userDoc = db.collection("users").document(userId).get()
+
+    if userDoc.exists:
+        userDetails = userDoc.to_dict()
+        return jsonify({"profile": userDetails})
+    else:
+        return jsonify({"error": "User not found"}), 404
+
 
 if __name__ == "__main__":
     app.run(debug=True)
