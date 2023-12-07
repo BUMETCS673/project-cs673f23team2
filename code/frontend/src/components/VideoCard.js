@@ -2,11 +2,11 @@ import React from 'react'
 import '../styles/VideoCard.css'
 import { useNavigate } from 'react-router-dom'
 
-export default function VideoCard({video}) {
+export default function VideoCard({video, isEducation}) {
 
   const navigate = useNavigate()
   const handleVideoClickButton = () => {
-    navigate('/watchvideo', {state: {video: video}})
+    navigate('/watchvideo', {state: {video: video, isEducation: isEducation}})
   }
 
   return (
