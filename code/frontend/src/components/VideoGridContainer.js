@@ -3,7 +3,7 @@ import '../styles/VideoGridContainer.css'
 import VideoCard from './VideoCard'
 import { useNavigate } from 'react-router-dom'
 
-export default function VideoGridContainer({query, videoDuration, videoList}) {
+export default function VideoGridContainer({query, videoDuration, videoList, isEducation}) {
 
 let navigate = useNavigate();
 const handleSeeModeButtonClick = () => {
@@ -23,7 +23,7 @@ const handleSeeModeButtonClick = () => {
             {videoList != undefined && videoList.length > 0 ? (
                 <div className='VideoGrid'>
                     {videoList.slice(0, 5).map((video) => (
-                        <VideoCard data-cy={`videoLink`} key={video.id} className="VideoCardElement" video={video}/>
+                        <VideoCard data-cy={`videoLink`} key={video.id} className="VideoCardElement" video={video} isEducation={isEducation}/>
                     ))}
                 </div>
             ) : (

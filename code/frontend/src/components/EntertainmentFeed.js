@@ -4,7 +4,7 @@ import '../styles/EntertainmentFeed.css'
 import VideoComponent from './VideoComponent';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
-import EducationalVideoFeed, { isSearchValid } from './EducationalVideoFeed';
+import VideoFeed, { isSearchValid } from './VideoFeed';
 import SearchBarComponent from './SearchBarComponent';
 import { getAuth } from 'firebase/auth';
 import axios from 'axios';
@@ -84,7 +84,7 @@ export default function EntertainmentFeed() {
 				<div className="EntertainmentFeedHeader">Entertainment Feed</div>
 				{Flag ? (
 					<>
-					<EducationalVideoFeed query={query} educationStatus={false}/>
+					<VideoFeed query={query} educationStatus={false}/>
 					</>
 				) : (
 					<>
