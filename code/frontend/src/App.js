@@ -6,7 +6,7 @@ import { getAuth } from "firebase/auth";
 import './styles/App.css';
 import OnboardingPage from './components/OnboardingPage';
 import Search from './components/Search';
-import EducationalVideoFeed from './components/EducationalVideoFeed';
+import EducationalFeed from './components/EducationalFeed';
 import EntertainmentFeed from './components/EntertainmentFeed';
 import SeeAllVideos from './components/SeeAllVideos'
 import UserProfile from './components/UserProfile';
@@ -52,7 +52,7 @@ function App() {
       <Routes>
         <Route path='/' element={screenToShow()} />
         <Route path='/search' element={<Search />} />
-        <Route path='/browse' element={<EducationalVideoFeed />} />
+        <Route path='/browse' element={<EducationalFeed />} />
         <Route path='/entertainment-browse' element={<EntertainmentFeed />} />
         <Route path='/seemorevideos' element={<SeeAllVideos />} />
         <Route path='/userProfile' element={<UserProfile />} />
