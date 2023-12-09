@@ -1,12 +1,20 @@
 import React from 'react'
 import '../styles/VideoCard.css'
 import { useNavigate } from 'react-router-dom'
+import { addFirstClickVideoSectionData } from '../utils/axiosAPIUtils';
 
-export default function VideoCard({video, isEducation}) {
+export default function VideoCard({video, videoList, keyword, section, videoDuration, isEducation}) {
 
+  function getPosOfVideoInList(videoList, videoId){
+    const position = videoList.findIndex(video => video.id === videoId);
+    return position
+  }
+  
+  const videoPos = getPosOfVideoInList(videoList, video.id)
   const navigate = useNavigate()
   const handleVideoClickButton = () => {
-    navigate('/watchvideo', {state: {video: video, isEducation: isEducation}})
+    addFirstClickVideoSectionData(videoDuration, section)
+    navigate('/watchvideo', {state: {video: video, videoList: videoList, videoPosInList:videoPos, searchKeyword: keyword, section: section, isEducation: isEducation}})
   }
 
   return (
