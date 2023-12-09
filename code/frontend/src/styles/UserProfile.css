@@ -1,45 +1,71 @@
-.user-profile-container {
-    font-family: Arial, sans-serif;
-  }
-  
-  .profile-header {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    margin-bottom: 20px;
-  }
-  
-  .profile-avatar {
-    border-radius: 50%;
-    width: 100px; /* Adjust size as needed */
-  }
-  
-  .profile-name {
+body, html {
     margin: 0;
-    font-size: 24px;
+    height: 100%;
+    font-family: Arial, sans-serif;
+    background: #fff; /* Use the appropriate background color */
   }
   
-  .profile-hobbies h2 {
-    font-size: 20px;
+  .user-profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+  
+  .user-profile-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 100px;
+  }
+  
+  .user-profile-image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 50px;
+  }
+  
+  .user-profile-picture {
+    background: #FFC0CB; /* Adjust this to your actual profile picture */
+    width: 100px; /* Smaller size as per your request */
+    height: 100px; /* Smaller size as per your request */
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem; /* Adjust font size to match the picture */
+    color: white; /* Adjust text color to match the picture */
+  }
+  
+  .user-profile-name {
+    font-size: 2.5rem; /* Adjust as needed */
+    color: #333;
+    margin: 0;
+  }
+  
+  .user-profile-hobbies {
+    align-self: flex-start; /* Align hobbies to the left */
+    padding-left: 20px; /* Add padding to match the left alignment */
+    width: 100%; /* Full width for alignment */
+  }
+  
+  .user-profile-hobbies h2 {
+    font-size: 1.5rem;
+    color: #333;
     margin-bottom: 10px;
   }
   
-  .hobbies-list {
+  .user-hobbies-list {
     display: flex;
     gap: 10px;
   }
   
-  .hobby-button {
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    background-color: #ddd; /* Example color */
+  .user-hobby {
+    background-color: #f0f0f0;
+    padding: 5px 15px;
+    border-radius: 15px;
+    font-size: 14px;
   }
-  
-  .hobby-button:hover {
-    background-color: #ccc;
-  }
-  
-  /* Add other styles as needed */
   
