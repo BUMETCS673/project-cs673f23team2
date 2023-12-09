@@ -58,7 +58,7 @@ export default function Search() {
     }
 
     const handleUserProfileClick = () => {
-        navigate('/userProfile');
+        navigate('/dashboard');
     }
 
     useEffect(()=>{

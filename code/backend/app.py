@@ -3,6 +3,7 @@ from flask import Flask, jsonify, request
 from flask_cors import CORS
 
 from firebase_admin import firestore, db
+import requests
 from wrapper import fetch_video_data_from_youtube
 from datetime import datetime
 
@@ -12,12 +13,14 @@ setup_firebase()
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})
 
-#Health Check
+
+# Health Check
 @app.route("/health", methods=["GET"])
 def health_check():
     return jsonify({"status": "ok"})
 
-#Write to User to Firestore
+
+# Write to User to Firestore
 @app.route("/writeUserToFirestore", methods=["GET"])
 def writeUserToFirestore():
     db = firestore.client()
@@ -26,7 +29,8 @@ def writeUserToFirestore():
     db.collection("users").document(userDetails["userId"]).set(userDetails)
     return jsonify({"status": "ok"})
 
-#To Fetch Videos
+
+# To Fetch Videos
 @app.route("/fetchvideos", methods=["GET"])
 def fetch_videos_from_youtube_api():
     # Get Arguments from the GET Request
@@ -41,7 +45,16 @@ def fetch_videos_from_youtube_api():
 
     return jsonify(video_results)
 
-#To add to search History
+
+# To add to search History
+@app.route("/addtosearchhistory", methods=["GET"])
+def add_to_search_history():
+    section = request.args.get("section", "")
+    keyword = request.args.get("keyword", "")
+    userId = request.args.get("userId", "")
+    print(section, keyword, userId)
+
+
 @app.route("/addtosearchhistory", methods=["GET"])
 def add_to_search_history():
     section = request.args.get("section", "")
@@ -64,7 +77,8 @@ def add_to_search_history():
 
     return jsonify({"status": "ok"})
 
-#Check for addFirstClick
+
+# Check for addFirstClick
 @app.route("/addFirstClickInfo", methods=["GET"])
 def add_first_click_info():
     section = request.args.get("section", "")
@@ -88,7 +102,8 @@ def add_first_click_info():
 
     return jsonify({"status": "ok"})
 
-#Check for watch History
+
+# Check for watch History
 @app.route("/addwatchhistory", methods=["GET"])
 def update_watch_time_to_database():
     watchtime = request.args.get("watchtime", "")
@@ -140,7 +155,8 @@ def update_watch_time_to_database():
 
     return jsonify({"status": "ok"})
 
-#Check for UserHobbies
+
+# Check for UserHobbies
 @app.route("/getUserHobbies", methods=["GET"])
 def getUserHobbiesFromFirestore():
     db = firestore.client()
@@ -152,11 +168,12 @@ def getUserHobbiesFromFirestore():
     else:
         return jsonify({"hobbies": []})
 
-#Check for retrieving UserProfile
+
+# Check for retrieving UserProfile
 @app.route("/getUserProfile", methods=["GET"])
 def getUserProfileFromFirestore():
     db = firestore.client()
-    print('RUNNING')
+    print("RUNNING")
     userId = request.args.get("userId", "")
     userDoc = db.collection("users").document(userId).get()
     if userDoc.exists:
@@ -165,24 +182,21 @@ def getUserProfileFromFirestore():
     else:
         return jsonify({"userDetails": {}})
 
-#Check for RewardPoints
+
+# Check for RewardPoints
 @app.route("/reward-points", methods=["GET"])
 def get_user_reward_points():
     userId = request.headers.get("userId", "")
     print(userId)
 
-    ref = (
-        db.reference("users")
-        .child(userId)
-        .child("reward-points")
-    )
+    ref = db.reference("users").child(userId).child("reward-points")
 
     retVal = ref.get()
 
     if retVal == None:
         ref.set(0)
         retVal = 0
-    
+
     return jsonify({"rewards": retVal})
 
 
@@ -192,18 +206,17 @@ def write_user_reward_points():
     userId = request.headers.get("userId", "")
     rewards = request.headers.get("rewards", 0)
 
-
-    ref = (db.reference("users").child(userId).child("reward-points"))
+    ref = db.reference("users").child(userId).child("reward-points")
 
     ref.set(int(rewards))
 
     refval = ref.get()
     print(refval)
-    
+
     return jsonify({"success": True, "status_code": 200})
 
 
-#Check to see if Data is fetched on First clicks Data
+# Check to see if Data is fetched on First clicks Data
 @app.route("/getFirstClicksData", methods=["GET"])
 def get_first_click_info():
     userId = request.args.get("userId", "")
@@ -227,7 +240,8 @@ def get_first_click_info():
                 )
     return jsonify({"firstClickData": new_format})
 
-#Check to getKeywordData
+
+# Check to getKeywordData
 @app.route("/getKeywordData", methods=["GET"])
 def get_keyword_data():
     userId = request.args.get("userId", "")
@@ -251,11 +265,12 @@ def get_keyword_data():
                 )
     return jsonify({"firstClickData": new_format})
 
-#Check to fetch user watch video history
+
+# Check to fetch user watch video history
 @app.route("/getWatchVideoHistory", methods=["GET"])
 def get_watch_video_history():
     userId = request.args.get("userId", "")
-    
+
     ref = db.reference("users").child(userId).child("watchHistory")
     ref_val = ref.get()
 
@@ -263,20 +278,20 @@ def get_watch_video_history():
     if ref_val is None:
         return jsonify({"videoHistory": result_list})
     else:
-        print(ref_val) 
+        print(ref_val)
         # Iterate through the nested dictionary
         for date, feed_data in ref_val.items():
             for feed_type, video_data in feed_data.items():
                 for video_id, video_info in video_data.items():
                     # Extract the relevant information and add it to the result list
                     extracted_info = {
-                        'creator': video_info['videoDetails']['creator'],
-                        'duration': video_info['videoDetails']['duration'],
-                        'id': video_info['videoDetails']['id'],
-                        'thumbnail': video_info['videoDetails']['thumbnail'],
-                        'title': video_info['videoDetails']['title'],
-                        'url': video_info['videoDetails']['url'],
-                        'watchTime': video_info['watchTime']
+                        "creator": video_info["videoDetails"]["creator"],
+                        "duration": video_info["videoDetails"]["duration"],
+                        "id": video_info["videoDetails"]["id"],
+                        "thumbnail": video_info["videoDetails"]["thumbnail"],
+                        "title": video_info["videoDetails"]["title"],
+                        "url": video_info["videoDetails"]["url"],
+                        "watchTime": video_info["watchTime"],
                     }
                     result_list.append(extracted_info)
 
@@ -286,5 +301,142 @@ def get_watch_video_history():
                     return jsonify({"videoHistory": result_list})
 
 
-if __name__ == '__main__':
+@app.route("/getFirstClicksData", methods=["GET"])
+def get_first_click_info():
+    userId = request.args.get("userId", "")
+    # print(userId)
+
+    ref = db.reference("users").child(userId).child("firstClickInfo")
+
+    refVal = ref.get()
+    if refVal == None:
+        pass
+    else:
+        # print(refVal)
+        new_format = []
+
+        for feed_name, feed_data in refVal.items():
+            for duration_name, duration_data in feed_data.items():
+                new_format.append(
+                    {
+                        "name": duration_name,
+                        "count": duration_data["count"],
+                        "feed": feed_name,
+                    }
+                )
+    # print(new_format)
+    return jsonify({"firstClickData": new_format})
+
+
+@app.route("/getKeywordData", methods=["GET"])
+def get_keyword_data():
+    userId = request.args.get("userId", "")
+    print(userId)
+
+    ref = db.reference("users").child(userId).child("keywords")
+
+    refVal = ref.get()
+    if refVal == None:
+        pass
+    else:
+        new_format = []
+        for feed_name, feed_data in refVal.items():
+            for duration_name, duration_data in feed_data.items():
+                new_format.append(
+                    {
+                        "name": duration_name,
+                        "count": duration_data.get("count", 0),
+                        "feed": feed_name,
+                    }
+                )
+        print(new_format)
+    return jsonify({"firstClickData": new_format})
+
+
+# Check to see if Data is fetched on First clicks Data
+@app.route("/getFirstClicksData", methods=["GET"])
+def get_first_click_info():
+    userId = request.args.get("userId", "")
+
+    ref = db.reference("users").child(userId).child("firstClickInfo")
+
+    refVal = ref.get()
+    if refVal == None:
+        pass
+    else:
+        new_format = []
+
+        for feed_name, feed_data in refVal.items():
+            for duration_name, duration_data in feed_data.items():
+                new_format.append(
+                    {
+                        "name": duration_name,
+                        "count": duration_data["count"],
+                        "feed": feed_name,
+                    }
+                )
+    return jsonify({"firstClickData": new_format})
+
+
+# Check to getKeywordData
+@app.route("/getKeywordData", methods=["GET"])
+def get_keyword_data():
+    userId = request.args.get("userId", "")
+    print(userId)
+
+    ref = db.reference("users").child(userId).child("keywords")
+
+    refVal = ref.get()
+    if refVal == None:
+        pass
+    else:
+        new_format = []
+        for feed_name, feed_data in refVal.items():
+            for duration_name, duration_data in feed_data.items():
+                new_format.append(
+                    {
+                        "name": duration_name,
+                        "count": duration_data.get("count", 0),
+                        "feed": feed_name,
+                    }
+                )
+    return jsonify({"firstClickData": new_format})
+
+
+# Check to fetch user watch video history
+@app.route("/getWatchVideoHistory", methods=["GET"])
+def get_watch_video_history():
+    userId = request.args.get("userId", "")
+
+    ref = db.reference("users").child(userId).child("watchHistory")
+    ref_val = ref.get()
+
+    result_list = []
+    if ref_val is None:
+        return jsonify({"videoHistory": result_list})
+    else:
+        print(ref_val)
+        # Iterate through the nested dictionary
+        for date, feed_data in ref_val.items():
+            for feed_type, video_data in feed_data.items():
+                for video_id, video_info in video_data.items():
+                    # Extract the relevant information and add it to the result list
+                    extracted_info = {
+                        "creator": video_info["videoDetails"]["creator"],
+                        "duration": video_info["videoDetails"]["duration"],
+                        "id": video_info["videoDetails"]["id"],
+                        "thumbnail": video_info["videoDetails"]["thumbnail"],
+                        "title": video_info["videoDetails"]["title"],
+                        "url": video_info["videoDetails"]["url"],
+                        "watchTime": video_info["watchTime"],
+                    }
+                    result_list.append(extracted_info)
+
+                    for res in result_list:
+                        print(f"res => {res}")
+
+                    return jsonify({"videoHistory": result_list})
+
+
+if __name__ == "__main__":
     app.run(debug=True)
