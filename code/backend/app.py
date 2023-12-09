@@ -153,7 +153,19 @@ def getUserHobbiesFromFirestore():
         return jsonify({"hobbies": userDetails["hobbies"]})
     else:
         return jsonify({"hobbies": []})
-    
+
+@app.route("/getUserProfile", methods=["GET"])
+def getUserProfileFromFirestore():
+    db = firestore.client()
+    print('RUNNING')
+    userId = request.args.get("userId", "")
+    userDoc = db.collection("users").document(userId).get()
+    if userDoc.exists:
+        userDetails = userDoc.to_dict()
+        return jsonify({"userDetails": userDetails})
+    else:
+        return jsonify({"userDetails": {}})
+
 @app.route("/reward-points", methods=["GET"])
 def get_user_reward_points():
     db = firestore.client()
