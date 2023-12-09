@@ -54,7 +54,7 @@ export default function Search() {
     }
 
     const handleUserProfileClick = () => {
-        navigate('/dashboard');
+        navigate('/userProfile');
     }
 
     useLayoutEffect(()=>{
