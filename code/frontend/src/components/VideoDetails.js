@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useLayoutEffect  } from 'react';
 import '../styles/VideoDetails.css';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import YouTube, { YouTubeProps } from 'react-youtube';
+import YouTube, { YouTubeProps, YouTubePlayer } from 'react-youtube';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight, faArrowLeft, faBookmark, faXmark, faSquareCheck, faStar } from '@fortawesome/free-solid-svg-icons';
 import { getAuth } from "firebase/auth";
@@ -27,6 +27,9 @@ export default function VideoDetails() {
 
 	const navigate = useNavigate();
 	const realtimeDatabase = getDatabase()
+	const [sessionTime, setSessionTime] = useState(0);
+
+	let videoElement;
 
 	const videoToPlay = location.state.video
 	const isEducation = location.state.isEducation
@@ -39,7 +42,7 @@ export default function VideoDetails() {
 
 	var rewardUpdate;
 	if (isEducation) { // add points if video is an educational video
-		rewardUpdate = 10;
+		rewardUpdate = 5;
 	} else { // deduct reward points if video is not educational video
 		rewardUpdate = -10;
 	}
@@ -131,21 +134,53 @@ export default function VideoDetails() {
 		checkIfVideoIsLiked()
 	}, []);
 	
+	const onReady = (event) => {
+		setPlayer(event.target);
+		setIsPlaying(true);
+	};
 
-	useLayoutEffect(()=>{
+	useEffect(() => {
+		checkIfVideoIsLiked()
+	}, []);
+	
+
+
+	useEffect(()=>{
 		const auth = getAuth()
 		const user = auth.currentUser
-		if(user!=null || user!=undefined) {
+		if(user==null || user!=undefined) {
 			axios.get("http://127.0.0.1:5000/reward-points", {params: {userId: user.uid}
 			}).then((response) => {
-				setRewards(response.data.rewards)
+				setRewards(parseInt(response.data.rewards, 10))
+				alert("from db rewards"+rewards)
 			}).catch((error) => {
-				setRewards(0);
+				alert(error)
 			})
 		} else {
-			setRewards(0);
+			alert("user undefined " + user)
 		}
     }, [])
+
+	useEffect(()=> {
+		const auth = getAuth()
+		const user = auth.currentUser
+		const userDetails = {
+			name: user.displayName,
+			email: user.email,
+			profile: user.photoURL,
+			userId: user.uid
+		}
+		console.log(userDetails)
+		userDetails.rewardPoints = rewards
+		console.log(userDetails)
+    	const userDetailsJson = JSON.stringify(userDetails);
+		axios.get("http://127.0.0.1:5000/writeUserToFirestore", {params: { userDetails: userDetailsJson}
+		}).then((response) => {
+			console.log('update successful')
+		}).catch((error) => {
+			alert("updation of reward points error" + error)
+		})
+	}, [rewards])
 
 	useEffect(() => {
 		checkIfVideoIsLiked()
@@ -154,9 +189,37 @@ export default function VideoDetails() {
 
 		if (isPlaying) {
 			interval = setInterval(() => { 
-				setRewards(rewards => rewards+rewardUpdate);
-				clearInterval(interval);
-			}, 600000); // 10 minutes
+				setSessionTime(sessionTime => sessionTime + 1);
+				if(sessionTime >= 1 && rewards >= 30){
+					setRewards(rewards => rewards+rewardUpdate);
+					console.log("interval second if" + rewards)
+					clearInterval(interval);
+				}
+				else if(!isEducation && rewards < 30) {
+					videoElement.target.stopVideo();
+					console.log("interval third if" + rewards)
+					alert("Not enough reward points to watch entertainment videos!")
+					setIsPlaying(false);
+					setSessionTime(0);
+				}
+				
+			}, 1000); // 1 second
+
+			timeout = setTimeout(() => {
+				console.log("22222222222222222")
+				if(!isEducation && rewards < 30) {
+					videoElement.target.stopVideo();
+					setIsPlaying(false);
+					setSessionTime(0);
+					console.log("timeout second if" + rewards)
+				}
+				else if (isPlaying) {
+					console.log(isPlaying)
+					setRewards(rewards => rewards+rewardUpdate);
+					console.log("timeout third if" + rewards)
+					clearInterval(interval);
+				}
+			}, 1000); 
 		} else {
 			clearInterval(interval);
 			clearTimeout(timeout);
@@ -166,19 +229,40 @@ export default function VideoDetails() {
 			clearInterval(interval);
 			clearTimeout(timeout);
 		};
-	}, [isPlaying]);
+	}, [isPlaying, sessionTime]);
+
+	function saveContent() {
+		if(isPlaying){
+			setRewards(rewards => rewards+rewardUpdate);
+			setSessionTime(sessionTime=>sessionTime+1);
+		}
+	}
+	var saveInterval;
+
+	function onReady(event){
+		setIsPlaying(true);
+		videoElement = event;
+	}
 
 	function onPause(event){
 		setIsPlaying(false);
+		setSessionTime(0);
+	}
+
+	function onStateChange(event){
+		if(event.data != window.YT.PlayerState.PLAYING) {
+			setIsPlaying(true);
+		}
 	}
 
 
   	return (
 		<div className="VideoDetailsContainer">
-			<YouTube data-cy="videoElement" className="YoutubePlayerElement" videoId={videoToPlay.id} opts={youtubePlayerOptions} onReady={onReady} onStateChange={handleStateChange} onPause={onPause}/>
-			<div data-cy="videoTitleElement" className="YoutubePlayerVideoTitle">{videoToPlay.title}</div>
-			<div data-cy="videoCreatorElement" className="YoutubePlayerCreatorTitle">Video by {videoToPlay.creator}</div>
-			<div className='YoutubePlayerButtonStack'>
+		<YouTube  id="videoElement" data-cy="videoElement" className="YoutubePlayerElement" videoId={videoToPlay.id} opts={youtubePlayerOptions} onReady={onReady} onPause={onPause}/>
+		<div data-cy="videoTitleElement" className="YoutubePlayerVideoTitle">{videoToPlay.title}</div>
+		<div data-cy="videoCreatorElement" className="YoutubePlayerCreatorTitle">Video by {videoToPlay.creator}</div>
+		<div data-cy="rewardsElement" className="YoutubePlayerCreatorTitle">{rewards}</div>
+		<div className='YoutubePlayerButtonStack'>
 			<button 
 				data-cy="EntertainmentMode" 
 				className='WatchExperienceButtons'
