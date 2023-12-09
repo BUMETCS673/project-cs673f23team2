@@ -4,3 +4,6 @@ code/frontend/package-lock.json
 code/tests/cypress/screenshots/
 code/backend/configs/__pycache__/*
 code/backend/helpers/__pycache__/*
+node_modules/
+package-lock.json
+package.json
