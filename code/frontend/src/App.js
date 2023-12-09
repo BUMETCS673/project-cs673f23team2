@@ -11,7 +11,9 @@ import EntertainmentFeed from './components/EntertainmentFeed';
 import SeeAllVideos from './components/SeeAllVideos'
 import UserProfile from './components/UserProfile';
 import VideoHistory from './components/VideoHistory';
-import VideoDetails from './components/VideoDetails'
+import VideoDetails from './components/VideoDetails';
+import Sessiontimer from './components/SessionTimer';
+import RewardSystem from './components/RewardSystem';
 
 function App() {
   const [isAuth, setAuthStatus] = useState(false)
@@ -59,6 +61,8 @@ function App() {
         <Route path='/videoHistory' element={<VideoHistory />} />
         <Route path='/onboarding' element={<OnboardingPage />} />
         <Route path='/watchvideo' element={<VideoDetails />} />
+        <Route path='/sessiontimer' element={<Sessiontimer />} />
+        <Route path='/rewardsystem' element={<RewardSystem />} />
       </Routes>
     </div>
   );
