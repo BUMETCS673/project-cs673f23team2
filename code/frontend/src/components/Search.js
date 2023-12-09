@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass, faCouch } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 import { getAuth } from 'firebase/auth';
+import { addSearchKeywordToRealtimeDatabase } from "../utils/axiosAPIUtils";
 
 ///////////////////////////////////////
 /********* HELPER FUNCTIONS *********/
@@ -31,8 +32,13 @@ export default function Search() {
         setSearchKeyword(keyword)
     }
 
+    const addToRealtimeDatabase = (searchKeyword) => {
+        addSearchKeywordToRealtimeDatabase("EducationFeed", searchKeyword)
+    }
+
     const handleSearchClick = () => {
         if(isSearchValid(searchKeyword)){
+            addToRealtimeDatabase(searchKeyword)
             navigate('/browse', { state: {query: searchKeyword, educationStatus: true} });
         }
     }
@@ -48,7 +54,7 @@ export default function Search() {
     }
 
     const handleUserProfileClick = () => {
-        navigate('/userProfile');
+        navigate('/dashboard');
     }
 
     useLayoutEffect(()=>{
