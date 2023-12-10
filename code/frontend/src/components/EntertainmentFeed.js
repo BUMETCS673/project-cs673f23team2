@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from 'react-router-dom';
-import React, { useLayoutEffect, useState } from 'react'
+import React, { useLayoutEffect, useState , useEffect } from 'react'
 import '../styles/EntertainmentFeed.css'
 import VideoComponent from './VideoComponent';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -11,7 +11,9 @@ import axios from 'axios';
 
 export default function EntertainmentFeed() {
 	const location = useLocation();
-	const [query, setQuery] = useState(location.state.query);
+	//const [query, setQuery] = useState(location.state.query);
+	const [query, setQuery] = useState(location.state?.query || '');
+	const isInitialLoad = useState(true);
 	const [hobbyList, setHobbyList] = useState([])
 	let Flag = location.state.flag;
 	let navigate = useNavigate();
@@ -27,12 +29,26 @@ export default function EntertainmentFeed() {
 		}
 	};
 
+	// const handleSearchClick = () => {
+	// 	if(isSearchValid(query)) {
+	// 		console.log('handleSearchClick ', query)
+	// 		navigate('/entertainment-browse', {state: {flag: true, query: query}});
+	// 	}
+	// }
+
 	const handleSearchClick = () => {
-		if(isSearchValid(query)) {
-			console.log('handleSearchClick ', query)
-			navigate('/entertainment-browse', {state: {flag: true, query: query}});
+		if (isSearchValid(query)) {
+		  navigate('/entertainment-browse', { state: { flag: true, query: query } });
+		} else {
+		  console.log('Invalid search query:', query);
 		}
-	}
+	  };
+
+	  useEffect(() => {
+		if (!isInitialLoad && location.pathname !== '/entertainment-browse' && isSearchValid(query)) {
+		  navigate('/entertainment-browse', { state: { flag: true, query: query } });
+		}
+	  }, [query, location.pathname]);
 
 	const HobbyButtonClick = (e) => {
 		const keyword = e.target.textContent;
@@ -59,7 +75,7 @@ export default function EntertainmentFeed() {
 	return (
 		<div>
 			<div className='EntertainmentFeedSearchContainer'>
-				{Flag && (
+				{/* {Flag && (
         			<button
 						data-cy="searchBarButton"
 						className="SearchButtonElement"
@@ -67,7 +83,19 @@ export default function EntertainmentFeed() {
 							navigate('/entertainment-browse', { state: { flag: false, query: '' } });
 						}}
         			> <FontAwesomeIcon icon={faArrowLeft} /> Back </button>
-      			)}
+      			)} */}
+				{location.state?.flag && (
+					<button
+						data-cy="searchBarButton"
+						className="SearchButtonElement"
+						onClick={() => {
+						navigate('/entertainment-browse', { state: { flag: false, query: '' } });
+						}}
+					>
+						{' '}
+						<FontAwesomeIcon icon={faArrowLeft} /> Back{' '}
+					</button>
+        		)}
 				<SearchBarComponent
 					value={query}
 					onChange={handleSearchInput}
@@ -84,7 +112,7 @@ export default function EntertainmentFeed() {
 				<div className="EntertainmentFeedHeader">Entertainment Feed</div>
 				{Flag ? (
 					<>
-					<VideoFeed query={query} educationStatus={false}/>
+					<VideoFeed key={query} query={query} educationStatus={false}/>
 					</>
 				) : (
 					<>
