@@ -128,10 +128,20 @@ export default function VideoDetails() {
 
 	const onReady = (event) => {
 		setPlayer(event.target);
-		if(!updatedRewards) {
+		if(!isEducation && rewards >= 6) {
 			setRewards(rewards=>rewards+rewardUpdate);
 			console.log("onReady", rewards)
 			updatedRewards = true;
+		}
+		else if (isEducation) {
+			setRewards(rewards=>rewards+rewardUpdate);
+			console.log("onReady", rewards)
+			updatedRewards = true;
+		}
+		else if (rewards < 6) {
+			alert("You don't have enough reward points to view Entertainment videos!")
+			event.target.stopVideo();
+			console.log(event.target)
 		}
 	};
 
