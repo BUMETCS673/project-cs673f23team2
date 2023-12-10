@@ -2,5 +2,11 @@ code/frontend/node_modules/
 code/frontend/src/components/ApiKey.js
 code/frontend/package-lock.json
 code/tests/cypress/screenshots/
-code/backend/configs/__pycache__/*
-code/backend/helpers/__pycache__/*
+code/backend/configs/__pycache__/
+code/backend/helpers/__pycache__/
+code/backend/__pycache__/
+node_modules/
+package-lock.json
+.DS_Store
+.vscode/
+code/backend/.idea/

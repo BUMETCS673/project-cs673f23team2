@@ -12,6 +12,7 @@ import SeeAllVideos from './components/SeeAllVideos'
 import UserProfile from './components/UserProfile';
 import VideoHistory from './components/VideoHistory';
 import VideoDetails from './components/VideoDetails'
+import Dashboard from './components/Dashboard';
 
 function App() {
   const [isAuth, setAuthStatus] = useState(false)
@@ -59,6 +60,7 @@ function App() {
         <Route path='/videoHistory' element={<VideoHistory />} />
         <Route path='/onboarding' element={<OnboardingPage />} />
         <Route path='/watchvideo' element={<VideoDetails />} />
+        <Route path='/dashboard' element={<Dashboard />} />
       </Routes>
     </div>
   );

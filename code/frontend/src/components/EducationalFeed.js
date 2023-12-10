@@ -9,7 +9,7 @@ export default function EducationalFeed() {
 
     return (
         <>
-        <VideoFeed query={query} educationStatus={isEducation}/>
+        <VideoFeed query={query} educationStatus={isEducation} section={"EducationFeed"}/>
         </>
     )
 }

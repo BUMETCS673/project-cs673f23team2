@@ -1,0 +1,39 @@
+body{
+    background-color: white;
+  }
+
+  .FirstClicksChartsContainer{
+    display: grid;
+    place-items: center;
+    margin-top: 5vw;
+    padding: 0.5vw;
+  }
+
+  .FirstClicksChartTitle{
+    color: #282828;
+    font-size: 1.5em;
+  }
+
+  .FirstClicksChartToggle{
+    margin-top: 0.8vw;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 0.5vw;
+    place-items: center;
+  }
+
+  .FirstClicksChartToggleElement {
+    padding: 0.5vw;
+    font-size: 1em;
+    font-weight: 400;
+    margin-bottom: 0.2vw;
+    background-color: #5CB3F8;
+    border: 0.1vw solid #282828;
+    border-radius: 2vw;
+    transition: all 0.25s ease;
+  }
+
+  .FirstClicksChartToggleElement:hover{
+    transform: scale(1.1);
+    cursor: pointer;
+  }
