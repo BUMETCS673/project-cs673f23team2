@@ -14,7 +14,7 @@ export default function VideoCard({video, videoList, keyword, section, videoDura
   const navigate = useNavigate()
   const handleVideoClickButton = () => {
     addFirstClickVideoSectionData(videoDuration, section)
-    navigate('/watchvideo', {state: {video: video, videoList: videoList, videoPosInList:videoPos, searchKeyword: keyword, section: section, isEducation: isEducation}})
+    navigate('/watchvideo', {state: {video: video, videoList: videoList, videoPosInList:videoPos, searchKeyword: keyword, section: section, isEducation: isEducation, videoDuration: videoDuration}})
   }
 
   return (

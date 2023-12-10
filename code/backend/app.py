@@ -57,7 +57,6 @@ def add_to_search_history():
         .child(section)
         .child(keyword)
     )
-
     refVal = ref.get()
     if refVal == None:
         ref.child("count").set(1)
@@ -153,17 +152,107 @@ def getUserHobbiesFromFirestore():
         return jsonify({"hobbies": userDetails["hobbies"]})
     else:
         return jsonify({"hobbies": []})
-    
-@app.route("/reward-points", methods=["GET"])
-def get_user_reward_points():
+
+@app.route("/getUserProfile", methods=["GET"])
+def getUserProfileFromFirestore():
     db = firestore.client()
+    print('RUNNING')
     userId = request.args.get("userId", "")
     userDoc = db.collection("users").document(userId).get()
     if userDoc.exists:
         userDetails = userDoc.to_dict()
-        return jsonify({"rewards": userDetails["rewardPoints"]})
+        return jsonify({"userDetails": userDetails})
     else:
-        return jsonify({"rewards": []})
+        return jsonify({"userDetails": {}})
+
+@app.route("/reward-points", methods=["GET"])
+def get_user_reward_points():
+    userId = request.headers.get("userId", "")
+    print(userId)
+
+    ref = (
+        db.reference("users")
+        .child(userId)
+        .child("reward-points")
+    )
+
+    retVal = ref.get()
+
+    if retVal == None:
+        ref.set(0)
+        retVal = 0
+    
+    return jsonify({"rewards": retVal})
+
+
+@app.route("/write-reward-points", methods=["GET"])
+def write_user_reward_points():
+    print(request.headers)
+    userId = request.headers.get("userId", "")
+    rewards = request.headers.get("rewards", 0)
+
+
+    ref = (db.reference("users").child(userId).child("reward-points"))
+    print(ref)
+
+    ref.set(int(rewards))
+
+    refval = ref.get()
+    print(refval)
+    
+    return jsonify({"success": True, "status_code": 200})
+
+
+# @app.route("/getFirstClicksData", methods=["GET"])
+# def get_first_click_info():
+#     userId = request.args.get("userId", "")
+#     # print(userId)
+
+#     ref = db.reference("users").child(userId).child("firstClickInfo")
+
+#     refVal = ref.get()
+#     if refVal == None:
+#         pass
+#     else:
+#         # print(refVal)
+#         new_format = []
+
+#         for feed_name, feed_data in refVal.items():
+#             for duration_name, duration_data in feed_data.items():
+#                 new_format.append(
+#                     {
+#                         "name": duration_name,
+#                         "count": duration_data["count"],
+#                         "feed": feed_name,
+#                     }
+#                 )
+#     # print(new_format)
+#     return jsonify({"firstClickData": new_format})
+
+
+# @app.route("/getKeywordData", methods=["GET"])
+# def get_keyword_data():
+#     userId = request.args.get("userId", "")
+#     print(userId)
+
+#     ref = db.reference("users").child(userId).child("keywords")
+
+#     refVal = ref.get()
+#     if refVal == None:
+#         pass
+#     else:
+#         new_format = []
+#         for feed_name, feed_data in refVal.items():
+#             for duration_name, duration_data in feed_data.items():
+#                 new_format.append(
+#                     {
+#                         "name": duration_name,
+#                         "count": duration_data.get("count", 0),
+#                         "feed": feed_name,
+#                     }
+#                 )
+#         print(new_format)
+#     return jsonify({"firstClickData": new_format})
 
 
 @app.route("/getFirstClicksData", methods=["GET"])
@@ -218,5 +307,5 @@ def get_keyword_data():
     return jsonify({"firstClickData": new_format})
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     app.run(debug=True)
