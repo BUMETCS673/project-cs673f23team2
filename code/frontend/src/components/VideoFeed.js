@@ -7,8 +7,8 @@ import { fetchVideosFromYouTube } from '../utils/axiosAPIUtils';
 import SearchBarComponent from './SearchBarComponent';
 
 export function isSearchValid(inputText) {
-	const trimmedInput = inputText.trim();
-	return trimmedInput.length > 1;
+    const trimmedInput = inputText.trim();
+    return trimmedInput.length > 1;
 }
 
 export default function VideoFeed({section}) {
@@ -16,25 +16,39 @@ export default function VideoFeed({section}) {
 	const query = location.state.query
 	const isEducation = location.state.educationStatus
 
-	const [searchKeyword, setSearchKeyword] = useState(query);
+    // Use a local variable for the input value
+    const [inputValue, setInputValue] = useState(query);
+    const [searchKeyword, setSearchKeyword] = useState(query);
 
-	const [shortVideoList, setShortVideoList] = useState([])
+    const [shortVideoList, setShortVideoList] = useState([]);
+    const [mediumVideoList, setMediumVideoList] = useState([]);
+    const [longVideoList, setLongVideoList] = useState([]);
 
-	const [mediumVideoList, setMediumVideoList] = useState([])
-	const [longVideoList, setLongVideoList] = useState([])
+    const handleSearchInput = (event) => {
+        // Update the local variable, not the state
+        setInputValue(event.target.value);
+    };
 
+    const handleInputKeyPress = (event) => {
+        if (event.key === 'Enter') {
+            handleSearchClick();
+        }
+    };
 
-	const handleSearchInput = (event) => {
-		const keyword = event.target.value;
-		setSearchKeyword(keyword)
-	}
+    const handleSearchClick = () => {
+        if (isSearchValid(inputValue)) {
+            // Update the state only here, on search
+            setSearchKeyword(inputValue);
+            getYoutubeVideosFromQuery(inputValue, 50);
+        }
+    };
 
-	const handleInputKeyPress = (event) => {
-		if (event.key === 'Enter') {
-			handleSearchClick();
-		}
-	};
-
+    function getYoutubeVideosFromQuery(query, count) {
+        fetchVideosFromYouTube(query, count, "short", setShortVideoList);
+        fetchVideosFromYouTube(query, count, "medium", setMediumVideoList);
+        fetchVideosFromYouTube(query, count, "long", setLongVideoList);
+    }
+  
 	const handleSearchClick = () => {
 		if(isSearchValid(searchKeyword)){
 			getYoutubeVideosFromQuery(searchKeyword, 1)
