@@ -1,30 +1,42 @@
-.SearchContainer{
+.SearchContainer {
     background-color: white;
     display: grid;
     place-items: center;
     padding: 2vw;
     margin-top: 8vw;
+    animation: fadeIn 0.5s ease-in-out;
 }
 
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
 
-.UserProfileImageElement{
+.UserProfileImageElement {
     width: 10vw;
     height: 10vw;
     border-radius: 50%;
-    transition: all 0.25s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
-.UserProfileImageElement:hover{
+.UserProfileImageElement:hover {
     cursor: pointer;
-    transform: scale(1.1);
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
 }
 
-.UserDisplayNameElement{
+.UserDisplayNameElement {
     font-size: 1.5em;
     font-weight: 600;
+    transition: color 0.25s ease;
 }
 
-.UserDisplayRewardPointsElement{
+.UserDisplayNameElement:hover {
+    color: #5CB3F8; /* A highlight color that matches your theme */
+}
+
+.UserDisplayRewardPointsElement {
     margin-top: -0.5vw;
     border: 0.1vw solid #FF4756;
     padding: 0.5vw;
@@ -33,42 +45,86 @@
     border-radius: 20vw;
     font-size: 1em;
     color: #FF4756;
-    transition: all 0.25s ease;
+    transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
 }
 
-.UserDisplayRewardPointsElement:hover{
-    transform: scale(1.1);
+.UserDisplayRewardPointsElement:hover {
+    transform: scale(1.05);
     background-color: #FF4756;
-    color: #282828;
+    color: white;
     cursor: pointer;
     font-weight: 600;
 }
 
-.SearchBarElement{
+.SearchBarElement {
     font-size: 1.5em;
     border-radius: 2vw;
-    border: 0.1vw solid #282828;
+    border: none; /* Updated for a cleaner look */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     width: 50vw;
     height: 5vh;
     margin-top: 1vw;
     padding: 0.5vw;
     padding-left: 2vw;
-    transition: all 0.25s ease;
+    outline: none; /* Remove outline for focused state */
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 
-.SearchBarElement:hover{
-    transform: scale(1.1);
-    border: 0.2vw solid #282828;
-    color: #282828;
+.SearchBarElement:hover,
+.SearchBarElement:focus { /* Focused state also gets the hover effect */
+    transform: scale(1.02);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
-.SearchButtonElement{
+.SearchBarElement:focus {
+    border: 0.2vw solid #5CB3F8; /* A color that matches your theme */
+}
+
+.SearchButtonElement {
     margin-top: 1.5vw;
     margin-left: 0.5vw;
     margin-right: 0.5vw;
     padding: 0.2vw;
     text-align: center;
     width: 10vw;
+    border-radius: 2vw;
+    background-color: #B1DBFC;
+    border: none; /* Updated for a cleaner look */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding-top: 1vw;
+    padding-bottom: 1vw;
+    font-size: 1em;
+    font-weight: 600;
+    color: #282828;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.SearchButtonElement:hover {
+    background: #5CB3F8;
+    color: #282828;
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    cursor: pointer;
+}
+.SearchBarElement {
+    /* ... your existing styles for SearchBarElement ... */
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    /* Other properties like width, padding, etc. */
+}
+
+.SearchBarElement:focus {
+    /* ... your existing styles for focused SearchBarElement ... */
+    box-shadow: 0 0 8px 2px #5CB3F8; /* Adjust the color and size as needed for the glow effect */
+    outline: none; /* Removes the default focus outline */
+    /* Other focus styles like border, if you have them */
+}
+.SearchButtonElement, .EntertainmentModeButton {
+    margin-top: 1.5vw;
+    margin-left: 0.5vw;
+    margin-right: 0.5vw;
+    padding: 0.2vw;
+    text-align: center;
+    width: 10vw; /* Ensures the width is the same */
     border-radius: 2vw;
     background-color: #B1DBFC;
     border: 0.1vw solid #282828;
@@ -80,11 +136,26 @@
     transition: all 0.25s ease;
 }
 
-.SearchButtonElement:hover{
+.SearchButtonElement:hover, .EntertainmentModeButton:hover {
     background: #5CB3F8;
     color: #282828;
     transform: scale(1.1);
     border: 0.2vw solid #282828;
     cursor: pointer;
 }
+@media screen and (max-width: 767px) {
+    .SearchBarElement, .SearchButtonElement, .EntertainmentModeButton {
+        width: 80vw; /* Adjust width for smaller screens */
+        font-size: 0.9em; /* Adjust font size for readability */
+    }
+    /* Additional adjustments for mobile view */
+}
 
+/* Responsive styles for tablets */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    .SearchBarElement, .SearchButtonElement, .EntertainmentModeButton {
+        width: 60vw; /* Adjust width for tablet screens */
+        font-size: 1em; /* Adjust font size for readability */
+    }
+    /* Additional adjustments for tablet view */
+}
