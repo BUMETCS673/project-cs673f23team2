@@ -10,14 +10,16 @@ import axios from "axios"
 import { addWatchHistoy } from '../utils/axiosAPIUtils';
 
 export default function VideoDetails() {
-	var tag = document.createElement('script');
-	tag.src = "https://www.youtube.com/iframe_api";
-	var firstScriptTag = document.getElementsByTagName('script')[0];
-	firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+	// var tag = document.createElement('script');
+	// tag.src = "https://www.youtube.com/iframe_api";
+	// var firstScriptTag = document.getElementsByTagName('script')[0];
+	// firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 	const location = useLocation();
 	const [rewards, setRewards] = useState(0);
 	const [isPlaying, setIsPlaying] = useState(false);
+
+	var updatedRewards = false;
 
 	const [isLiked, setIsLiked] = useState(<FontAwesomeIcon icon={faBookmark} />)
 	const [player, setPlayer] = useState(null)
@@ -37,15 +39,27 @@ export default function VideoDetails() {
 	const currVideoPos = location.state.videoPosInList
 	const searchKeyword = location.state.searchKeyword
 	const section = location.state.section
+	const videoDuration = location.state.videoDuration
 
 	const user = getAuth().currentUser;
 
 	var rewardUpdate;
 	if (isEducation) { // add points if video is an educational video
-		rewardUpdate = 5;
+		if(videoDuration == "short")
+			rewardUpdate = 1;
+		else if (videoDuration == "medium")
+			rewardUpdate = 2;
+		else 
+			rewardUpdate = 3;
 	} else { // deduct reward points if video is not educational video
-		rewardUpdate = -10;
+		if(videoDuration == "short")
+			rewardUpdate = -1;
+		else if (videoDuration == "medium")
+			rewardUpdate = -2;
+		else 
+			rewardUpdate = -3;
 	}
+	console.log(rewardUpdate)
 
 	function getPosOfVideoInList(videoList, videoId){
 		const position = videoList.findIndex(video => video.id === videoId);
@@ -92,11 +106,11 @@ export default function VideoDetails() {
 
 		get(likedVideoRef).then((snapshot) => {
 			if(snapshot.exists()){
-			set(ref(realtimeDatabase, 'users/' + user.uid + '/likedVideos/' + videoToPlay.id), null);
-			setIsLiked(<FontAwesomeIcon icon={faBookmark} />)
+				set(ref(realtimeDatabase, 'users/' + user.uid + '/likedVideos/' + videoToPlay.id), null);
+				setIsLiked(<FontAwesomeIcon icon={faBookmark} />)
 			}else{
-			set(ref(realtimeDatabase, 'users/' + user.uid + '/likedVideos/' + videoToPlay.id), videoToPlay);
-			setIsLiked(<FontAwesomeIcon icon={faSquareCheck} />)
+				set(ref(realtimeDatabase, 'users/' + user.uid + '/likedVideos/' + videoToPlay.id), videoToPlay);
+				setIsLiked(<FontAwesomeIcon icon={faSquareCheck} />)
 			}
 		})
 	}
@@ -105,16 +119,20 @@ export default function VideoDetails() {
 		const likedVideoRef = ref(realtimeDatabase, 'users/' + user.uid + '/likedVideos/' + videoToPlay.id);
 		get(likedVideoRef).then((snapshot) => {
 			if(snapshot.exists()){
-			setIsLiked(<FontAwesomeIcon icon={faSquareCheck} />)
+				setIsLiked(<FontAwesomeIcon icon={faSquareCheck} />)
 			}else{
-			setIsLiked(<FontAwesomeIcon icon={faBookmark} />)
+				setIsLiked(<FontAwesomeIcon icon={faBookmark} />)
 			}
 		})
 	}
 
 	const onReady = (event) => {
 		setPlayer(event.target);
-		setIsPlaying(true);
+		if(!updatedRewards) {
+			setRewards(rewards=>rewards+rewardUpdate);
+			console.log("onReady", rewards)
+			updatedRewards = true;
+		}
 	};
 
 
@@ -133,116 +151,102 @@ export default function VideoDetails() {
 	useEffect(() => {
 		checkIfVideoIsLiked()
 	}, []);
-	
-	const onReady = (event) => {
-		setPlayer(event.target);
-		setIsPlaying(true);
-	};
-
-	useEffect(() => {
-		checkIfVideoIsLiked()
-	}, []);
-	
-
 
 	useEffect(()=>{
 		const auth = getAuth()
 		const user = auth.currentUser
 		if(user==null || user!=undefined) {
-			axios.get("http://127.0.0.1:5000/reward-points", {params: {userId: user.uid}
+			axios.get("http://127.0.0.1:5000/reward-points", {headers: {userId: user.uid}
 			}).then((response) => {
 				setRewards(parseInt(response.data.rewards, 10))
-				alert("from db rewards"+rewards)
+				// alert("from db rewards"+rewards)
 			}).catch((error) => {
-				alert(error)
+				console.log(error)
+				// setRewards(0)
 			})
 		} else {
 			alert("user undefined " + user)
 		}
-    }, [])
+		
+    }, [location.pathname])
 
 	useEffect(()=> {
-		const auth = getAuth()
-		const user = auth.currentUser
-		const userDetails = {
-			name: user.displayName,
-			email: user.email,
-			profile: user.photoURL,
-			userId: user.uid
+		if(rewards > 0) {
+			const auth = getAuth()
+			const user = auth.currentUser
+			axios.get("http://127.0.0.1:5000/write-reward-points", {headers: {
+				userId: user.uid, 
+				rewards: rewards
+			}
+			}).then((response) => {
+				console.log('update successful')
+			}).catch((error) => {
+				alert("updation of reward points error" + error)
+			})
 		}
-		console.log(userDetails)
-		userDetails.rewardPoints = rewards
-		console.log(userDetails)
-    	const userDetailsJson = JSON.stringify(userDetails);
-		axios.get("http://127.0.0.1:5000/writeUserToFirestore", {params: { userDetails: userDetailsJson}
-		}).then((response) => {
-			console.log('update successful')
-		}).catch((error) => {
-			alert("updation of reward points error" + error)
-		})
 	}, [rewards])
 
-	useEffect(() => {
-		checkIfVideoIsLiked()
-		let interval;
-		let timeout;
+	// useEffect(() => {
+	// 	checkIfVideoIsLiked()
+	// 	let interval;
+	// 	let timeout;
 
-		if (isPlaying) {
-			interval = setInterval(() => { 
-				setSessionTime(sessionTime => sessionTime + 1);
-				if(sessionTime >= 1 && rewards >= 30){
-					setRewards(rewards => rewards+rewardUpdate);
-					console.log("interval second if" + rewards)
-					clearInterval(interval);
-				}
-				else if(!isEducation && rewards < 30) {
-					videoElement.target.stopVideo();
-					console.log("interval third if" + rewards)
-					alert("Not enough reward points to watch entertainment videos!")
-					setIsPlaying(false);
-					setSessionTime(0);
-				}
+	// 	if (isPlaying) {
+	// 		interval = setInterval(() => { 
+	// 			setSessionTime(sessionTime => sessionTime + 1);
+	// 			if(sessionTime >= 1 && rewards >= 30){
+	// 				setRewards(rewards => rewards+rewardUpdate);
+	// 				console.log("interval second if" + rewards)
+	// 				clearInterval(interval);
+	// 			}
+	// 			else if(!isEducation && rewards < 30) {
+	// 				player.stopVideo();
+	// 				console.log("interval third if" + rewards)
+	// 				alert("Not enough reward points to watch entertainment videos!")
+	// 				setIsPlaying(false);
+	// 				setSessionTime(0);
+	// 			}
 				
-			}, 1000); // 1 second
+	// 		}, 1000); // 1 second
 
-			timeout = setTimeout(() => {
-				console.log("22222222222222222")
-				if(!isEducation && rewards < 30) {
-					videoElement.target.stopVideo();
-					setIsPlaying(false);
-					setSessionTime(0);
-					console.log("timeout second if" + rewards)
-				}
-				else if (isPlaying) {
-					console.log(isPlaying)
-					setRewards(rewards => rewards+rewardUpdate);
-					console.log("timeout third if" + rewards)
-					clearInterval(interval);
-				}
-			}, 1000); 
-		} else {
-			clearInterval(interval);
-			clearTimeout(timeout);
-		}
+	// 		timeout = setTimeout(() => {
+	// 			console.log("22222222222222222")
+	// 			if(!isEducation && rewards < 30) {
+	// 				player.stopVideo();
+	// 				setIsPlaying(false);
+	// 				setSessionTime(0);
+	// 				console.log("timeout second if" + rewards)
+	// 			}
+	// 			else if (isPlaying) {
+	// 				console.log(isPlaying)
+	// 				setRewards(rewards => rewards+rewardUpdate);
+	// 				console.log("timeout third if" + rewards)
+	// 				clearInterval(interval);
+	// 			}
+	// 		}, 1000); 
+	// 	} else {
+	// 		clearInterval(interval);
+	// 		clearTimeout(timeout);
+	// 	}
 
-		return () => {
-			clearInterval(interval);
-			clearTimeout(timeout);
-		};
-	}, [isPlaying, sessionTime]);
+	// 	return () => {
+	// 		clearInterval(interval);
+	// 		clearTimeout(timeout);
+	// 	};
+	// }, [isPlaying, sessionTime]);
 
-	function saveContent() {
-		if(isPlaying){
-			setRewards(rewards => rewards+rewardUpdate);
-			setSessionTime(sessionTime=>sessionTime+1);
-		}
-	}
-	var saveInterval;
+	// function saveContent() {
+	// 	if(isPlaying){
+	// 		setRewards(rewards => rewards+rewardUpdate);
+	// 		setSessionTime(sessionTime=>sessionTime+1);
+	// 	}
+	// }
+	// var saveInterval;
 
-	function onReady(event){
-		setIsPlaying(true);
-		videoElement = event;
-	}
+	// function onReady(event){
+	// 	setIsPlaying(true);
+	// 	videoElement = event;
+	// }
 
 	function onPause(event){
 		setIsPlaying(false);
@@ -258,7 +262,7 @@ export default function VideoDetails() {
 
   	return (
 		<div className="VideoDetailsContainer">
-		<YouTube  id="videoElement" data-cy="videoElement" className="YoutubePlayerElement" videoId={videoToPlay.id} opts={youtubePlayerOptions} onReady={onReady} onPause={onPause}/>
+		<YouTube data-cy="videoElement" className="YoutubePlayerElement" videoId={videoToPlay.id} opts={youtubePlayerOptions} onReady={onReady} onStateChange={handleStateChange}/>
 		<div data-cy="videoTitleElement" className="YoutubePlayerVideoTitle">{videoToPlay.title}</div>
 		<div data-cy="videoCreatorElement" className="YoutubePlayerCreatorTitle">Video by {videoToPlay.creator}</div>
 		<div data-cy="rewardsElement" className="YoutubePlayerCreatorTitle">{rewards}</div>
