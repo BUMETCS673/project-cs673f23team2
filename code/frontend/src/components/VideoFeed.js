@@ -1,6 +1,6 @@
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
-import React, { useState, useLayoutEffect } from 'react'
+import React, { useState, useLayoutEffect , useEffect } from 'react'
 import '../styles/EducationalVideoFeed.css'
 import VideoGridContainer from './VideoGridContainer';
 import { fetchVideosFromYouTube } from '../utils/axiosAPIUtils';
@@ -41,6 +41,17 @@ export default function VideoFeed({section}) {
 		}
 	}
 
+	useEffect(() => {
+		// Ensure that the query is valid before fetching videos
+		if (isSearchValid(query)) {
+			getYoutubeVideosFromQuery(query);
+		}
+	  }, [query]);
+
+	useEffect(() => {
+		getYoutubeVideosFromQuery(query); // Fetch videos on initial load
+		}, [location.key]); // Update when the key changes
+	
 
 	function getYoutubeVideosFromQuery(query, count){
 		fetchVideosFromYouTube(query, count, "short", setShortVideoList);
