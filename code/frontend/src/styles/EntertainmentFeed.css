@@ -1,62 +1,52 @@
-.EntertainmentFeedSearchContainer{
+.EntertainmentFeedSearchContainer {
     text-align: center;
-}
-
-.EntertainmentFeedSearchInput{
+    /* Additional styling if needed */
+  }
+  
+  .EntertainmentFeedSearchInput {
     font-size: 1em;
     border-radius: 2vw;
-    border: 0.1vw solid #282828;
-    width: 50vw;
-    height: 3vh;
-    margin-top: 1vw;
-    padding: 0.5vw;
-    padding-left: 2vw;
-    transition: all 0.25s ease;
-}
-
-.EntertainmentFeedSearchInput:hover{
-    transform: scale(1.01);
-    border: 0.2vw solid #282828;
-    color: #282828;
-}
-
-.EntertainmentFeedHeader{
-    margin-top: 3vw;
-    font-size: 3em;
+    border: 2px solid #282828; /* Adjusted border size */
+    width: 50%;
+    max-width: 500px; /* Max width for control */
+    height: 40px; /* Fixed height */
+    margin-top: 20px;
+    padding: 10px;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+  }
+  
+  .EntertainmentFeedSearchInput:hover, .EntertainmentFeedSearchInput:focus {
+    transform: scale(1.02);
+    box-shadow: 0 0 8px rgba(0,0,0,0.2);
+  }
+  
+  .EntertainmentFeedHeader {
+    margin-top: 30px;
+    font-size: clamp(2em, 5vw, 3em); /* Responsive font size */
     font-weight: 600;
-    text-align: center;
-}
-
-.EntertainmentFeedHobbieButtonContainer {
-    margin-top: 1vw;
-    text-align: center;
+    /* ... */
   }
-
-.EntertainmentFeedHobbyButton {
-    padding: 0.5vw;
-    font-size: 1.5em;
-    font-weight: 400;
-    margin-bottom: 0.2vw;
-    background-color: #B1DBFC;
-    border: 0.1vw solid #282828;
-    border-radius: 2vw;
-    transition: all 0.25s ease;
-    margin-left: 0.2vw;
-    margin-right: 0.2vw;
-    width: 10vw;
-    transition: all 0.25s ease;
-}
-
-.EntertainmentFeedHobbyButton:hover{
-    background: #5CB3F8;
-    color: #282828;
-    transform: scale(1.1);
-    border: 0.2vw solid #282828;
-    cursor: pointer;
-    font-weight: 600;
+  
+  .EntertainmentFeedHobbieButtonContainer {
+    margin-top: 20px;
+    /* ... */
   }
-
-  .EntertainmentFeedHobbieVideoStack{
-    margin-left: 5vw;
-    margin-right: 5vw;
+  
+  .EntertainmentFeedHobbyButton {
+    padding: 10px 15px;
+    font-size: 1em; /* Adjusted for readability */
+    margin: 5px;
+    width: auto; /* Auto width for content fit */
+    /* ... */
   }
+  
+  /* ... rest of your styles ... */
+  
+  @media screen and (max-width: 767px) {
+    .EntertainmentFeedSearchInput, .EntertainmentFeedHobbyButton {
+      width: 80%; /* Adjust width for mobile */
+      font-size: 0.9em; /* Adjust font size */
+    }
+    /* ... */
+  }
+  
