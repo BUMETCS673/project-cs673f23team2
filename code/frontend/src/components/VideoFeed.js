@@ -37,7 +37,7 @@ export default function VideoFeed({section}) {
 
 	const handleSearchClick = () => {
 		if(isSearchValid(searchKeyword)){
-			getYoutubeVideosFromQuery(searchKeyword, 1)
+			getYoutubeVideosFromQuery(searchKeyword, 50)
 		}
 	}
 

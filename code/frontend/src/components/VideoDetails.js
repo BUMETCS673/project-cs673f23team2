@@ -205,7 +205,7 @@ export default function VideoDetails() {
 		<YouTube data-cy="videoElement" className="YoutubePlayerElement" videoId={videoToPlay.id} opts={youtubePlayerOptions} onReady={onReady} onStateChange={handleStateChange}/>
 		<div data-cy="videoTitleElement" className="YoutubePlayerVideoTitle">{videoToPlay.title}</div>
 		<div data-cy="videoCreatorElement" className="YoutubePlayerCreatorTitle">Video by {videoToPlay.creator}</div>
-		<div data-cy="rewardsElement" className="YoutubePlayerCreatorTitle">{rewards}</div>
+		<button data-cy="rewardsElement" className="YoutubePlayerRewardPoints">Reward Points: {rewards}</button>
 		<div className='YoutubePlayerButtonStack'>
 			<button 
 				data-cy="EntertainmentMode" 

@@ -7,7 +7,7 @@ export default function VideoGridContainer({query, videoDuration, videoList, sec
 
 let navigate = useNavigate();
 const handleSeeModeButtonClick = () => {
-    navigate('/seemorevideos', {state: {query: query, videoDuration: videoDuration, videoList: videoList}})
+    navigate('/seemorevideos', {state: {query: query, videoDuration: videoDuration, videoList: videoList, section: section, isEducation: isEducation}})
 }
 
   return (
