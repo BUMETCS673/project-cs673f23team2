@@ -58,3 +58,15 @@ export const addFirstClickVideoSectionData = (videoDuration, section) => {
       console.log(response.data)
     });
 }
+
+export const getWatchVideoHistory = () => {
+  const auth = getAuth()
+  const user = auth.currentUser
+  axios.get("http://127.0.0.1:5000/getWatchVideoHistory", {
+      params: {
+        userId: user.uid,
+      },
+    }).then((response) => {
+      console.log(response.data)
+    });
+}

@@ -306,6 +306,39 @@ def get_keyword_data():
         print(new_format)
     return jsonify({"firstClickData": new_format})
 
+@app.route("/getWatchVideoHistory", methods=["GET"])
+def get_watch_video_history():
+    userId = request.args.get("userId", "")
+    
+    ref = db.reference("users").child(userId).child("watchHistory")
+    ref_val = ref.get()
+
+    result_list = []
+    if ref_val is None:
+        return jsonify({"videoHistory": result_list})
+    else:
+        print(ref_val)
+        # Iterate through the nested dictionary
+        for date, feed_data in ref_val.items():
+            for feed_type, video_data in feed_data.items():
+                for video_id, video_info in video_data.items():
+                    # Extract the relevant information and add it to the result list
+                    extracted_info = {
+                        'creator': video_info['videoDetails']['creator'],
+                        'duration': video_info['videoDetails']['duration'],
+                        'id': video_info['videoDetails']['id'],
+                        'thumbnail': video_info['videoDetails']['thumbnail'],
+                        'title': video_info['videoDetails']['title'],
+                        'url': video_info['videoDetails']['url'],
+                        'watchTime': video_info['watchTime']
+                    }
+                    result_list.append(extracted_info)
+
+                    for res in result_list:
+                        print(f"res => {res}")
+
+                    return jsonify({"videoHistory": result_list})
+
 
 if __name__ == '__main__':
     app.run(debug=True)

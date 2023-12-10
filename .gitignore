@@ -1,6 +1,7 @@
 code/frontend/node_modules/
 code/frontend/src/components/ApiKey.js
 code/frontend/package-lock.json
+code/frontend/package.json
 code/tests/cypress/screenshots/
 node_modules/
 code/node_modules/
