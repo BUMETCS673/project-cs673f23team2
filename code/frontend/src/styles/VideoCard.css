@@ -1,29 +1,33 @@
-.VideoCardContainer{
+.VideoCardContainer {
     display: inline-block;
     margin: 0.2vw;
     background: #e1ebf4;
-    border-radius: 1vw;
+    border-radius: 10px; /* Adjusted for consistency */
     transition: background 0.25s ease, box-shadow 0.25s ease, transform 0.3s ease;
-    width: 340px;
+    width: 100%;
+    max-width: 340px; /* Responsive width */
     text-align: center;
-}
-
-.VideoCardThumnailElement{
-    border-radius: 0.5vw;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+  
+  .VideoCardThumnailElement {
+    border-radius: 10px; /* Adjusted for consistency */
     margin-top: 15px;
-}
-
-.VideoCardContainer p{
+    width: 95%; /* Responsive thumbnail width */
+    height: auto;
+  }
+  
+  .VideoCardContainer p {
     overflow-wrap: break-word;
-}
-
-.VideoCardContainer:hover{
-    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
-    transform: scale(1.1);
+    padding: 0 10px; /* Padding for text */
+  }
+  
+  .VideoCardContainer:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transform: scale(1.05); /* Subtle scale */
     background: #c3def4;
     cursor: pointer;
-}
-
+  }
 .VideoCardDurationElement{
     text-align: right;
     margin-right: 15px;
@@ -31,7 +35,15 @@
     font-weight: 600;
 }
 
-.VideoCardTitleElement{
-    font-size: 1.2em;
+.VideoCardTitleElement {
+    font-size: clamp(1em, 2.5vw, 1.2em); /* Responsive font size */
     font-weight: 600;
-}
+    padding: 10px;
+  }
+  
+  /* Responsive adjustments */
+  @media screen and (max-width: 767px) {
+    .VideoCardContainer {
+      max-width: 80vw; /* Adjust width for mobile */
+    }
+  }
