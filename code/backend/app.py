@@ -1,9 +1,8 @@
 import json
 from flask import Flask, jsonify, request
-from flask_cors import CORS, cross_origin
+from flask_cors import CORS
 
 from firebase_admin import firestore, db
-import requests
 from wrapper import fetch_video_data_from_youtube
 from datetime import datetime
 
@@ -193,7 +192,6 @@ def write_user_reward_points():
 
 
     ref = (db.reference("users").child(userId).child("reward-points"))
-    print(ref)
 
     ref.set(int(rewards))
 
@@ -203,62 +201,10 @@ def write_user_reward_points():
     return jsonify({"success": True, "status_code": 200})
 
 
-# @app.route("/getFirstClicksData", methods=["GET"])
-# def get_first_click_info():
-#     userId = request.args.get("userId", "")
-#     # print(userId)
-
-#     ref = db.reference("users").child(userId).child("firstClickInfo")
-
-#     refVal = ref.get()
-#     if refVal == None:
-#         pass
-#     else:
-#         # print(refVal)
-#         new_format = []
-
-#         for feed_name, feed_data in refVal.items():
-#             for duration_name, duration_data in feed_data.items():
-#                 new_format.append(
-#                     {
-#                         "name": duration_name,
-#                         "count": duration_data["count"],
-#                         "feed": feed_name,
-#                     }
-#                 )
-#     # print(new_format)
-#     return jsonify({"firstClickData": new_format})
-
-
-# @app.route("/getKeywordData", methods=["GET"])
-# def get_keyword_data():
-#     userId = request.args.get("userId", "")
-#     print(userId)
-
-#     ref = db.reference("users").child(userId).child("keywords")
-
-#     refVal = ref.get()
-#     if refVal == None:
-#         pass
-#     else:
-#         new_format = []
-#         for feed_name, feed_data in refVal.items():
-#             for duration_name, duration_data in feed_data.items():
-#                 new_format.append(
-#                     {
-#                         "name": duration_name,
-#                         "count": duration_data.get("count", 0),
-#                         "feed": feed_name,
-#                     }
-#                 )
-#         print(new_format)
-#     return jsonify({"firstClickData": new_format})
-
 
 @app.route("/getFirstClicksData", methods=["GET"])
 def get_first_click_info():
     userId = request.args.get("userId", "")
-    # print(userId)
 
     ref = db.reference("users").child(userId).child("firstClickInfo")
 
@@ -266,7 +212,6 @@ def get_first_click_info():
     if refVal == None:
         pass
     else:
-        # print(refVal)
         new_format = []
 
         for feed_name, feed_data in refVal.items():
@@ -278,7 +223,6 @@ def get_first_click_info():
                         "feed": feed_name,
                     }
                 )
-    # print(new_format)
     return jsonify({"firstClickData": new_format})
 
 
@@ -303,7 +247,6 @@ def get_keyword_data():
                         "feed": feed_name,
                     }
                 )
-        print(new_format)
     return jsonify({"firstClickData": new_format})
 
 @app.route("/getWatchVideoHistory", methods=["GET"])
@@ -317,7 +260,7 @@ def get_watch_video_history():
     if ref_val is None:
         return jsonify({"videoHistory": result_list})
     else:
-        print(ref_val)
+        print(ref_val) 
         # Iterate through the nested dictionary
         for date, feed_data in ref_val.items():
             for feed_type, video_data in feed_data.items():
