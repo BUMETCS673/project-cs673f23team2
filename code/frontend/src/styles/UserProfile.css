@@ -1,103 +1,71 @@
-body {
-    font-family: Arial, sans-serif;
+body, html {
     margin: 0;
-    padding: 50px;
-    background-color: #e6e6fa
-    ;
-}
-
-header {
+    height: 100%;
+    font-family: Arial, sans-serif;
+    background: #fff; /* Use the appropriate background color */
+  }
+  
+  .user-profile-container {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    margin-bottom: 20px;
-    padding: 10px; /* Add margin to create space */
-}
-
- .container {
-    max-width: 800px;
-    padding: 20px;
-    border: 1px solid #ccc;
-    padding: 10px;
- }
-header {
-    background-color: #e6e6fa;
-    color: #fff;
+    justify-content: center;
+    height: 100%;
+  }
+  
+  .user-profile-header {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
-    padding: 10px 20px;
-}
-
-.profile-container {
+    margin-bottom: 100px;
+  }
+  
+  .user-profile-image-container {
     display: flex;
-            flex-direction: column;
+    justify-content: center;
     align-items: center;
-    background-color: #e6e6fa
-    
-}
-#home {
-    border-radius: 50%; 
-
-}
-.home-container{
-    padding: 10px;
-    align-self: flex-start;
-}
-.profile-pic {
-    font-size: 2em;
-    margin-right: 10px;
-    padding: 10px;
-}
-
-h2 {
+    margin-bottom: 50px;
+  }
+  
+  .user-profile-picture {
+    background: #FFC0CB; /* Adjust this to your actual profile picture */
+    width: 100px; /* Smaller size as per your request */
+    height: 100px; /* Smaller size as per your request */
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem; /* Adjust font size to match the picture */
+    color: white; /* Adjust text color to match the picture */
+  }
+  
+  .user-profile-name {
+    font-size: 2.5rem; /* Adjust as needed */
     color: #333;
-}
-
-button {
-    padding: 10px 20px;
-    margin: 5px;
-    background-color: #28A745;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #c0392b;
-}
-
-.video-history {
-    background-color: #f5f5dc
-    ;
-    padding: 20px;
-    margin: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.videos {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-}
-
-iframe {
-    margin: 10px;
-}
-
-footer {
-    background-color: #e6e6fa;
-    color: #fff;
-    display: flex;
-    justify-content: flex-end;
-    padding: 10px 20px;
-}
-
-span {
+    margin: 0;
+  }
+  
+  .user-profile-hobbies {
+    align-self: flex-start; /* Align hobbies to the left */
+    padding-left: 20px; /* Add padding to match the left alignment */
+    width: 100%; /* Full width for alignment */
+  }
+  
+  .user-profile-hobbies h2 {
+    font-size: 1.5rem;
     color: #333;
-}
-button {
-    width: 150px;
-    height: 50px;
-}
+    margin-bottom: 10px;
+  }
+  
+  .user-hobbies-list {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .user-hobby {
+    background-color: #f0f0f0;
+    padding: 5px 15px;
+    border-radius: 15px;
+    font-size: 14px;
+  }
+  

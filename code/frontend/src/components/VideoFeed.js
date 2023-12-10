@@ -1,6 +1,6 @@
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
-import React, { useState, useLayoutEffect } from 'react'
+import React, { useState, useLayoutEffect , useEffect } from 'react'
 import '../styles/EducationalVideoFeed.css'
 import VideoGridContainer from './VideoGridContainer';
 import { fetchVideosFromYouTube } from '../utils/axiosAPIUtils';
@@ -11,7 +11,7 @@ export function isSearchValid(inputText) {
 	return trimmedInput.length > 1;
 }
 
-export default function VideoFeed() {
+export default function VideoFeed({section}) {
 	const location = useLocation();
 	const query = location.state.query
 	const isEducation = location.state.educationStatus
@@ -37,10 +37,21 @@ export default function VideoFeed() {
 
 	const handleSearchClick = () => {
 		if(isSearchValid(searchKeyword)){
-			getYoutubeVideosFromQuery(searchKeyword, 50)
+			getYoutubeVideosFromQuery(searchKeyword, 1)
 		}
 	}
 
+	useEffect(() => {
+		// Ensure that the query is valid before fetching videos
+		if (isSearchValid(query)) {
+			getYoutubeVideosFromQuery(query);
+		}
+	  }, [query]);
+
+	useEffect(() => {
+		getYoutubeVideosFromQuery(query); // Fetch videos on initial load
+		}, [location.key]); // Update when the key changes
+	
 
 	function getYoutubeVideosFromQuery(query, count){
 		fetchVideosFromYouTube(query, count, "short", setShortVideoList);
@@ -60,9 +71,9 @@ export default function VideoFeed() {
 				onChange={handleSearchInput}
 				onKeyDown={handleInputKeyPress}/>
 			)}
-			<VideoGridContainer data-cy='shortDurationVideos' query={searchKeyword} videoDuration="short" videoList={shortVideoList} isEducation={isEducation}/>
-			<VideoGridContainer data-cy='mediumDurationVideos' query={searchKeyword} videoDuration="medium" videoList={mediumVideoList} isEducation={isEducation}/>
-			<VideoGridContainer data-cy='longDurationVideos' query={searchKeyword} videoDuration="long" videoList={longVideoList} isEducation={isEducation}/>
+			<VideoGridContainer data-cy='shortDurationVideos' query={searchKeyword} videoDuration="short" videoList={shortVideoList} isEducation={isEducation} section={section}/>
+			<VideoGridContainer data-cy='mediumDurationVideos' query={searchKeyword} videoDuration="medium" videoList={mediumVideoList} isEducation={isEducation} section={section}/>
+			<VideoGridContainer data-cy='longDurationVideos' query={searchKeyword} videoDuration="long" videoList={longVideoList} isEducation={isEducation} section={section}/>
 
 			
 		</div>
