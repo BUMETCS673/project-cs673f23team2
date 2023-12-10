@@ -1,4 +1,4 @@
-import React, { useEffect, useState  } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../styles/VideoDetails.css';
 import { useLocation, useNavigate } from 'react-router-dom';
 import YouTube from 'react-youtube';
@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight, faArrowLeft, faBookmark, faXmark, faSquareCheck } from '@fortawesome/free-solid-svg-icons';
 import { getAuth } from "firebase/auth";
 import { get, getDatabase, ref, set } from "firebase/database";
-import axios from "axios"
+import axios from "axios";
 import { addWatchHistoy } from '../utils/axiosAPIUtils';
 
 const VIDEO_HEIGHT = 880;
@@ -14,156 +14,192 @@ const VIDEO_WIDTH = 1720;
 
 export default function VideoDetails() {
 
-	const location = useLocation();
-	const [rewards, setRewards] = useState(0);
+  const location = useLocation();
+  const [rewards, setRewards] = useState(0);
 
-	var updatedRewards = false;
+  var updatedRewards = false;
 
-	const [isLiked, setIsLiked] = useState(<FontAwesomeIcon icon={faBookmark} />)
-	const [player, setPlayer] = useState(null)
+  const [isLiked, setIsLiked] = useState(<FontAwesomeIcon icon={faBookmark} />);
+  const [player, setPlayer] = useState(null);
 
-	let totalWatchTime = 0
-	let startTime = 0
+  let totalWatchTime = 0;
+  let startTime = 0;
 
-	const navigate = useNavigate();
-	const realtimeDatabase = getDatabase()
+  const navigate = useNavigate();
+  const realtimeDatabase = getDatabase();
 
+  let videoElement;
 
-	let videoElement;
+  const videoToPlay = location.state.video;
+  const isEducation = location.state.isEducation;
+  const videoList = location.state.videoList;
+  const currVideoPos = location.state.videoPosInList;
+  const searchKeyword = location.state.searchKeyword;
+  const section = location.state.section;
+  const videoDuration = location.state.videoDuration;
 
-	const videoToPlay = location.state.video
-	const isEducation = location.state.isEducation
-	const videoList = location.state.videoList
-	const currVideoPos = location.state.videoPosInList
-	const searchKeyword = location.state.searchKeyword
-	const section = location.state.section
-	const videoDuration = location.state.videoDuration
+  const user = getAuth().currentUser;
 
-	const user = getAuth().currentUser;
+  var rewardUpdate;
 
-	var rewardUpdate;
+  if (isEducation) {
+    rewardUpdate = calculateRewardUpdate(videoDuration, 1, 2, 3);
+  } else {
+    rewardUpdate = calculateRewardUpdate(videoDuration, -1, -2, -3);
+  }
 
-	if (isEducation) {
-		rewardUpdate = calculateRewardUpdate(videoDuration, 1, 2, 3);
-	} 
-	else {
-		rewardUpdate = calculateRewardUpdate(videoDuration, -1, -2, -3);
-	}
-	
-	console.log(rewardUpdate);
-	
-	function calculateRewardUpdate(duration, shortPoints, mediumPoints, longPoints) {
-		switch (duration) {
-			case "short":
-				return shortPoints;
-			case "medium":
-				return mediumPoints;
-			default:
-				return longPoints;
-		}
-	}
+  console.log(rewardUpdate);
 
-	function getPosOfVideoInList(videoList, videoId){
-		const position = videoList.findIndex(video => video.id === videoId);
-		return position
-	}
+  // Function to calculate reward points based on video duration
+  function calculateRewardUpdate(duration, shortPoints, mediumPoints, longPoints) {
+    switch (duration) {
+      case "short":
+        return shortPoints;
+      case "medium":
+        return mediumPoints;
+      default:
+        return longPoints;
+    }
+  }
 
+  // Function to get the position of a video in the video list
+  function getPosOfVideoInList(videoList, videoId) {
+    const position = videoList.findIndex(video => video.id === videoId);
+    return position;
+  }
 
-	const resetSavedIcon = () => {
-		setIsLiked(<FontAwesomeIcon icon={faBookmark} />)
-	}
+  // Function to reset the liked icon when navigating between videos
+  const resetSavedIcon = () => {
+    setIsLiked(<FontAwesomeIcon icon={faBookmark} />);
+  }
 
-	const youtubePlayerOptions = {
-		height: VIDEO_HEIGHT, 
-		width: VIDEO_WIDTH,
-		playerVars: {
-			autoplay: 1,  
-		},
-	}
+  const youtubePlayerOptions = {
+    height: VIDEO_HEIGHT,
+    width: VIDEO_WIDTH,
+    playerVars: {
+      autoplay: 1,
+    },
+  }
 
+  // Function to close the video and navigate back to the search page
+  const handleCloseAction = () => {
+    navigate('/search');
+  }
 
-	const handleCloseAction = () => {
-		navigate('/search');
-	}
+  // Function to navigate to the previous video in the list
+  const handlePreviousAction = () => {
+    resetSavedIcon()
+    if (currVideoPos === 0) {
+      navigate('/watchvideo', { state: { video: videoList[videoList.length - 1], videoList: videoList, videoPosInList: getPosOfVideoInList(videoList, videoList[videoList.length - 1].id) } });
+    } else {
+      navigate('/watchvideo', { state: { video: videoList[currVideoPos - 1], videoList: videoList, videoPosInList: getPosOfVideoInList(videoList, videoList[currVideoPos - 1].id) } });
+    }
+  }
 
-	const handlePreviousAction = () => {
-		resetSavedIcon()
-		if(currVideoPos == 0){
-			navigate('/watchvideo', {state: {video: videoList[videoList.length - 1], videoList: videoList, videoPosInList: getPosOfVideoInList(videoList, videoList[videoList.length - 1].id)}})
-		}else{
-			navigate('/watchvideo', {state: {video: videoList[currVideoPos - 1], videoList: videoList, videoPosInList: getPosOfVideoInList(videoList, videoList[currVideoPos - 1].id)}})
-		}
-	}
+  // Function to navigate to the next video in the list
+  const handleNextAction = () => {
+    resetSavedIcon()
+    if (currVideoPos === (videoList.length - 1)) {
+      navigate('/watchvideo', { state: { video: videoList[0], videoList: videoList, videoPosInList: getPosOfVideoInList(videoList, videoList[0].id) } });
+    } else {
+      navigate('/watchvideo', { state: { video: videoList[currVideoPos + 1], videoList: videoList, videoPosInList: getPosOfVideoInList(videoList, videoList[currVideoPos + 1].id) } });
+    }
+  }
 
-	const handleNextAction = () => {
-		resetSavedIcon()
-		if(currVideoPos == (videoList.length - 1)){
-			navigate('/watchvideo', {state: {video: videoList[0], videoList: videoList, videoPosInList: getPosOfVideoInList(videoList, videoList[0].id)}})
-		}else{
-			navigate('/watchvideo', {state: {video: videoList[currVideoPos + 1], videoList: videoList, videoPosInList: getPosOfVideoInList(videoList, videoList[currVideoPos + 1].id)}})
-		}
-	}
+  // Function to handle liking or unliking a video
+  const handleLikedAction = () => {
+    const likedVideoRef = ref(realtimeDatabase, 'users/' + user.uid + '/likedVideos/' + videoToPlay.id);
 
-	const handleLikedAction = () => {
-		const likedVideoRef = ref(realtimeDatabase, 'users/' + user.uid + '/likedVideos/' + videoToPlay.id);
+    get(likedVideoRef).then((snapshot) => {
+      if (snapshot.exists()) {
+        set(ref(realtimeDatabase, 'users/' + user.uid + '/likedVideos/' + videoToPlay.id), null);
+        setIsLiked(<FontAwesomeIcon icon={faBookmark} />);
+      } else {
+        set(ref(realtimeDatabase, 'users/' + user.uid + '/likedVideos/' + videoToPlay.id), videoToPlay);
+        setIsLiked(<FontAwesomeIcon icon={faSquareCheck} />);
+      }
+    })
+  }
 
-		get(likedVideoRef).then((snapshot) => {
-			if(snapshot.exists()){
-				set(ref(realtimeDatabase, 'users/' + user.uid + '/likedVideos/' + videoToPlay.id), null);
-				setIsLiked(<FontAwesomeIcon icon={faBookmark} />)
-			}else{
-				set(ref(realtimeDatabase, 'users/' + user.uid + '/likedVideos/' + videoToPlay.id), videoToPlay);
-				setIsLiked(<FontAwesomeIcon icon={faSquareCheck} />)
-			}
-		})
-	}
+  // Function to check if the current video is liked
+  const checkIfVideoIsLiked = () => {
+    const likedVideoRef = ref(realtimeDatabase, 'users/' + user.uid + '/likedVideos/' + videoToPlay.id);
+    get(likedVideoRef).then((snapshot) => {
+      if (snapshot.exists()) {
+        setIsLiked(<FontAwesomeIcon icon={faSquareCheck} />);
+      } else {
+        setIsLiked(<FontAwesomeIcon icon={faBookmark} />);
+      }
+    })
+  }
 
-	const checkIfVideoIsLiked = () => {
-		const likedVideoRef = ref(realtimeDatabase, 'users/' + user.uid + '/likedVideos/' + videoToPlay.id);
-		get(likedVideoRef).then((snapshot) => {
-			if(snapshot.exists()){
-				setIsLiked(<FontAwesomeIcon icon={faSquareCheck} />)
-			}else{
-				setIsLiked(<FontAwesomeIcon icon={faBookmark} />)
-			}
-		})
-	}
+  // Callback function when the YouTube player is ready
+  const onReady = (event) => {
+    setPlayer(event.target);
+    if (!isEducation && rewards >= 6) {
+      setRewards(rewards => rewards + rewardUpdate);
+      console.log("onReady", rewards)
+      updatedRewards = true;
+    } else if (isEducation) {
+      setRewards(rewards => rewards + rewardUpdate);
+      console.log("onReady", rewards)
+      updatedRewards = true;
+    } else if (rewards < 6) {
+      alert("You don't have enough reward points to view Entertainment videos!")
+      event.target.stopVideo();
+      console.log(event.target)
+    }
+  };
 
-	const onReady = (event) => {
-		setPlayer(event.target);
-		if(!isEducation && rewards >= 6) {
-			setRewards(rewards=>rewards+rewardUpdate);
-			console.log("onReady", rewards)
-			updatedRewards = true;
-		}
-		else if (isEducation) {
-			setRewards(rewards=>rewards+rewardUpdate);
-			console.log("onReady", rewards)
-			updatedRewards = true;
-		}
-		else if (rewards < 6) {
-			alert("You don't have enough reward points to view Entertainment videos!")
-			event.target.stopVideo();
-			console.log(event.target)
-		}
-	};
+  // Callback function when the state of the YouTube player changes
+  const handleStateChange = (event) => {
+    if (event.data === 1) {
+      startTime = startTime + player.getCurrentTime()
+    } else if (event.data === 2 || event.data === 0) {
+      totalWatchTime = totalWatchTime + (player.getCurrentTime() - startTime)
+      addWatchHistoy(totalWatchTime, searchKeyword, section, videoToPlay)
+      console.log("Time : current time => " + player.getCurrentTime() + " - startTime => " + startTime + " = " + (player.getCurrentTime() - startTime))
+      console.log("Time : Total watch time => " + totalWatchTime)
+      startTime = 0
+    }
+  };
 
+  // Effect hook to check if the video is liked when the component mounts
+  useEffect(() => {
+    checkIfVideoIsLiked()
+  }, []);
 
-	const handleStateChange = (event) => {
-		if (event.data === 1) {
-			startTime = startTime + player.getCurrentTime()
-		} else if (event.data === 2  || event.data === 0) {
-			totalWatchTime = totalWatchTime + (player.getCurrentTime() - startTime)
-			addWatchHistoy(totalWatchTime, searchKeyword, section, videoToPlay)
-			console.log("Time : current time => " + player.getCurrentTime() + " - startTime => " + startTime + " = " + (player.getCurrentTime() - startTime))
-			console.log("Time : Total watch time => " + totalWatchTime)
-			startTime = 0
-		}
-	};
+  // Effect hook to fetch rewards information when the component mounts or pathname changes
+  useEffect(() => {
+    const auth = getAuth()
+    const user = auth.currentUser
+    if (user == null || user !== undefined) {
+      axios.get("http://127.0.0.1:5000/reward-points", { headers: { userId: user.uid } })
+        .then((response) => {
+          setRewards(parseInt(response.data.rewards, 10))
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    } else {
+      alert("user undefined " + user)
+    }
+  }, [location.pathname])
 
-	useEffect(() => {
-		checkIfVideoIsLiked()
-	}, []);
+  // Effect hook to update rewards when it changes
+  useEffect(() => {
+    if (rewards > 0) {
+      const auth = getAuth()
+      const user = auth.currentUser
+      axios.get("http://127.0.0.1:5000/write-reward-points", { headers: { userId: user.uid, rewards: rewards } })
+        .then((response) => {
+          console.log('update successful')
+        })
+        .catch((error) => {
+          alert("updation of reward points error" + error)
+        })
+    }
+  }, [rewards])
 
 	useEffect(()=>{
 		const auth = getAuth()
