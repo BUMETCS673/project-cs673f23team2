@@ -26,9 +26,9 @@ export default function SeeAllVideos() {
       
       <div className="VideoGridContainer">
           {videoList != undefined && videoList.length > 0 ? (
-              <div className='VideoGrid'>
+              <div data-cy='videoItem' className='VideoGrid'>
                   {videoList.map((video) => (
-                      <VideoCard key={video.id} className="VideoCardElement" video={video}/>
+                      <VideoCard data-cy='videoInfo' key={video.id} className="VideoCardElement" video={video}/>
                   ))}
               </div>
           ) : (

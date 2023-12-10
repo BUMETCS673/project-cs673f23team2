@@ -51,7 +51,6 @@ function App() {
     <div className="App">
       <Routes>
         <Route path='/' element={screenToShow()} />
-        <Route path='/onboarding' element={<OnboardingPage />} />
         <Route path='/search' element={<Search />} />
         <Route path='/browse' element={<EducationalVideoFeed />} />
         <Route path='/entertainment-browse' element={<EntertainmentFeed />} />
