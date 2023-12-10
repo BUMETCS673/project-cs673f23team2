@@ -59,7 +59,8 @@ export default function EntertainmentFeed() {
 		setQuery(keyword);
 		navigate('/entertainment-browse', {state: {flag: true, query: keyword}});
 	}
-// Effect to fetch user hobbies using axios
+
+//Effect to fetch user hobbies using axios
 	useLayoutEffect(()=>{
         const auth = getAuth()
         const user = auth.currentUser
