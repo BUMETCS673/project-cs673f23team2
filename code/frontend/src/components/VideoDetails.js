@@ -1,23 +1,21 @@
-import React, { useEffect, useState, useLayoutEffect  } from 'react';
+import React, { useEffect, useState  } from 'react';
 import '../styles/VideoDetails.css';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import YouTube, { YouTubeProps, YouTubePlayer } from 'react-youtube';
+import { useLocation, useNavigate } from 'react-router-dom';
+import YouTube from 'react-youtube';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowRight, faArrowLeft, faBookmark, faXmark, faSquareCheck, faStar } from '@fortawesome/free-solid-svg-icons';
+import { faArrowRight, faArrowLeft, faBookmark, faXmark, faSquareCheck } from '@fortawesome/free-solid-svg-icons';
 import { getAuth } from "firebase/auth";
 import { get, getDatabase, ref, set } from "firebase/database";
 import axios from "axios"
 import { addWatchHistoy } from '../utils/axiosAPIUtils';
 
+const VIDEO_HEIGHT = 880;
+const VIDEO_WIDTH = 1720;
+
 export default function VideoDetails() {
-	// var tag = document.createElement('script');
-	// tag.src = "https://www.youtube.com/iframe_api";
-	// var firstScriptTag = document.getElementsByTagName('script')[0];
-	// firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 	const location = useLocation();
 	const [rewards, setRewards] = useState(0);
-	const [isPlaying, setIsPlaying] = useState(false);
 
 	var updatedRewards = false;
 
@@ -29,7 +27,7 @@ export default function VideoDetails() {
 
 	const navigate = useNavigate();
 	const realtimeDatabase = getDatabase()
-	const [sessionTime, setSessionTime] = useState(0);
+
 
 	let videoElement;
 
@@ -44,22 +42,26 @@ export default function VideoDetails() {
 	const user = getAuth().currentUser;
 
 	var rewardUpdate;
-	if (isEducation) { // add points if video is an educational video
-		if(videoDuration == "short")
-			rewardUpdate = 1;
-		else if (videoDuration == "medium")
-			rewardUpdate = 2;
-		else 
-			rewardUpdate = 3;
-	} else { // deduct reward points if video is not educational video
-		if(videoDuration == "short")
-			rewardUpdate = -1;
-		else if (videoDuration == "medium")
-			rewardUpdate = -2;
-		else 
-			rewardUpdate = -3;
+
+	if (isEducation) {
+		rewardUpdate = calculateRewardUpdate(videoDuration, 1, 2, 3);
+	} 
+	else {
+		rewardUpdate = calculateRewardUpdate(videoDuration, -1, -2, -3);
 	}
-	console.log(rewardUpdate)
+	
+	console.log(rewardUpdate);
+	
+	function calculateRewardUpdate(duration, shortPoints, mediumPoints, longPoints) {
+		switch (duration) {
+			case "short":
+				return shortPoints;
+			case "medium":
+				return mediumPoints;
+			default:
+				return longPoints;
+		}
+	}
 
 	function getPosOfVideoInList(videoList, videoId){
 		const position = videoList.findIndex(video => video.id === videoId);
@@ -72,12 +74,13 @@ export default function VideoDetails() {
 	}
 
 	const youtubePlayerOptions = {
-		height: '880',
-		width: '1720',
+		height: VIDEO_HEIGHT, 
+		width: VIDEO_WIDTH,
 		playerVars: {
-			autoplay: 1,
+			autoplay: 1,  
 		},
 	}
+
 
 	const handleCloseAction = () => {
 		navigate('/search');
@@ -169,16 +172,15 @@ export default function VideoDetails() {
 			axios.get("http://127.0.0.1:5000/reward-points", {headers: {userId: user.uid}
 			}).then((response) => {
 				setRewards(parseInt(response.data.rewards, 10))
-				// alert("from db rewards"+rewards)
 			}).catch((error) => {
 				console.log(error)
-				// setRewards(0)
 			})
 		} else {
 			alert("user undefined " + user)
 		}
 		
     }, [location.pathname])
+
 
 	useEffect(()=> {
 		if(rewards > 0) {
@@ -196,78 +198,6 @@ export default function VideoDetails() {
 		}
 	}, [rewards])
 
-	// useEffect(() => {
-	// 	checkIfVideoIsLiked()
-	// 	let interval;
-	// 	let timeout;
-
-	// 	if (isPlaying) {
-	// 		interval = setInterval(() => { 
-	// 			setSessionTime(sessionTime => sessionTime + 1);
-	// 			if(sessionTime >= 1 && rewards >= 30){
-	// 				setRewards(rewards => rewards+rewardUpdate);
-	// 				console.log("interval second if" + rewards)
-	// 				clearInterval(interval);
-	// 			}
-	// 			else if(!isEducation && rewards < 30) {
-	// 				player.stopVideo();
-	// 				console.log("interval third if" + rewards)
-	// 				alert("Not enough reward points to watch entertainment videos!")
-	// 				setIsPlaying(false);
-	// 				setSessionTime(0);
-	// 			}
-				
-	// 		}, 1000); // 1 second
-
-	// 		timeout = setTimeout(() => {
-	// 			console.log("22222222222222222")
-	// 			if(!isEducation && rewards < 30) {
-	// 				player.stopVideo();
-	// 				setIsPlaying(false);
-	// 				setSessionTime(0);
-	// 				console.log("timeout second if" + rewards)
-	// 			}
-	// 			else if (isPlaying) {
-	// 				console.log(isPlaying)
-	// 				setRewards(rewards => rewards+rewardUpdate);
-	// 				console.log("timeout third if" + rewards)
-	// 				clearInterval(interval);
-	// 			}
-	// 		}, 1000); 
-	// 	} else {
-	// 		clearInterval(interval);
-	// 		clearTimeout(timeout);
-	// 	}
-
-	// 	return () => {
-	// 		clearInterval(interval);
-	// 		clearTimeout(timeout);
-	// 	};
-	// }, [isPlaying, sessionTime]);
-
-	// function saveContent() {
-	// 	if(isPlaying){
-	// 		setRewards(rewards => rewards+rewardUpdate);
-	// 		setSessionTime(sessionTime=>sessionTime+1);
-	// 	}
-	// }
-	// var saveInterval;
-
-	// function onReady(event){
-	// 	setIsPlaying(true);
-	// 	videoElement = event;
-	// }
-
-	function onPause(event){
-		setIsPlaying(false);
-		setSessionTime(0);
-	}
-
-	function onStateChange(event){
-		if(event.data != window.YT.PlayerState.PLAYING) {
-			setIsPlaying(true);
-		}
-	}
 
 
   	return (

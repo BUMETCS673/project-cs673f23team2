@@ -35,14 +35,6 @@ export default function VideoFeed({section}) {
         }
     };
 
-    const handleSearchClick = () => {
-        if (isSearchValid(inputValue)) {
-            // Update the state only here, on search
-            setSearchKeyword(inputValue);
-            getYoutubeVideosFromQuery(inputValue, 50);
-        }
-    };
-
     function getYoutubeVideosFromQuery(query, count) {
         fetchVideosFromYouTube(query, count, "short", setShortVideoList);
         fetchVideosFromYouTube(query, count, "medium", setMediumVideoList);
