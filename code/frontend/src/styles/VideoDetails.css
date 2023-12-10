@@ -1,42 +1,65 @@
-.VideoDetailsContainer{
+.VideoDetailsContainer {
   text-align: center;
+  /* Additional styling if needed */
 }
 
-.YoutubePlayerElement{
-  margin-top: 2vw;
+.YoutubePlayerElement {
+  margin-top: 20px; /* Fixed margin for consistency */
 }
 
-.YoutubePlayerVideoTitle{
+.YoutubePlayerVideoTitle {
   font-size: 1.5em;
-  margin-top: 0.5vw;
+  margin-top: 10px; /* Adjusted margin */
   font-weight: 600;
 }
 
-.YoutubePlayerCreatorTitle{
+.YoutubePlayerCreatorTitle {
   font-size: 1em;
-  margin-top: 0.5vw;
+  margin-top: 10px;
 }
 
-.YoutubePlayerButtonStack{
-  margin-top: 1.5vw;
+.YoutubePlayerButtonStack {
+  margin-top: 20px;
+  display: inline-block; /* Align buttons in a row */
 }
 
-.WatchExperienceButtons{
-  width: 3.5vw;
-  height: 3.5vw;
+.WatchExperienceButtons {
+  width: 45px; /* Adjusted for consistent sizing */
+  height: 45px;
   border-radius: 50%;
   background-color: #B1DBFC;
   border: none;
   font-size: 1.5em;
-  margin-left: 1vw;
-  margin-right: 1vw;
+  margin: 10px; /* Uniform margin */
   transition: all 0.25s ease;
 }
 
-.WatchExperienceButtons:hover{
+.WatchExperienceButtons:hover {
   background: #5CB3F8;
   color: #282828;
-  transform: scale(1.5);
-  border: 0.2vw solid #282828;
+  transform: scale(1.1); /* Subtle scale */
   cursor: pointer;
+}
+
+.YoutubePlayerRewardPoints {
+  width: 250px; /* Adjusted for consistent sizing */
+  height: 45px;
+  background-color: #B1DBFC;
+  border: black;
+  font-size: 1.0em;
+  margin: 10px; /* Uniform margin */
+  transition: all 0.25s ease;
+  align-items: center;
+  align-self: center;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 767px) {
+  .YoutubePlayerVideoTitle, .YoutubePlayerCreatorTitle {
+    font-size: 1.2em; /* Adjust font size for mobile */
+  }
+  .WatchExperienceButtons {
+    width: 40px; /* Adjust size for mobile */
+    height: 40px;
+  }
 }
