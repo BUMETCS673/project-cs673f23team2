@@ -111,10 +111,11 @@ export default function Search() {
                 </button>
                 <button 
                     data-cy="EntertainmentMode" 
-                    className='SearchButtonElement'
+                    className='EntertainmentModeButton'
                     onClick={handleEntertainmentModeClick}>
-                        <FontAwesomeIcon icon={faCouch} /> Entertainment Mode
+                    <FontAwesomeIcon icon={faCouch} /> Fun Mode
                 </button>
+
             </div>
         </div>
     )
