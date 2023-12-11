@@ -31,13 +31,6 @@ export default function EntertainmentFeed() {
 			handleSearchClick();
 		}
 	};
-
-	// const handleSearchClick = () => {
-	// 	if(isSearchValid(query)) {
-	// 		console.log('handleSearchClick ', query)
-	// 		navigate('/entertainment-browse', {state: {flag: true, query: query}});
-	// 	}
-	// }
 	
 	// Function to handle search button click
 	const handleSearchClick = () => {
