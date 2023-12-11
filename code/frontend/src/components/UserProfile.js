@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { getAuth, signOut } from 'firebase/auth';
 import axios from 'axios';
 import '../styles/UserProfile.css';
+import { useNavigate } from 'react-router-dom';
+import { clearWatchHistoy } from '../utils/axiosAPIUtils';
 
 function UserProfile() {
   const [name, setName] = useState('');
@@ -9,9 +11,11 @@ function UserProfile() {
   const [hobbies, setHobbies] = useState([]);
 
   const auth = getAuth();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const user = auth.currentUser;
+
     if (user) {
       axios.get("http://127.0.0.1:5000/getUserProfile", { params: { userId: user.uid }})
         .then((result) => {
@@ -25,19 +29,18 @@ function UserProfile() {
   }, [auth]);
 
   const handleLogout = () => {
+    const auth = getAuth();
     signOut(auth).then(() => {
-      // Handle successful logout
-    }).catch((error) => {
-      console.error('Logout Error:', error);
-    });
+      navigate("/")
+    })
   };
 
   const handleClearHistory = () => {
-    // Code to clear history
+    clearWatchHistoy()
   };
 
-  const handleDeleteProfile = () => {
-    // Code to delete profile
+  const Dashboard = () => {
+    navigate("/dashboard")
   };
 
   return (
@@ -63,7 +66,7 @@ function UserProfile() {
       <div className="user-profile-buttons">
         <button onClick={handleClearHistory}>Clear History</button>
         <button onClick={handleLogout}>Logout</button>
-        <button onClick={handleDeleteProfile}>Delete Profile</button>
+        <button onClick={Dashboard}>Dashboard</button>
       </div>
     </div>
   );
