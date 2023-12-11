@@ -6,6 +6,7 @@ import VideoGridContainer from './VideoGridContainer';
 import { fetchVideosFromYouTube } from '../utils/axiosAPIUtils';
 import SearchBarComponent from './SearchBarComponent';
 
+// Function to check if the search query is valid
 export function isSearchValid(inputText) {
 	const trimmedInput = inputText.trim();
 	return trimmedInput.length > 1;
@@ -23,11 +24,12 @@ export default function VideoFeed({section}) {
 	const [mediumVideoList, setMediumVideoList] = useState([])
 	const [longVideoList, setLongVideoList] = useState([])
 
-
+// Function to handle changes in the search input
 	const handleSearchInput = (event) => {
 		const keyword = event.target.value;
 		setSearchKeyword(keyword)
 	}
+// Function to handle Enter key press in the search input
 
 	const handleInputKeyPress = (event) => {
 		if (event.key === 'Enter') {
@@ -35,11 +37,13 @@ export default function VideoFeed({section}) {
 		}
 	};
 
+	// Function to handle the search button click
 	const handleSearchClick = () => {
 		if(isSearchValid(searchKeyword)){
 			getYoutubeVideosFromQuery(searchKeyword, 50)
 		}
 	}
+// Fetch videos from YouTube when the query changes
 
 	useEffect(() => {
 		// Ensure that the query is valid before fetching videos
@@ -47,22 +51,22 @@ export default function VideoFeed({section}) {
 			getYoutubeVideosFromQuery(query);
 		}
 	  }, [query]);
-
+// Fetch videos from YouTube when the component mounts or location key changes
 	useEffect(() => {
 		getYoutubeVideosFromQuery(query); // Fetch videos on initial load
 		}, [location.key]); // Update when the key changes
 	
-
+// Function to fetch YouTube videos based on query and duration
 	function getYoutubeVideosFromQuery(query, count){
 		fetchVideosFromYouTube(query, count, "short", setShortVideoList);
 		fetchVideosFromYouTube(query, count, "medium", setMediumVideoList);
 		fetchVideosFromYouTube(query, count, "long", setLongVideoList);
 	}
-
+// Fetch videos from YouTube on component mount
 	useLayoutEffect(()=>{
 		getYoutubeVideosFromQuery(query, 50)
 	},[])
-
+// Render the component
 	return (
 		<div className='NavigationStackContainer'>
 			{isEducation && (
