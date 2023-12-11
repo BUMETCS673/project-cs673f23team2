@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { getAuth, signOut } from 'firebase/auth';
 import axios from 'axios';
 import '../styles/UserProfile.css';
+import { useNavigate } from 'react-router-dom';
+import { clearWatchHistoy } from '../utils/axiosAPIUtils';
 
 function UserProfile() {
   const [name, setName] = useState('');
@@ -9,6 +11,7 @@ function UserProfile() {
   const [hobbies, setHobbies] = useState([]);
 
   const auth = getAuth();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const user = auth.currentUser;
@@ -26,19 +29,18 @@ function UserProfile() {
   }, [auth]);
 
   const handleLogout = () => {
+    const auth = getAuth();
     signOut(auth).then(() => {
-      // Handle successful logout
-    }).catch((error) => {
-      console.error('Logout Error:', error);
-    });
+      navigate("/")
+    })
   };
 
   const handleClearHistory = () => {
-    // Code to clear history
+    clearWatchHistoy()
   };
 
   const Dashboard = () => {
-    // Code to navigate Dashboard
+    navigate("/dashboard")
   };
 
   return (
