@@ -12,12 +12,12 @@ setup_firebase()
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})
 
-
+#Health Check
 @app.route("/health", methods=["GET"])
 def health_check():
     return jsonify({"status": "ok"})
 
-
+#Write to User to Firestore
 @app.route("/writeUserToFirestore", methods=["GET"])
 def writeUserToFirestore():
     db = firestore.client()
@@ -26,7 +26,7 @@ def writeUserToFirestore():
     db.collection("users").document(userDetails["userId"]).set(userDetails)
     return jsonify({"status": "ok"})
 
-
+#To Fetch Videos
 @app.route("/fetchvideos", methods=["GET"])
 def fetch_videos_from_youtube_api():
     # Get Arguments from the GET Request
@@ -41,7 +41,7 @@ def fetch_videos_from_youtube_api():
 
     return jsonify(video_results)
 
-
+#To add to search History
 @app.route("/addtosearchhistory", methods=["GET"])
 def add_to_search_history():
     section = request.args.get("section", "")
@@ -64,7 +64,7 @@ def add_to_search_history():
 
     return jsonify({"status": "ok"})
 
-
+#Check for addFirstClick
 @app.route("/addFirstClickInfo", methods=["GET"])
 def add_first_click_info():
     section = request.args.get("section", "")
@@ -88,7 +88,7 @@ def add_first_click_info():
 
     return jsonify({"status": "ok"})
 
-
+#Check for watch History
 @app.route("/addwatchhistory", methods=["GET"])
 def update_watch_time_to_database():
     watchtime = request.args.get("watchtime", "")
@@ -140,7 +140,7 @@ def update_watch_time_to_database():
 
     return jsonify({"status": "ok"})
 
-
+#Check for UserHobbies
 @app.route("/getUserHobbies", methods=["GET"])
 def getUserHobbiesFromFirestore():
     db = firestore.client()
@@ -152,6 +152,7 @@ def getUserHobbiesFromFirestore():
     else:
         return jsonify({"hobbies": []})
 
+#Check for retrieving UserProfile
 @app.route("/getUserProfile", methods=["GET"])
 def getUserProfileFromFirestore():
     db = firestore.client()
@@ -164,6 +165,7 @@ def getUserProfileFromFirestore():
     else:
         return jsonify({"userDetails": {}})
 
+#Check for RewardPoints
 @app.route("/reward-points", methods=["GET"])
 def get_user_reward_points():
     userId = request.headers.get("userId", "")
@@ -201,7 +203,7 @@ def write_user_reward_points():
     return jsonify({"success": True, "status_code": 200})
 
 
-
+#Check to see if Data is fetched on First clicks Data
 @app.route("/getFirstClicksData", methods=["GET"])
 def get_first_click_info():
     userId = request.args.get("userId", "")
@@ -225,7 +227,7 @@ def get_first_click_info():
                 )
     return jsonify({"firstClickData": new_format})
 
-
+#Check to getKeywordData
 @app.route("/getKeywordData", methods=["GET"])
 def get_keyword_data():
     userId = request.args.get("userId", "")
@@ -249,6 +251,7 @@ def get_keyword_data():
                 )
     return jsonify({"firstClickData": new_format})
 
+#Check to fetch user watch video history
 @app.route("/getWatchVideoHistory", methods=["GET"])
 def get_watch_video_history():
     userId = request.args.get("userId", "")
