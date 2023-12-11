@@ -2,11 +2,31 @@ body{
     background-color: white;
   }
 
+.ChartsContainer{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 2vw;
+    margin-left: 5vw;
+    margin-right: 5vw;
+    margin-bottom: 5vh;
+    justify-items: stretch;
+}
+
+
   .FirstClicksChartsContainer{
     display: grid;
     place-items: center;
     margin-top: 5vw;
     padding: 0.5vw;
+    border-radius: 1vw;
+    background-color: #ebf3fb;
+    border-width: 5px;
+    transition: background 0.25s ease, box-shadow 0.25s ease, transform 0.3s ease;
+  }
+
+  .FirstClicksChartsContainer:hover{
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
+    transform: scale(1.1);
   }
 
   .FirstClicksChartTitle{

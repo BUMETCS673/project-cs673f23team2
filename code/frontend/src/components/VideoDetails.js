@@ -11,7 +11,6 @@ import { addWatchHistoy } from '../utils/axiosAPIUtils';
 
 const VIDEO_HEIGHT = 880;
 const VIDEO_WIDTH = 1720;
-
 export default function VideoDetails() {
 
   const location = useLocation();
