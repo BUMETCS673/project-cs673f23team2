@@ -1,40 +1,49 @@
-.VideoGridContainer{
+.VideoGridContainer {
     background-color: white;
     display: grid;
     margin-top: 1.5vw;
-    width: 90vw;
-}
-
-.VideoGrid{
+    width: 90vw; /* Consider max-width for large screens */
+  }
+  
+  .VideoGrid {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: repeat(5, 1fr); /* Responsive grid layout */
     grid-column-gap: 30px;
     place-items: center;
-}
-
-.VideoTitleElement{
+  }
+  
+  .VideoTitleElement {
     margin-top: 3vw;
     font-size: 2em;
     font-weight: 600;
-}
-
-.VideoGridContainerSeeMoreButtonElement{
+  }
+  
+  .VideoGridContainerSeeMoreButtonElement {
     display: block;
     margin-left: auto;
-    margin-right: 0;
+    margin-right: auto; /* Centered button */
     margin-top: 30px;
-    border-radius: 0.5vw;
+    border-radius: 10px; /* Consistent border-radius */
     background-color: #B1DBFC;
     font-size: 1em;
-    padding: 8px;
+    padding: 10px;
     font-weight: 600;
     color: #282828;
     transition: all 0.25s ease;
-}
-
-.VideoGridContainerSeeMoreButtonElement:hover{
+  }
+  
+  .VideoGridContainerSeeMoreButtonElement:hover {
     background: #5CB3F8;
-    color: #282828;
     transform: scale(1.1);
     cursor: pointer;
-}
+  }
+  
+  /* Responsive adjustments */
+  @media screen and (max-width: 767px) {
+    .VideoGrid {
+      grid-template-columns: repeat(2, 1fr); /* Adjust for mobile view */
+    }
+    .VideoTitleElement {
+      font-size: 1.5em; /* Adjust font size */
+    }
+  }
