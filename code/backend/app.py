@@ -155,6 +155,18 @@ def update_watch_time_to_database():
 
     return jsonify({"status": "ok"})
 
+@app.route("/clearHistory", methods=["GET"])
+def clear_history():
+    userId = request.args.get("userId", "")
+
+    watchHistoryRef = (
+        db.reference("users")
+        .child(userId)
+        .child("watchHistory")
+        .set(None)
+    )
+    return jsonify({"status": "ok"})
+
 
 # Check for UserHobbies
 @app.route("/getUserHobbies", methods=["GET"])
@@ -309,12 +321,11 @@ def get_first_click_info():
     ref = db.reference("users").child(userId).child("firstClickInfo")
 
     refVal = ref.get()
+    new_format = []
     if refVal == None:
         pass
     else:
         # print(refVal)
-        new_format = []
-
         for feed_name, feed_data in refVal.items():
             for duration_name, duration_data in feed_data.items():
                 new_format.append(
