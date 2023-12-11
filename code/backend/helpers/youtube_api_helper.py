@@ -3,7 +3,7 @@ from isodate import parse_duration
 
 video_fetch_url = "https://www.googleapis.com/youtube/v3/search"
 video_data_fetch_url = "https://www.googleapis.com/youtube/v3/videos"
-key = "AIzaSyCqn_iHs55mJrxYNSCNLNFQtnSzT9UYExM"  # Kept here for testing, will be moved to an environment variable
+key = "AIzaSyCmfbtelCSnTCkYyI0ZyAUSr2-mEtq65XQ"  # Kept here for testing, will be moved to an environment variable
 
 
 # Create parameters for the Youtube Search API Request
