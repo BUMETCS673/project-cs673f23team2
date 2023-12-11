@@ -2,70 +2,107 @@ body, html {
     margin: 0;
     height: 100%;
     font-family: Arial, sans-serif;
-    background: #fff; /* Use the appropriate background color */
+    background: #fff; /* Appropriate background color */
   }
   
   .user-profile-container {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    height: 60vh;
     align-items: center;
-    justify-content: center;
-    height: 100%;
+    padding: 20px;
   }
   
   .user-profile-header {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 100px;
+    margin-bottom: 20px;
   }
   
   .user-profile-image-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 50px;
+    margin-bottom: 10px; /* Reduced margin */
   }
   
   .user-profile-picture {
-    background: #FFC0CB; /* Adjust this to your actual profile picture */
-    width: 100px; /* Smaller size as per your request */
-    height: 100px; /* Smaller size as per your request */
+    background: #FFC0CB; /* Placeholder or adjust for actual image */
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
+    object-fit: cover;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 3rem; /* Adjust font size to match the picture */
-    color: white; /* Adjust text color to match the picture */
+    font-size: 3rem;
+    color: white;
   }
   
   .user-profile-name {
-    font-size: 2.5rem; /* Adjust as needed */
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
     color: #333;
-    margin: 0;
+    margin: 0 0 10px 0; /* Reduced bottom margin */
   }
   
   .user-profile-hobbies {
-    align-self: flex-start; /* Align hobbies to the left */
-    padding-left: 20px; /* Add padding to match the left alignment */
-    width: 100%; /* Full width for alignment */
+    align-self: center;
+    padding: 0;
+    width: 100%;
+    margin-bottom: 10px; /* Added margin to bring hobbies and buttons closer */
   }
   
   .user-profile-hobbies h2 {
-    font-size: 1.5rem;
+    font-size: 1.7rem; /* Increased font size */
     color: #333;
+    text-align: center;
     margin-bottom: 10px;
   }
   
   .user-hobbies-list {
     display: flex;
-    gap: 10px;
+    gap: 15px; /* Increased gap */
+    flex-wrap: wrap;
+    justify-content: center;
   }
   
   .user-hobby {
     background-color: #f0f0f0;
-    padding: 5px 15px;
+    padding: 8px 20px; /* Increased padding */
     border-radius: 15px;
-    font-size: 14px;
+    font-size: 16px; /* Increased font size */
   }
   
+  .user-profile-buttons {
+    width: 100%;
+    padding: 10px; /* Reduced padding */
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .user-profile-buttons button {
+    padding: 12px 20px; /* Increased padding */
+    border: none;
+    border-radius: 5px;
+    background-color: #5CB3F8;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    font-size: 16px; /* Increased font size */
+  }
+  
+  .user-profile-buttons button:hover {
+    background-color: #3A7CA5;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  }
+  
+  @media screen and (max-width: 767px) {
+    .user-profile-name, .user-hobby, .user-profile-buttons button {
+      font-size: smaller;
+    }
+    /* Additional mobile-specific adjustments */
+  }

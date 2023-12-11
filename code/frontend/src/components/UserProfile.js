@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getAuth } from 'firebase/auth';
+import { getAuth, signOut } from 'firebase/auth';
 import axios from 'axios';
 import '../styles/UserProfile.css';
 
@@ -8,8 +8,9 @@ function UserProfile() {
   const [profile, setProfile] = useState('');
   const [hobbies, setHobbies] = useState([]);
 
+  const auth = getAuth();
+
   useEffect(() => {
-    const auth = getAuth();
     const user = auth.currentUser;
 
     if (user) {
@@ -22,7 +23,23 @@ function UserProfile() {
           console.error(error);
         });
     }
-  }, []);
+  }, [auth]);
+
+  const handleLogout = () => {
+    signOut(auth).then(() => {
+      // Handle successful logout
+    }).catch((error) => {
+      console.error('Logout Error:', error);
+    });
+  };
+
+  const handleClearHistory = () => {
+    // Code to clear history
+  };
+
+  const Dashboard = () => {
+    // Code to navigate Dashboard
+  };
 
   return (
     <div className="user-profile-container">
@@ -35,10 +52,19 @@ function UserProfile() {
       <div className="user-profile-hobbies">
         <h2>Hobbies:</h2>
         <div className="user-hobbies-list">
-          {hobbies.map((hobby, index) => (
-            <span key={index} className="user-hobby">{hobby}</span>
-          ))}
+          {hobbies && hobbies.length > 0 ? (
+            hobbies.map((hobby, index) => (
+              <span key={index} className="user-hobby">{hobby}</span>
+            ))
+          ) : (
+            <p>No hobbies.</p>
+          )}
         </div>
+      </div>
+      <div className="user-profile-buttons">
+        <button onClick={handleClearHistory}>Clear History</button>
+        <button onClick={handleLogout}>Logout</button>
+        <button onClick={Dashboard}>Dashboard</button>
       </div>
     </div>
   );
