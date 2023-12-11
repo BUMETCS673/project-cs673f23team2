@@ -54,14 +54,6 @@ def add_to_search_history():
     userId = request.args.get("userId", "")
     print(section, keyword, userId)
 
-
-@app.route("/addtosearchhistory", methods=["GET"])
-def add_to_search_history():
-    section = request.args.get("section", "")
-    keyword = request.args.get("keyword", "")
-    userId = request.args.get("userId", "")
-    print(section, keyword, userId)
-
     ref = (
         db.reference("users")
         .child(userId)
@@ -241,31 +233,6 @@ def get_first_click_info():
     return jsonify({"firstClickData": new_format})
 
 
-# Check to getKeywordData
-@app.route("/getKeywordData", methods=["GET"])
-def get_keyword_data():
-    userId = request.args.get("userId", "")
-    print(userId)
-
-    ref = db.reference("users").child(userId).child("keywords")
-
-    refVal = ref.get()
-    if refVal == None:
-        pass
-    else:
-        new_format = []
-        for feed_name, feed_data in refVal.items():
-            for duration_name, duration_data in feed_data.items():
-                new_format.append(
-                    {
-                        "name": duration_name,
-                        "count": duration_data.get("count", 0),
-                        "feed": feed_name,
-                    }
-                )
-    return jsonify({"firstClickData": new_format})
-
-
 # Check to fetch user watch video history
 @app.route("/getWatchVideoHistory", methods=["GET"])
 def get_watch_video_history():
@@ -299,58 +266,6 @@ def get_watch_video_history():
                         print(f"res => {res}")
 
                     return jsonify({"videoHistory": result_list})
-
-
-@app.route("/getFirstClicksData", methods=["GET"])
-def get_first_click_info():
-    userId = request.args.get("userId", "")
-    # print(userId)
-
-    ref = db.reference("users").child(userId).child("firstClickInfo")
-
-    refVal = ref.get()
-    if refVal == None:
-        pass
-    else:
-        # print(refVal)
-        new_format = []
-
-        for feed_name, feed_data in refVal.items():
-            for duration_name, duration_data in feed_data.items():
-                new_format.append(
-                    {
-                        "name": duration_name,
-                        "count": duration_data["count"],
-                        "feed": feed_name,
-                    }
-                )
-    # print(new_format)
-    return jsonify({"firstClickData": new_format})
-
-
-@app.route("/getKeywordData", methods=["GET"])
-def get_keyword_data():
-    userId = request.args.get("userId", "")
-    print(userId)
-
-    ref = db.reference("users").child(userId).child("keywords")
-
-    refVal = ref.get()
-    if refVal == None:
-        pass
-    else:
-        new_format = []
-        for feed_name, feed_data in refVal.items():
-            for duration_name, duration_data in feed_data.items():
-                new_format.append(
-                    {
-                        "name": duration_name,
-                        "count": duration_data.get("count", 0),
-                        "feed": feed_name,
-                    }
-                )
-        print(new_format)
-    return jsonify({"keywordData": new_format})
 
 
 @app.route("/getHeatMapData", methods=["GET"])
@@ -414,29 +329,68 @@ def get_heatmap_data():
     return jsonify({"heatMapData": result})
 
 
-# Check to see if Data is fetched on First clicks Data
-@app.route("/getFirstClicksData", methods=["GET"])
-def get_first_click_info():
+@app.route("/getAvgAttentionSpan", methods=["GET"])
+def get_avg_attention_span():
     userId = request.args.get("userId", "")
+    print(userId)
 
-    ref = db.reference("users").child(userId).child("firstClickInfo")
+    ref = db.reference("users").child(userId).child("watchHistory")
 
     refVal = ref.get()
     if refVal == None:
         pass
     else:
-        new_format = []
+        total_watch_time_education = 0
+        total_watch_time_entertainment = 0
+        count_education = 0
+        count_entertainment = 0
 
-        for feed_name, feed_data in refVal.items():
-            for duration_name, duration_data in feed_data.items():
-                new_format.append(
-                    {
-                        "name": duration_name,
-                        "count": duration_data["count"],
-                        "feed": feed_name,
-                    }
-                )
-    return jsonify({"firstClickData": new_format})
+        for date, feeds in refVal.items():
+            for feed_type, videos in feeds.items():
+                for video_id, details in videos.items():
+                    watch_time_parts = details["watchTime"].split(".")
+                    watch_time = (
+                        float(watch_time_parts[0]) if watch_time_parts[0] else 0
+                    )
+
+                    if "Education" in feed_type:
+                        total_watch_time_education += watch_time
+                        count_education += 1
+                    elif "Entertainment" in feed_type:
+                        total_watch_time_entertainment += watch_time
+                        count_entertainment += 1
+
+        average_watch_time_education = (
+            total_watch_time_education / count_education if count_education > 0 else 0
+        )
+        average_watch_time_entertainment = (
+            total_watch_time_entertainment / count_entertainment
+            if count_entertainment > 0
+            else 0
+        )
+
+        def format_duration(seconds):
+            if seconds >= 3600:
+                return f"{round(seconds / 3600)} hours"
+            elif seconds >= 60:
+                return f"{round(seconds / 60)} minutes"
+            else:
+                return f"{round(seconds)} seconds"
+
+        formatted_education = format_duration(average_watch_time_education)
+        formatted_entertainment = format_duration(average_watch_time_entertainment)
+
+        print(
+            "AVG RUN TIME => ",
+            formatted_education,
+            formatted_entertainment,
+        )
+    return jsonify(
+        {
+            "avgEducation": formatted_education,
+            "avgEntertainment": formatted_entertainment,
+        }
+    )
 
 
 # Check to getKeywordData
@@ -461,42 +415,8 @@ def get_keyword_data():
                         "feed": feed_name,
                     }
                 )
-    return jsonify({"firstClickData": new_format})
-
-
-# Check to fetch user watch video history
-@app.route("/getWatchVideoHistory", methods=["GET"])
-def get_watch_video_history():
-    userId = request.args.get("userId", "")
-
-    ref = db.reference("users").child(userId).child("watchHistory")
-    ref_val = ref.get()
-
-    result_list = []
-    if ref_val is None:
-        return jsonify({"videoHistory": result_list})
-    else:
-        print(ref_val)
-        # Iterate through the nested dictionary
-        for date, feed_data in ref_val.items():
-            for feed_type, video_data in feed_data.items():
-                for video_id, video_info in video_data.items():
-                    # Extract the relevant information and add it to the result list
-                    extracted_info = {
-                        "creator": video_info["videoDetails"]["creator"],
-                        "duration": video_info["videoDetails"]["duration"],
-                        "id": video_info["videoDetails"]["id"],
-                        "thumbnail": video_info["videoDetails"]["thumbnail"],
-                        "title": video_info["videoDetails"]["title"],
-                        "url": video_info["videoDetails"]["url"],
-                        "watchTime": video_info["watchTime"],
-                    }
-                    result_list.append(extracted_info)
-
-                    for res in result_list:
-                        print(f"res => {res}")
-
-                    return jsonify({"videoHistory": result_list})
+    print(new_format)
+    return jsonify({"keywordData": new_format})
 
 
 if __name__ == "__main__":

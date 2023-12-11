@@ -14,7 +14,6 @@ export default function EntertainmentFeed() {
 	const location = useLocation();
 	//const [query, setQuery] = useState(location.state.query);
 	const [query, setQuery] = useState(location.state?.query || '');
-	const isInitialLoad = useState(true);
 	// State to manage the list of hobbies
 	const [hobbyList, setHobbyList] = useState([])
 	// Extracting the flag from the location state
@@ -40,21 +39,14 @@ export default function EntertainmentFeed() {
 		  console.log('Invalid search query:', query);
 		}
 	  };
-// Effect to automatically navigate on valid search query and URL change
-	  useEffect(() => {
-		if (!isInitialLoad && location.pathname !== '/entertainment-browse' && isSearchValid(query)) {
-		  navigate('/entertainment-browse', { state: { flag: true, query: query } });
-		}
-	  }, [query, location.pathname]);
 
 	const HobbyButtonClick = (e) => {
 		const keyword = e.target.textContent;
-		setQuery(keyword);
 		navigate('/entertainment-browse', {state: {flag: true, query: keyword}});
 	}
 
 //Effect to fetch user hobbies using axios
-	useLayoutEffect(()=>{
+	useEffect(()=>{
         const auth = getAuth()
         const user = auth.currentUser
 		if(user!=null || user!=undefined) {
@@ -67,43 +59,18 @@ export default function EntertainmentFeed() {
         } else {
             setHobbyList(['hiking', 'reading', 'photography'])
 		}
-		
       }, [])
 
 	return (
 		<div>
 			<div className='EntertainmentFeedSearchContainer'>
-				{/* {Flag && (
-        			<button
-						data-cy="searchBarButton"
-						className="SearchButtonElement"
-						onClick={() => {
-							navigate('/entertainment-browse', { state: { flag: false, query: '' } });
-						}}
-        			> <FontAwesomeIcon icon={faArrowLeft} /> Back </button>
-      			)} */}
-				{location.state?.flag && (
-					<button
-						data-cy="searchBarButton"
-						className="SearchButtonElement"
-						onClick={() => {
-						navigate('/entertainment-browse', { state: { flag: false, query: '' } });
-						}}
-					>
-						{' '}
-						<FontAwesomeIcon icon={faArrowLeft} /> Back{' '}
-					</button>
-        		)}
-				<SearchBarComponent
-					value={query}
-					onChange={handleSearchInput}
-					onKeyDown={handleInputKeyPress}/>
-				<button
-					data-cy="searchBarButton" 
-                	className='SearchButtonElement'
-                	onClick={handleSearchClick}>
-						<FontAwesomeIcon icon={faMagnifyingGlass}/> Search
-				</button>
+				
+				{!Flag && (
+					<>
+					<SearchBarComponent value={query} onChange={handleSearchInput} onKeyDown={handleInputKeyPress}/>
+					<button data-cy="searchBarButton"  className='SearchButtonElement' onClick={handleSearchClick}> <FontAwesomeIcon icon={faMagnifyingGlass}/> Search </button>
+					</>	
+				)}
 			</div>
 
 			<div className='EntertainmentFeedContainer'>
