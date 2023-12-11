@@ -4,9 +4,9 @@
 Team Member    | Roles
 -------------- | -------------
 Siddhesh Dighe | Team Leader
-Pushkar        | Design Implementation Leader
+Pushkar Gharat | Design Implementation Leader
 Sai Ramya Devineni| QA Leader
-Supriya        | Backup QA Leader
+Supriya Uppala | Backup QA Leader
 Ayush Bhaliya  | Security Leader
 Paridhi Talwar | Requirement Leader
 Deepali Chawla | Configuration Leader
