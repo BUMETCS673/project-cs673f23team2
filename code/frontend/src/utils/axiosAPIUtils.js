@@ -45,6 +45,16 @@ export const addWatchHistoy = (watchtime, keyword, section, videoDetails) => {
     });
 }
 
+export const clearWatchHistoy = () => {
+  const auth = getAuth()
+  const user = auth.currentUser
+  axios.get("http://127.0.0.1:5000/clearHistory", {
+      params: { userId: user.uid },
+    }).then((response) => {
+      console.log(response.data)
+    });
+}
+
 export const addFirstClickVideoSectionData = (videoDuration, section) => {
   const auth = getAuth()
   const user = auth.currentUser
