@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useState } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import { ReactComponent as Logo } from './assets/logo_with_text.svg';
 import { signInWithGoogle } from "./firebase";
@@ -14,6 +14,7 @@ import VideoHistory from './components/VideoHistory';
 import VideoDetails from './components/VideoDetails'
 import Dashboard from './components/Dashboard';
 
+
 function App() {
   const [isAuth, setAuthStatus] = useState(false)
   const navigate = useNavigate();
@@ -22,7 +23,7 @@ function App() {
     setAuthStatus(authValue)
   }
 
-  useLayoutEffect(()=>{
+  useEffect(()=>{
     getAuth().onAuthStateChanged((userCred) => {
       if(userCred){
         updateAuthStatus(true)
