@@ -4,6 +4,9 @@ import axios from 'axios';
 import '../styles/UserProfile.css';
 import { useNavigate } from 'react-router-dom';
 import { clearWatchHistoy } from '../utils/axiosAPIUtils';
+import { faBookmark, faChartSimple, faSignOut, faTrash, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 
 function UserProfile() {
   const [name, setName] = useState('');
@@ -31,7 +34,7 @@ function UserProfile() {
   const handleLogout = () => {
     const auth = getAuth();
     signOut(auth).then(() => {
-      navigate("/")
+      navigate('/')
     })
   };
 
@@ -52,7 +55,7 @@ function UserProfile() {
         <h1 className="user-profile-name">{name}</h1>
       </div>
       <div className="user-profile-hobbies">
-        <h2>Hobbies:</h2>
+        <h3>Hobbies:</h3>
         <div className="user-hobbies-list">
           {hobbies && hobbies.length > 0 ? (
             hobbies.map((hobby, index) => (
@@ -64,9 +67,21 @@ function UserProfile() {
         </div>
       </div>
       <div className="user-profile-buttons">
-        <button onClick={handleClearHistory}>Clear History</button>
-        <button onClick={handleLogout}>Logout</button>
-        <button onClick={Dashboard}>Dashboard</button>
+        <button 
+          className='UserProfileButtons'
+          onClick={() => handleClearHistory()} >
+            <FontAwesomeIcon icon={faTrash} />
+        </button>
+        <button 
+          className='UserProfileButtons'
+          onClick={() => handleLogout()} >
+            <FontAwesomeIcon icon={faSignOut} />
+        </button>
+        <button 
+          className='UserProfileButtons'
+          onClick={() => Dashboard()} >
+            <FontAwesomeIcon icon={faChartSimple} />
+        </button>
       </div>
     </div>
   );

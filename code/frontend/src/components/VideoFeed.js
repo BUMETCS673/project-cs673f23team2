@@ -43,18 +43,6 @@ export default function VideoFeed({section}) {
 			getYoutubeVideosFromQuery(searchKeyword, 50)
 		}
 	}
-// Fetch videos from YouTube when the query changes
-
-	useEffect(() => {
-		// Ensure that the query is valid before fetching videos
-		if (isSearchValid(query)) {
-			getYoutubeVideosFromQuery(query);
-		}
-	  }, [query]);
-// Fetch videos from YouTube when the component mounts or location key changes
-	useEffect(() => {
-		getYoutubeVideosFromQuery(query); // Fetch videos on initial load
-		}, [location.key]); // Update when the key changes
 	
 // Function to fetch YouTube videos based on query and duration
 	function getYoutubeVideosFromQuery(query, count){
@@ -66,6 +54,7 @@ export default function VideoFeed({section}) {
 	useLayoutEffect(()=>{
 		getYoutubeVideosFromQuery(query, 50)
 	},[])
+	
 // Render the component
 	return (
 		<div className='NavigationStackContainer'>

@@ -4,11 +4,11 @@ body{
 
 .ChartsContainer{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    gap: 2vw;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1vw;
     margin-left: 5vw;
     margin-right: 5vw;
-    margin-bottom: 5vh;
+    margin-bottom: 1vh;
     justify-items: stretch;
 }
 
@@ -57,3 +57,19 @@ body{
     transform: scale(1.1);
     cursor: pointer;
   }
+
+  .FirstClicksParaSmall{
+    margin-top: 1vw;
+    font-weight: 400;
+    font-size: 1em;
+  }
+
+  .FirstClicksParaLarge{
+    margin-top: 1vw;
+    font-weight: 600;
+    font-size: 2em;
+  }
+  
+.NextRowInGrid{
+  margin-top: -0.2vw;
+}

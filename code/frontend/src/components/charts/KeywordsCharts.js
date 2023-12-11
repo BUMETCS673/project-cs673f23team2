@@ -16,6 +16,7 @@ export default function KeywordsCharts({data}) {
 
     useEffect(() => {
         data.then((result) => {
+            console.log(result)
             const countList = result.keywordData.filter(record => record.feed === section).map(item => item.count);
             const keywordList = result.keywordData.filter(record => record.feed === section).map(item => item.name);
             setEducationCountList(result.keywordData.filter(record => record.feed === "EducationFeed").map(item => item.count))

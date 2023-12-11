@@ -33,3 +33,14 @@ export const getHeatmapData = async () => {
 
     }
 }
+
+export const getAvgAttentionSpan = async () => {
+    const auth = getAuth()
+    const user = auth.currentUser
+    try{
+        const response = await axios.get("http://127.0.0.1:5000/getAvgAttentionSpan", { params: { userId: user.uid }, })
+        return response.data
+    }catch(error){
+
+    }
+}
