@@ -350,7 +350,68 @@ def get_keyword_data():
                     }
                 )
         print(new_format)
-    return jsonify({"firstClickData": new_format})
+    return jsonify({"keywordData": new_format})
+
+
+@app.route("/getHeatMapData", methods=["GET"])
+def get_heatmap_data():
+    userId = request.args.get("userId", "")
+    print(userId)
+
+    ref = db.reference("users").child(userId).child("watchHistory")
+
+    refVal = ref.get()
+    if refVal == None:
+        pass
+    else:
+        current_date = datetime.now()
+        current_year = current_date.year
+        current_month = current_date.month
+
+        # Extract the desired information
+        result = []
+        for date, feeds in refVal.items():
+            date_object = datetime.strptime(date, "%Y%m%d")
+            if date_object.year == current_year and date_object.month == current_month:
+                education_feed_count = len(feeds.get("EducationFeed", {}))
+                entertainment_feed_count = len(feeds.get("EntertainmentFeed", {}))
+
+                result.append(
+                    {
+                        "date": date_object.day,
+                        "educationFeedName": "educationFeed",
+                        "entertainmentFeedName": "entertainmentFeed",
+                        "educationFeedCount": education_feed_count,
+                        "entertainmentFeedCount": entertainment_feed_count,
+                    }
+                )
+            else:
+                result.append(
+                    {
+                        "date": date_object.day,
+                        "educationFeedName": "educationFeed",
+                        "entertainmentFeedName": "entertainmentFeed",
+                        "educationFeedCount": 0,
+                        "entertainmentFeedCount": 0,
+                    }
+                )
+
+        for i in range(1, 33):
+            day_exists = any(entry["date"] == i for entry in result)
+            if not day_exists:
+                result.append(
+                    {
+                        "date": i,
+                        "educationFeedName": "educationFeed",
+                        "entertainmentFeedName": "entertainmentFeed",
+                        "educationFeedCount": 0,
+                        "entertainmentFeedCount": 0,
+                    }
+                )
+
+        result.sort(key=lambda x: x["date"])
+        print(result)
+    return jsonify({"heatMapData": result})
 
 
 # Check to see if Data is fetched on First clicks Data

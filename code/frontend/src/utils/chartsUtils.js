@@ -22,3 +22,14 @@ export const getKeywordsData = async () => {
 
     }
 }
+
+export const getHeatmapData = async () => {
+    const auth = getAuth()
+    const user = auth.currentUser
+    try{
+        const response = await axios.get("http://127.0.0.1:5000/getHeatMapData", { params: { userId: user.uid }, })
+        return response.data
+    }catch(error){
+
+    }
+}
