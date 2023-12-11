@@ -113,7 +113,11 @@ export default function Search() {
                     data-cy="EntertainmentMode" 
                     className='EntertainmentModeButton'
                     onClick={handleEntertainmentModeClick}>
+<<<<<<< Updated upstream
                     <FontAwesomeIcon icon={faCouch} /> Fun Mode
+=======
+                        <FontAwesomeIcon icon={faCouch} /> Entertainment
+>>>>>>> Stashed changes
                 </button>
 
             </div>
